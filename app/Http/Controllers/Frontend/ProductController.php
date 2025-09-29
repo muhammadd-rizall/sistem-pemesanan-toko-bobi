@@ -13,13 +13,14 @@ class ProductController extends Controller
     public function index()
     {
         // Data dummy untuk halaman dashboard
+
         $products = [
-            ['id' => 1, 'name' => 'Bohemian Vase', 'price' => 'Rp 249.000', 'image' => 'https://via.placeholder.com/500x500.png/A3B18A/344E41?text=Vase'],
-            ['id' => 2, 'name' => 'Linen Throw Pillow', 'price' => 'Rp 189.000', 'image' => 'https://via.placeholder.com/500x500.png/DAD7CD/344E41?text=Pillow'],
-            ['id' => 3, 'name' => 'Ceramic Mug Set', 'price' => 'Rp 320.000', 'image' => 'https://via.placeholder.com/500x500.png/A3B18A/344E41?text=Mug'],
-            ['id' => 4, 'name' => 'Wooden Desk Lamp', 'price' => 'Rp 450.000', 'image' => 'https://via.placeholder.com/500x500.png/DAD7CD/344E41?text=Lamp'],
-            ['id' => 5, 'name' => 'Minimalist Wall Clock', 'price' => 'Rp 299.000', 'image' => 'https://via.placeholder.com/500x500.png/A3B18A/344E41?text=Clock'],
-            ['id' => 6, 'name' => 'Scented Soy Candle', 'price' => 'Rp 150.000', 'image' => 'https://via.placeholder.com/500x500.png/DAD7CD/344E41?text=Candle'],
+            ['id' => 1, 'name' => 'Keramik Lantai', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg')],
+            ['id' => 2, 'name' => 'Wastafel', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg')],
+            ['id' => 3, 'name' => 'Shower Mandi', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg')],
+            ['id' => 4, 'name' => 'Pintu Kamar Mandi', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg')],
+            ['id' => 5, 'name' => 'Kloset Duduk', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg')],
+            ['id' => 6, 'name' => 'Step Nosing Tangga', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg')],
         ];
 
         return view('frontend.index', compact('products'));

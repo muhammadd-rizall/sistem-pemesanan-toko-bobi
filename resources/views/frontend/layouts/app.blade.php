@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sage & Co. - Elegant Home Decor</title>
+    <title>Bobi Ceramic's - Dekorasi Rumah yang Elegan</title>
     @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,10 @@
         }
 
         .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            /* background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08); */
+            background: rgba(160, 206, 160, 0.98); /* Ini warna sage-100 transparan */
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08);
         }
@@ -72,7 +75,7 @@
 <body class="bg-white text-gray-900 antialiased">
 
     <!-- Header -->
-    <header class="bg-white sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
+    <header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4 sm:py-5">
                 <!-- Logo -->
@@ -86,7 +89,7 @@
                         <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75"></div>
                     </div>
                     <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
-                        Sage & Co.
+                        Bobi Ceramic's
                     </span>
                 </a>
 
@@ -97,19 +100,19 @@
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Shop
+                        Toko
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    {{-- <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Koleksi
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a> --}}
+                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Tentang
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Collections
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Contact
+                        Kontak
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                 </div>
@@ -131,14 +134,14 @@
                     </button>
 
                     <!-- Shopping Cart -->
-                    <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300 relative group">
+                    {{-- <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300 relative group">
                         <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                         </svg>
                         <span class="absolute -top-1 -right-1 w-5 h-5 bg-sage-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
                             0
                         </span>
-                    </button>
+                    </button> --}}
 
                     <!-- Mobile Menu Button -->
                     <button class="lg:hidden p-2 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-lg transition-all duration-300" onclick="toggleMobileMenu()">
@@ -156,16 +159,16 @@
                         Home
                     </a>
                     <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Shop
+                        Toko
                     </a>
                     <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Collections
+                        Koleksi
                     </a>
                     <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        About
+                        Tentang
                     </a>
                     <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Contact
+                        Kontak
                     </a>
                 </div>
             </div>
@@ -190,10 +193,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                             </svg>
                         </div>
-                        <span class="text-2xl font-bold">Sage & Co.</span>
+                        <span class="text-2xl font-bold">Bobi Ceramic's</span>
                     </div>
                     <p class="text-sage-300 text-sm leading-relaxed">
-                        Curating beautiful spaces with timeless pieces that tell your story.
+                        Mengatur ruang-ruang indah dengan karya-karya abadi yang menceritakan kisah Anda.
                     </p>
                     <div class="flex gap-3 pt-2">
                         <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
@@ -208,37 +211,36 @@
                     </div>
                 </div>
 
-                <!-- Shop Links -->
+                <!-- Toko Links -->
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Shop</h4>
+                    <h4 class="text-lg font-bold mb-4">Toko</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">All Products</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">New Arrivals</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Best Sellers</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Sale</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Gift Cards</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Semua Produk</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Produk Baru</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Terlaris</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Diskon</a></li>
+
                     </ul>
                 </div>
 
                 <!-- Customer Service -->
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Help</h4>
+                    <h4 class="text-lg font-bold mb-4">Bantuan</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Contact Us</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Hubungi Kami</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Pengiriman</a></li>
                         <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">FAQ</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Size Guide</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Track Order</a></li>
+                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Lacak Pesanan</a></li>
                     </ul>
                 </div>
 
                 <!-- Newsletter -->
                 <div>
                     <h4 class="text-lg font-bold mb-4">Newsletter</h4>
-                    <p class="text-sage-300 text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+                    <p class="text-sage-300 text-sm mb-4">Berlangganan penawaran dan pembaruan eksklusif.</p>
                     <form class="space-y-3">
                         <input type="email"
-                               placeholder="Your email"
+                               placeholder="Email Anda"
                                class="w-full px-4 py-2.5 rounded-lg bg-sage-800 border border-sage-700 text-white placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300">
                         <button type="submit"
                                 class="w-full px-4 py-2.5 bg-sage-600 hover:bg-sage-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
@@ -251,11 +253,11 @@
             <!-- Bottom Bar -->
             <div class="border-t border-sage-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p class="text-sage-300 text-sm text-center sm:text-left">
-                    &copy; {{ date('Y') }} Sage & Co. All rights reserved.
+                    &copy; {{ date('Y') }} Bobi Ceramic's. All rights reserved.
                 </p>
                 <div class="flex gap-6 text-sm text-sage-300">
-                    <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Syarat Layanan</a>
                     <a href="#" class="hover:text-white transition-colors duration-300">Cookies</a>
                 </div>
             </div>
