@@ -18,3 +18,8 @@ Route::prefix('admin')->group(function () {
 Route::get('/coba', function () {
     return view('coba');
 });
+
+
+Route::get('/coba2', function () {
+    return view('backend.produk.item_produk');
+});
