@@ -15,18 +15,18 @@
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-sage-900 mb-6 animate-fade-in-down leading-tight">
-                Find Your Perfect <span class="text-sage-600">Piece</span>
+                <span class="text-sage-600">Percantik</span> Ruanganmu dengan Keramik <span class="text-sage-600">Terbaik</span>
             </h1>
 
-            <p class="text-lg sm:text-xl text-sage-700 max-w-2xl mx-auto leading-relaxed animate-fade-in-up mb-8">
-                Discover our curated collection of home decor, crafted with care and designed to bring warmth and style to your space.
+            <p class="text-lg sm:text-l text-sage-700 max-w-2xl mx-auto leading-relaxed animate-fade-in-up mb-8">
+                Jelajahi koleksi keramik terbaik kami, dirancang untuk memperindah ruangan dengan keindahan dan kualitas yang tahan lama.
             </p>
 
             <!-- Search Bar -->
             <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
                 <div class="relative">
                     <input type="text"
-                           placeholder="Search for products..."
+                           placeholder="Cari produk anda..."
                            class="w-full px-6 py-4 pr-14 rounded-full border-2 border-sage-200 focus:border-sage-400 focus:outline-none focus:ring-4 focus:ring-sage-100 transition-all duration-300 text-sage-800 placeholder-sage-400">
                     <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,20 +40,20 @@
         <!-- Filter Section -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in">
             <div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2">Our Collection</h2>
-                <p class="text-sage-600">Handpicked items just for you</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2">Koleksi Kami</h2>
+                <p class="text-sage-600">Produk pilihan khusus untuk Anda</p>
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                 <!-- Category Filter -->
                 <div class="relative group">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
-                        <option>All Categories</option>
-                        <option>Vases & Planters</option>
-                        <option>Textiles</option>
-                        <option>Lighting</option>
-                        <option>Furniture</option>
-                        <option>Wall Art</option>
+                        <option>Semua Kategori</option>
+                        <option>Vas & Pot</option>
+                        <option>Tekstil</option>
+                        <option>Pencahayaan</option>
+                        <option>Perabotan</option>
+                        <option>Seni Dinding</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
                         <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -65,11 +65,11 @@
                 <!-- Sort Filter -->
                 <div class="relative group">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
-                        <option>Sort by Popular</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Newest First</option>
-                        <option>Best Rating</option>
+                        <option>Urutkan berdasarkan Populer</option>
+                        <option>Harga: Terendah ke Tertinggi</option>
+                        <option>Harga: Tertinggi ke Terendah</option>
+                        <option>Terbaru Pertama</option>
+                        <option>Rating Terbaik</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
                         <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Products Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-12">
             @foreach($products as $index => $product)
             <a href="{{ route('products.show', $product['id']) }}"
                class="group block animate-fade-in-up"
@@ -99,7 +99,7 @@
 
                         <!-- Badge -->
                         <div class="absolute top-4 left-4 bg-sage-600 text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transform -translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
-                            New
+                            Baru
                         </div>
 
                         <!-- Quick Actions -->
@@ -156,7 +156,7 @@
         <!-- Load More Button -->
         <div class="mt-16 text-center animate-fade-in">
             <button class="group inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                Load More Products
+                Muat Lebih Banyak Produk
                 <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
