@@ -13,6 +13,12 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('products.
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/produk', [ProdukController::class, 'produkView'])->name('produk_view');
+    Route::get('/produk/create', [ProdukController::class, 'createProduk'])->name('createItemProduk');
+    Route::post('/produk/store', [ProdukController::class, 'storeProduk'])->name('storeItemProduk');
+    Route::get('/produk/edit/{id}', [ProdukController::class, 'editProduk'])->name('editItemProduk');
+    Route::post('/produk/update/{id}', [ProdukController::class, 'updateProduk'])->name('updateItemProduk');
+    Route::delete('/produk/delete/{id}', [ProdukController::class, 'deleteProduk'])->name('deleteItemProduk');
+
     // Tambahkan route admin lainnya di sini nanti
 });
 
