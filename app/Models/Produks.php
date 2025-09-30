@@ -5,8 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Produk extends Model
+class Produks extends Model
 {
     use HasFactory;
+    protected $table = 'produks';
+    protected $guarded = ['id'];
 
 }
