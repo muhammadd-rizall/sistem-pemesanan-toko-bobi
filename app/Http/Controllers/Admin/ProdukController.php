@@ -8,11 +8,21 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
-    public function produkView()
+    public function produkView(Request $request)
     {
-        $items = Produks::latest()->paginate(10);
-        return view('admin.backend.produk.item_produk', compact('items'));
+        $search = $request->input('search');
+
+        $items = Produks::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('nama_produk', 'like', "%{$search}%")
+                    ->orWhere('deskripsi', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.backend.produk.item_produk', compact('items', 'search'));
     }
+
 
     public function createProduk()
     {
