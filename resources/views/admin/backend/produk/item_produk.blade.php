@@ -38,16 +38,20 @@
                 </div>
                 <div class="flex items-center gap-4 w-full sm:w-auto">
                     <!-- Search Bar -->
-                    <div class="relative w-full sm:w-64">
-                        <input type="text" placeholder="Cari produk..."
-                            class="w-full pl-10 pr-4 py-2.5 border-2 border-sage-200 rounded-full focus:outline-none focus:ring-2 focus:ring-sage-400 transition-all duration-300">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
+                    <form action="{{ route('produk_view') }}" method="GET">
+                        <div class="relative w-full sm:w-64">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Cari produk..."
+                                class="w-full pl-10 pr-4 py-2.5 border-2 border-sage-200 rounded-full focus:outline-none focus:ring-2 focus:ring-sage-400 transition-all duration-300">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
+
+                    </form>
                     <!-- Tombol Tambah Produk (Fungsi Asli Dipertahankan) -->
                     <a href="{{ route('createItemProduk') }}"
                         class="group inline-flex items-center gap-2 px-5 py-2.5 bg-sage-600 text-white font-semibold rounded-full hover:bg-sage-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
@@ -179,10 +183,11 @@
 
 
 
-    <!-- Pagination Links (Fungsi Asli Dipertahankan) -->
+    <!-- Pagination Links -->
     <div class="mt-8">
-        {{ $items->links() }}
+        {{ $items->appends(['search' => request('search')])->links() }}
     </div>
+
 
 
     <script>
