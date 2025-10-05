@@ -32,6 +32,26 @@
                     @enderror
                 </div>
 
+                {{-- kategories --}}
+                <div class="mb-4">
+                    <label for="category_id" class="block text-sm font-medium text-gray-800">
+                        Kategories <span class="text-red-500">*</span>
+                    </label>
+                    <select name="category_id" id="category_id"
+                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('category_id') ? 'border-red-500' : '' }}"
+                        required>
+                        <option value="" disabled>Pilih Kategories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $item->category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- harga --}}
                 <div class="mb-4">
                     <label for="harga" class="block text-sm font-medium text-gray-800">

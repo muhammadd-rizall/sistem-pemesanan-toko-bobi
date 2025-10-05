@@ -75,6 +75,7 @@
                                 <th class="px-2 py-4 text-center font-bold w-[20%]">Gambar</th>
                                 <th class="px-6 py-4 text-center font-bold w-[20%]">Nama</th>
                                 <th class="px-6 py-4 text-center font-bold w-[30%]">Deskripsi</th>
+                                <th class="px-6 py-4 text-center font-bold w-[20%]">Kategories</th>
                                 <th class="px-6 py-4 text-center font-bold w-[20%]">Harga</th>
                                 <th class="px-6 py-4 text-center font-bold w-[20%]">Stok</th>
                                 <th class="px-6 py-4 text-center font-bold w-[15%]">Aksi</th>
@@ -119,6 +120,14 @@
                                     <td class="px-6 py-4 text-center font-semibold align-top">
                                         <p class="text-sm text-gray-600">{{ $item->deskripsi }}</p>
                                     </td>
+
+                                    <!-- Kolom Kategories -->
+                                    <td class="px-6 py-4 text-center font-semibold align-top">
+                                        <p class="text-sm text-gray-600">
+                                            {{ $item->category ? $item->category->name : 'Uncategorized' }}
+                                        </p>
+                                    </td>
+
 
                                     <!-- Kolom Harga -->
                                     <td class="px-6 py-4 text-center align-top text-sm font-semibold text-sage-700">
