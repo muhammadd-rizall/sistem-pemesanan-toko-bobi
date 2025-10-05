@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\Produks;
 use Illuminate\Http\Request;
 
@@ -15,18 +16,23 @@ class ProdukController extends Controller
         $items = Produks::query()
             ->when($search, function ($query, $search) {
                 return $query->where('nama_produk', 'like', "%{$search}%")
-                    ->orWhere('deskripsi', 'like', "%{$search}%");
+                    ->orWhere('deskripsi', 'like', "%{$search}%")
+                    ->orWhereHas('category', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(10); //search produk
 
-        return view('admin.backend.produk.item_produk', compact('items', 'search'));
+
+        return view('admin.backend.produk.item_produk', compact('items', 'search',));
     }
 
 
     public function createProduk()
     {
-        return view('admin.backend.produk.create_produk');
+        $categories = Categories::all();
+        return view('admin.backend.produk.create_produk', compact('categories'));
     }
 
     public function storeProduk(Request $request)
@@ -34,6 +40,7 @@ class ProdukController extends Controller
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
             'harga' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
             'gambar_produk' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -48,6 +55,7 @@ class ProdukController extends Controller
         Produks::create([
             'nama_produk' => $validated['nama_produk'],
             'deskripsi' => $validated['deskripsi'],
+            'category_id' => $validated['category_id'],
             'harga' => $validated['harga'],
             'stok' => $validated['stok'],
             'gambar_produk' => $images,
@@ -58,8 +66,9 @@ class ProdukController extends Controller
 
     public function editProduk($id)
     {
+        $categories = Categories::all();
         $item = Produks::findOrFail($id);
-        return view('admin.backend.produk.edit_produk', compact('item'));
+        return view('admin.backend.produk.edit_produk', compact('item', 'categories'));
     }
 
     public function updateProduk(Request $request, $id)
@@ -67,6 +76,7 @@ class ProdukController extends Controller
         $request->validate([
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
             'harga' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
             'gambar_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -84,6 +94,7 @@ class ProdukController extends Controller
 
         $item->nama_produk = $request->nama_produk;
         $item->deskripsi = $request->deskripsi;
+        $item->category_id = $request->category_id;
         $item->harga = $request->harga;
         $item->stok = $request->stok;
         $item->save();
