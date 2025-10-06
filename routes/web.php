@@ -25,8 +25,8 @@ Route::prefix('admin')->group(function () {
     //supplier
     Route::get('/supplier',[SupplierController::class, 'supplierView'])->name('supplierView');
     Route::get('/supplier/create', [SupplierController::class, 'createSupplier'])->name('createSupplier');
-    Route::post('/supplier/store', [SupplierController::class, 'stroreSupplier'])->name('storeSupplier');
-    Route::get('/supplier/edit/{id}', [SupplierController::class, 'editProduk'])->name('editSupplier');
+    Route::post('/supplier/store', [SupplierController::class, 'storeSupplier'])->name('storeSupplier');
+    Route::get('/supplier/edit/{id}', [SupplierController::class, 'editSupplier'])->name('editSupplier');
     Route::post('/supplier/update/{id}', [SupplierController::class, 'updateSupplier'])->name('updateSupplier');
     Route::delete('/supplier/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier');
 
