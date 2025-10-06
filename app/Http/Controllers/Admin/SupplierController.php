@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function supplierView(Request $request){
+    public function supplierView(Request $request)
+    {
         $search = $request->input('search');
 
         $datas = Supplier::query()
@@ -17,74 +18,61 @@ class SupplierController extends Controller
                     ->orWhere('kontak_person', 'like', "%{$search}%");
             })
             ->latest()
-            ->paginate(10); //search supplier
+            ->paginate(10);
 
-            return view('admin.backend.supplier.data', compact('datas', 'search'));
+        return view('admin.backend.supplier.data', compact('datas', 'search'));
     }
 
-    public function createSupplier(){
+    public function createSupplier()
+    {
         return view('admin.backend.supplier.create');
     }
 
-    public function stroreSupplier(Request $request){
+    public function storeSupplier(Request $request)
+    {
         $validated = $request->validate([
             'nama_perusahaan' => 'required|string|max:255',
-            'kontak_person' => 'requirerd|string|max:255',
+            'kontak_person' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|email|unique:suppliers,email',
-            'provinsi' => 'string|max:100',
-            'kota' => 'string|max:100',
-            'kecamatan' => 'string|max:100',
+            'provinsi' => 'nullable|string|max:100',
+            'kota' => 'nullable|string|max:100',
+            'kecamatan' => 'nullable|string|max:100',
             'alamat' => 'required|string',
         ]);
 
-        Supplier::create([
-            'nama_perusahaan' => $validated['nama_perusahaan'],
-            'kontak_person' => $validated['kontak_person'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'provinsi' => $validated['provinsi'],
-            'kota' => $validated['kota'],
-            'kecamatan' => $validated['kecamatan'],
-            'alamat' => $validated['alamat'],
-        ]);
+        Supplier::create($validated);
 
         return redirect()->route('supplierView')->with('success', 'Supplier berhasil ditambahkan.');
     }
 
-    public function editProduk($id){
+    public function editSupplier($id)
+    {
         $data = Supplier::findOrFail($id);
         return view('admin.backend.supplier.edit', compact('data'));
     }
 
-    public function updateSupplier(Request $request, $id){
+    public function updateSupplier(Request $request, $id)
+    {
         $validated = $request->validate([
             'nama_perusahaan' => 'required|string|max:255',
-            'kontak_person' => 'requirerd|string|max:255',
+            'kontak_person' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'email' => 'required|email|unique:suppliers,email,'.$id,
-            'provinsi' => 'string|max:100',
-            'kota' => 'string|max:100',
-            'kecamatan' => 'string|max:100',
+            'email' => 'required|email|unique:suppliers,email,' . $id,
+            'provinsi' => 'nullable|string|max:100',
+            'kota' => 'nullable|string|max:100',
+            'kecamatan' => 'nullable|string|max:100',
             'alamat' => 'required|string',
         ]);
 
         $supplier = Supplier::findOrFail($id);
-        $supplier->update([
-            'nama_perusahaan' => $validated['nama_perusahaan'],
-            'kontak_person' => $validated['kontak_person'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'provinsi' => $validated['provinsi'],
-            'kota' => $validated['kota'],
-            'kecamatan' => $validated['kecamatan'],
-            'alamat' => $validated['alamat'],
-        ]);
+        $supplier->update($validated);
 
         return redirect()->route('supplierView')->with('success', 'Supplier berhasil diupdate.');
     }
 
-    public function deleteSupplier($id){
+    public function deleteSupplier($id)
+    {
         $supplier = Supplier::findOrFail($id);
         $supplier->delete();
 
