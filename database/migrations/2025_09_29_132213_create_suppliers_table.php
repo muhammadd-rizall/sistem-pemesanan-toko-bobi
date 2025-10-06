@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('kontak_person');
             $table->string('phone');
             $table->string('email')->unique();
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->string('kecamatan');
+            $table->string('provinsi')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('kecamatan')->nullable();
             $table->text('alamat');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
