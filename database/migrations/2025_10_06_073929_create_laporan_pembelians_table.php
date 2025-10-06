@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produks', function (Blueprint $table) {
+        Schema::create('laporan_pembelians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->string('nama_produk');
-            $table->string('merek');
             $table->text('deskripsi')->nullable();
-            $table->integer('harga');
-            $table->integer('stok');
-            $table->string('gambar_produk')->nullable();
+            $table->decimal('pengeluaran', 15, 2);
+            $table->date('tanggal_laporan');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produks');
+        Schema::dropIfExists('laporan_pembelians');
     }
 };
