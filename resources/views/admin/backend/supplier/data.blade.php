@@ -192,7 +192,7 @@
 
     <!-- Pagination Links -->
     <div class="mt-8">
-        {{ $items->appends(['search' => request('search')])->links() }}
+        {{ $datas->appends(['search' => request('search')])->links() }}
     </div>
 
 
