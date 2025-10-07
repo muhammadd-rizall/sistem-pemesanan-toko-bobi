@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->string('merek');
             $table->text('deskripsi')->nullable();
-            $table->integer('harga');
+            $table->decimal('harga_beli',10,2);
+            $table->decimal('harga_jual',10,2);
             $table->integer('stok');
+            $table->enum('status', ['tersedia', 'habis'])->default('tersedia');
             $table->string('gambar_produk')->nullable();
             $table->timestamps();
         });
