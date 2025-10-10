@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SupplierController;
 
@@ -29,6 +30,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier/edit/{id}', [SupplierController::class, 'editSupplier'])->name('editSupplier');
     Route::post('/supplier/update/{id}', [SupplierController::class, 'updateSupplier'])->name('updateSupplier');
     Route::delete('/supplier/delete/{id}',[SupplierController::class, 'deleteSupplier'])->name('deleteSupplier');
+
+    //order
+    Route::get('/orders', [OrderController::class, 'index'])->name('listOrder');
 
     // Tambahkan route admin lainnya di sini nanti
 });
