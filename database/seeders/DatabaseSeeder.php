@@ -89,9 +89,9 @@ class DatabaseSeeder extends Seeder
 
             // Update order dengan total yang benar
             $order->update([
-                'total_harga' => $totalHargaOrder,
+                'total_harga_awal' => $totalHargaOrder,
                 'total_diskon' => $totalDiskon,
-                'harga_akhir' => $hargaAkhir,
+                'total_harga_akhir' => $hargaAkhir,
             ]);
 
             // 8. Seed payment per order
