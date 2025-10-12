@@ -27,14 +27,27 @@ class OrderController extends Controller
     public function showOrder($id)
     {
         $order = Order::with('customer', 'diskon', 'orderItems.produk')->findOrFail($id);
-    return view('admin.backend.order.show_order', compact('order'));
+        return view('admin.backend.order.show_order', compact('order'));
     }
 
     public function deleteOrder($id)
     {
         $order = Order::findOrFail($id);
+        $order->orderItems()->delete(); // Hapus item order terkait
         $order->delete();
 
         return redirect()->route('listOrder')->with('success', 'Order berhasil dihapus.');
+    }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,proses,dikirim,cancelled',
+        ]);
+
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->back()->with('success', 'Status pengiriman berhasil diperbarui.');
     }
 }
