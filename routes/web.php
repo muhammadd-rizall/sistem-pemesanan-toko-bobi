@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('listOrder');
     Route::delete('/orders/delete/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
     Route::get('/orders/{id}', [OrderController::class, 'showOrder'])->name('detailOrder');
+    Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('updateOrderStatus');
 
     // Tambahkan route admin lainnya di sini nanti
 });

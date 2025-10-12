@@ -59,7 +59,7 @@
                             <th class="px-4 py-3 text-center font-bold">Total Harga Awal</th>
                             <th class="px-4 py-3 text-center font-bold">Diskon</th>
                             <th class="px-4 py-3 text-center font-bold">Total Diskon</th>
-                            <th class="px-4 py-3 text-center font-bold">Total   Harga Akhir</th>
+                            <th class="px-4 py-3 text-center font-bold">Total Harga Akhir</th>
                             <th class="px-4 py-3 text-center font-bold">Catatan</th>
                             <th class="px-4 py-3 text-center font-bold">Status</th>
                             <th class="px-4 py-3 text-center font-bold">Aksi</th>
@@ -74,13 +74,13 @@
                                 <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">
                                     {{ $order->customer->name }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
-                                    {{ number_format($order->total_harga, 0, ',', '.') }}</td>
+                                    {{ number_format($order->total_harga_awal, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">
                                     {{ $order->diskon_id }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
                                     {{ number_format($order->total_diskon, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
-                                    {{ number_format($order->harga_akhir, 0, ',', '.') }}</td>
+                                    {{ number_format($order->total_harga_akhir, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">{{ $order->catatan }}
                                 </td>
                                 <td class="px-4 py-3 text-center">
