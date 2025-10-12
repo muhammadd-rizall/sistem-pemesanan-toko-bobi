@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Categories;
-use App\Models\Produks;
+
+use App\Models\Category;
+use App\Models\Produk;
+
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -13,7 +15,7 @@ class ProdukController extends Controller
     {
         $search = $request->input('search');
 
-        $items = Produks::query()
+        $items = Produk::query()
             ->when($search, function ($query, $search) {
                 return $query->where('nama_produk', 'like', "%{$search}%")
                     ->orWhere('deskripsi', 'like', "%{$search}%")
@@ -31,7 +33,7 @@ class ProdukController extends Controller
 
     public function createProduk()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('admin.backend.produk.create_produk', compact('categories'));
     }
 
@@ -52,7 +54,7 @@ class ProdukController extends Controller
             $images = $request->file('gambar_produk')->store('produks', 'public');
         }
 
-        Produks::create([
+        Produk::create([
             'nama_produk' => $validated['nama_produk'],
             'deskripsi' => $validated['deskripsi'],
             'category_id' => $validated['category_id'],
@@ -66,8 +68,8 @@ class ProdukController extends Controller
 
     public function editProduk($id)
     {
-        $categories = Categories::all();
-        $item = Produks::findOrFail($id);
+        $categories = Category::all();
+        $item = Produk::findOrFail($id);
         return view('admin.backend.produk.edit_produk', compact('item', 'categories'));
     }
 
@@ -82,7 +84,7 @@ class ProdukController extends Controller
             'gambar_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $item = Produks::findOrFail($id);
+        $item = Produk::findOrFail($id);
 
         // Handle file upload
         if ($request->hasFile('gambar_produk')) {
@@ -104,7 +106,7 @@ class ProdukController extends Controller
 
     public function deleteProduk($id)
     {
-        $item = Produks::findOrFail($id);
+        $item = Produk::findOrFail($id);
         $item->delete();
 
         return redirect()->route('produk_view')->with('success', 'Produk berhasil dihapus.');

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class CategoriesSeeder extends Seeder
 {
@@ -12,28 +13,29 @@ class CategoriesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
+        $categories = [
             [
                 'name' => 'Keramik',
                 'description' => 'keramik untuk lantai dan dinding',
                 'slug' => 'keramik',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Wastafel',
                 'description' => 'Home and kitchen appliances',
                 'slug' => 'wastafel',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Kloset',
                 'description' => 'kloset duduk dan jongkok',
                 'slug' => 'kloset',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        foreach ($categories as $cat) {
+            Category::firstOrCreate(
+                ['slug' => $cat['slug']],
+                $cat
+            );
+        }
     }
 }
