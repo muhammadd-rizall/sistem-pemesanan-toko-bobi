@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Produks extends Model
+class Produk extends Model
 {
     use HasFactory;
     protected $table = 'produks';
@@ -14,7 +14,7 @@ class Produks extends Model
 
     public function category()
     {
-        return $this->belongsTo(Categories::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function supplier()
