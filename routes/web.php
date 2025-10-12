@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -36,6 +37,15 @@ Route::prefix('admin')->group(function () {
     Route::delete('/orders/delete/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
     Route::get('/orders/{id}', [OrderController::class, 'showOrder'])->name('detailOrder');
     Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('updateOrderStatus');
+
+
+    //diskon
+    Route::get('/diskon',[DiskonController::class, 'diskonView'])->name('diskonView');
+    Route::get('/diskon/create', [DiskonController::class, 'createDiskon'])->name('createDiskon');
+    Route::post('/diskon/store', [DiskonController::class, 'storeDiskon'])->name('storeDiskon');
+    Route::get('/diskon/edit/{id}', [DiskonController::class, 'editDiskon'])->name('editDiskon');
+    Route::post('/diskon/update/{id}', [DiskonController::class, 'updateDiskon'])->name('updateDiskon');
+    Route::delete('/diskon/delete/{id}',[DiskonController::class, 'deleteDiskon'])->name('deleteDiskon');
 
     // Tambahkan route admin lainnya di sini nanti
 });
