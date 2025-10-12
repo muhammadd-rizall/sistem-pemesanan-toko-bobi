@@ -63,6 +63,7 @@ class SupplierController extends Controller
             'kota' => 'nullable|string|max:100',
             'kecamatan' => 'nullable|string|max:100',
             'alamat' => 'required|string',
+            'status' => 'required|in:active,inactive',
         ]);
 
         $supplier = Supplier::findOrFail($id);
