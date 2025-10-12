@@ -71,9 +71,9 @@
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[150px]">Nama Produk</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Merek</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[200px] max-w-[300px] hidden lg:table-cell">Deskripsi</th>
-                                <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Kategori</th>
-                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[110px] hidden lg:table-cell">Harga Beli</th>
-                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[110px] hidden md:table-cell">Harga Jual</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[100px] hidden md:table-cell">Kategori</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden lg:table-cell">Harga Beli</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Harga Jual</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-24 hidden sm:table-cell">Stok</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-32 hidden sm:table-cell">Status</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-28">Aksi</th>
