@@ -31,7 +31,7 @@ class ProdukFactory extends Factory
             'harga_beli' => $this->faker->randomFloat(2, 10000, 500000),
             'harga_jual' => $this->faker->randomFloat(2, 50000, 1000000),
             'stok' => $this->faker->numberBetween(0, 100),
-            'status' => $this->faker->randomElement(['tersedia', 'habis']),
+            'status' => $this->faker->randomElement(['tersedia', 'tidak tersedia']),
             'gambar_produk' => $this->faker->imageUrl(400, 400, 'technics', true),
         ];
     }
