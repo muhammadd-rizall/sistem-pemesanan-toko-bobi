@@ -20,7 +20,8 @@ return new class extends Migration
             $table->decimal('harga_akhir', 10, 2);
             $table->text('alamat_pengiriman');
             $table->text('catatan')->nullable();
-            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
+            $table->enum('status', ['pending', 'proses', 'dikirim',  'cancelled'])->default('pending');
+            $table->enum('pembayaran_status', ['pending', 'lunas', 'belum_lunas'])->default('pending');
             $table->timestamps();
         });
     }
