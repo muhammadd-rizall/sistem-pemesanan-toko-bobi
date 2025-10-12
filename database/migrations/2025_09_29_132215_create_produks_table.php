@@ -16,12 +16,12 @@ return new class extends Migration
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('nama_produk');
-            $table->string('merek');
+            $table->string('merek')->nullable();
             $table->text('deskripsi')->nullable();
             $table->decimal('harga_beli',10,2);
             $table->decimal('harga_jual',10,2);
             $table->integer('stok');
-            $table->enum('status', ['tersedia', 'habis'])->default('tersedia');
+            $table->enum('status', ['tersedia', 'tidak tersedia'])->default('tersedia');
             $table->string('gambar_produk')->nullable();
             $table->timestamps();
         });

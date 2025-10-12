@@ -41,9 +41,11 @@ class ProdukController extends Controller
     {
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
+            'merek' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'harga' => 'required|numeric|min:0',
+            'harga_beli' => 'required|numeric|min:0',
+            'harga_jual' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
             'gambar_produk' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -56,9 +58,11 @@ class ProdukController extends Controller
 
         Produk::create([
             'nama_produk' => $validated['nama_produk'],
+            'merek' => $validated['merek'],
             'deskripsi' => $validated['deskripsi'],
             'category_id' => $validated['category_id'],
-            'harga' => $validated['harga'],
+            'harga_beli' => $validated['harga_beli'],
+            'harga_jual' => $validated['harga_jual'],
             'stok' => $validated['stok'],
             'gambar_produk' => $images,
         ]);
@@ -77,9 +81,12 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required|string|max:255',
+            'merek' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'harga' => 'required|numeric|min:0',
+            'harga_beli' => 'required|numeric|min:0',
+            'harga_jual' => 'required|numeric|min:0',
+            'status' => 'required|in:tersedia,tidak tersedia',
             'stok' => 'required|integer|min:0',
             'gambar_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -95,9 +102,12 @@ class ProdukController extends Controller
         }
 
         $item->nama_produk = $request->nama_produk;
+        $item->merek = $request->merek;
         $item->deskripsi = $request->deskripsi;
         $item->category_id = $request->category_id;
-        $item->harga = $request->harga;
+        $item->harga_beli = $request->harga_jual;
+        $item->harga_jual = $request->harga_jual;
+        $item->status = $request->status;
         $item->stok = $request->stok;
         $item->save();
 
