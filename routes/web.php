@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function () {
 
     //order
     Route::get('/orders', [OrderController::class, 'index'])->name('listOrder');
+    Route::delete('/orders/delete/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
+    Route::get('/orders/{id}', [OrderController::class, 'showOrder'])->name('detailOrder');
 
     // Tambahkan route admin lainnya di sini nanti
 });

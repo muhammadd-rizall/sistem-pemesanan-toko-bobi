@@ -11,19 +11,30 @@ class OrderController extends Controller
     public function index()
     {
         $search = request()->query('search');
-        $orders = Order::with('customers', 'produks')
+        $orders = Order::with('customer')
             ->when($search, function ($query, $search) {
                 return $query->where('id', 'like', "%{$search}%")
-                    ->orWhereHas('customers', function ($q) use ($search) {
+                    ->orWhereHas('customer', function ($q) use ($search) {
                         $q->where('name', 'like', "%{$search}%");
-                    })
-                    ->orWhereHas('produks', function ($q) use ($search) {
-                        $q->where('nama_produk', 'like', "%{$search}%");
                     });
             })
             ->latest()
             ->paginate(10);
 
         return view('admin.backend.order.list_order', compact('orders', 'search'));
+    }
+
+    public function showOrder($id)
+    {
+        $order = Order::with('customer', 'diskon', 'orderItems.produk')->findOrFail($id);
+    return view('admin.backend.order.show_order', compact('order'));
+    }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect()->route('listOrder')->with('success', 'Order berhasil dihapus.');
     }
 }
