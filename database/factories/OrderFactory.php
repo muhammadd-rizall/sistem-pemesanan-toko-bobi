@@ -40,9 +40,9 @@ class OrderFactory extends Factory
         return [
             'customer_id' => Customer::inRandomOrder()->first()?->id ?? Customer::factory(),
             'diskon_id' => $diskonId,
-            'total_harga' => $totalHarga,
+            'total_harga_awal' => $totalHarga,
             'total_diskon' => $totalDiskon,
-            'harga_akhir' => $hargaAkhir,
+            'total_harga_akhir' => $hargaAkhir,
             'alamat_pengiriman' => $this->faker->address(),
             'catatan' => $this->faker->boolean(30) ? $this->faker->sentence() : null,
             'status' => $this->faker->randomElement(['pending', 'proses', 'dikirim', 'cancelled']),
@@ -55,7 +55,7 @@ class OrderFactory extends Factory
      */
     public function pending(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'status' => 'pending',
             'pembayaran_status' => 'pending',
         ]);
@@ -66,7 +66,7 @@ class OrderFactory extends Factory
      */
     public function lunas(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'pembayaran_status' => 'lunas',
         ]);
     }
@@ -76,10 +76,10 @@ class OrderFactory extends Factory
      */
     public function withoutDiskon(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'diskon_id' => null,
             'total_diskon' => 0,
-            'harga_akhir' => $attributes['total_harga'],
+            'total_harga_akhir' => $attributes['total_harga_awal'],
         ]);
     }
 }
