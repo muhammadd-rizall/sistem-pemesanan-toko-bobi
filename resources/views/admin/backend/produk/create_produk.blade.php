@@ -19,6 +19,19 @@
                         @enderror
                     </div>
 
+                    {{-- merek --}}
+                    <div class="mb-4">
+                        <label for="merek" class="block text-sm font-medium text-gray-800">
+                            Merek
+                        </label>
+                        <input type="text" name="merek" id="merek"
+                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('merek') ? 'border-red-500' : '' }}"
+                            value="{{ old('merek') }}" required>
+                        @error('merek')
+                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     {{-- deskripsi --}}
                     <div class="mb-4">
                         <label for="deskripsi" class="block text-sm font-medium text-gray-800">
@@ -52,15 +65,28 @@
                         @enderror
                     </div>
 
-                    {{-- haraga --}}
+                    {{-- haraga beli--}}
                     <div class="mb-4">
-                        <label for="harga" class="block text-sm font-medium text-gray-800">
-                            Harga <span class="text-red-500">*</span>
+                        <label for="harga_beli" class="block text-sm font-medium text-gray-800">
+                            Harga Beli<span class="text-red-500">*</span>
                         </label>
-                        <input type="number" name="harga" id="harga"
-                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga') ? 'border-red-500' : '' }}"
-                            value="{{ old('harga') }}" required>
-                        @error('harga')
+                        <input type="number" name="harga_beli" id="harga_beli"
+                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga_beli') ? 'border-red-500' : '' }}"
+                            value="{{ old('harga_beli') }}" required>
+                        @error('harga_beli')
+                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- haraga jual --}}
+                    <div class="mb-4">
+                        <label for="harga_jual" class="block text-sm font-medium text-gray-800">
+                            Harga Jual <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" name="harga_jual" id="harga_jual"
+                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga_jual') ? 'border-red-500' : '' }}"
+                            value="{{ old('harga_jual') }}" required>
+                        @error('harga_jual')
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                         @enderror
                     </div>

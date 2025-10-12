@@ -19,6 +19,19 @@
                     @enderror
                 </div>
 
+                {{-- merek --}}
+                <div class="mb-4">
+                    <label for="merek" class="block text-sm font-medium text-gray-800">
+                        Merek
+                    </label>
+                    <input type="text" name="merek" id="merek"
+                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('merek') ? 'border-red-500' : '' }}"
+                        value="{{ $item->merek }}" required>
+                    @error('merek')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- deskripsi --}}
                 <div class="mb-4">
                     <label for="deskripsi" class="block text-sm font-medium text-gray-800">
@@ -52,15 +65,28 @@
                     @enderror
                 </div>
 
-                {{-- harga --}}
+                {{-- harga beli --}}
                 <div class="mb-4">
-                    <label for="harga" class="block text-sm font-medium text-gray-800">
-                        Harga <span class="text-red-500">*</span>
+                    <label for="harga_beli" class="block text-sm font-medium text-gray-800">
+                        Harga Beli <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" name="harga" id="harga"
-                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga') ? 'border-red-500' : '' }}"
-                        value="{{ $item->harga }}" required>
-                    @error('harga')
+                    <input type="text" name="harga_beli" id="harga_beli"
+                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga_beli') ? 'border-red-500' : '' }}"
+                        value="{{ $item->harga_beli }}" required>
+                    @error('harga_beli')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- harga jual --}}
+                <div class="mb-4">
+                    <label for="harga_jual" class="block text-sm font-medium text-gray-800">
+                        Harga Jual<span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="harga_jual" id="harga_jual"
+                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga_jual') ? 'border-red-500' : '' }}"
+                        value="{{ $item->harga_jual }}" required>
+                    @error('harga_jual')
                         <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -77,6 +103,29 @@
                         <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+
+                {{-- Status --}}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-800">Status <span
+                            class="text-red-500">*</span></label>
+                    <div class="flex items-center space-x-8 mt-2">
+                        <label class="inline-flex items-center space-x-2">
+                            <input class="text-black focus:ring-blue-200" type="radio" name="status" value="tersedia"
+                                {{ $item->status == 'tersedia' ? 'checked' : '' }} required>
+                            <span class="text-black text-sm">Tesedia</span>
+                        </label>
+
+                        <label class="inline-flex items-center space-x-2">
+                            <input class="text-black focus:ring-blue-200" type="radio" name="status" value="tidak tersedia"
+                                {{ $item->status == 'tidak tersedia' ? 'checked' : '' }} required>
+                            <span class="text-black text-sm">Tidak Tersedia</span>
+                        </label>
+                    </div>
+                    @error('status')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
 
                 {{-- Gambar --}}
                 <div class="mb-3">
