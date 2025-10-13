@@ -12,6 +12,20 @@ Route::get('/', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('products.show');
 
+
+
+// Rute sementara untuk menampilkan form login dan register
+Route::get('/login', function () {
+    return view('frontend.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('frontend.register');
+})->name('register');
+
+
+
+
 // Grup Route untuk Admin
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
