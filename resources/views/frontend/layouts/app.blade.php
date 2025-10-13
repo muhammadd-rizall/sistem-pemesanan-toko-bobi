@@ -95,27 +95,31 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center gap-8 text-base font-medium">
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Toko
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    {{-- <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Koleksi
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a> --}}
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Tentang
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Kontak
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                </div>
+    <a href="#home" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Home
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+    <a href="#produk" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Produk
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+    <a href="#tentang-kami" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Tentang Kami
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+    <a href="#testimoni" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Testimoni
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+    <a href="#galeri" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Galeri
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+    <a href="#contact" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+        Contact
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+    </a>
+</div>
 
                 <!-- Right Actions -->
                 <div class="flex items-center gap-2 sm:gap-4">
