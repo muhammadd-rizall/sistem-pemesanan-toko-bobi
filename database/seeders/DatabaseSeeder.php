@@ -97,8 +97,11 @@ class DatabaseSeeder extends Seeder
             // 8. Seed payment per order
             Payment::factory()->create([
                 'order_id' => $order->id,
-                'jumlah' => $hargaAkhir, // Sesuaikan jumlah payment dengan harga_akhir
+                'total_order' => $hargaAkhir,
+                'jumlah_terbayar' => $hargaAkhir,
+                'sisa_pembayaran' => 0,
             ]);
+
 
             // 9. Seed laporan_penjualans per order
             LaporanPenjualan::factory()->create([
