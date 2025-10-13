@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Category;
 use App\Models\Produk;
+use App\Models\Supplier;
 
 use Illuminate\Http\Request;
 

@@ -48,7 +48,7 @@
             /* background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08); */
-            background: rgba(160, 206, 160, 0.98); /* Ini warna sage-100 transparan */
+            background: #acd0ba; /* Ini warna sage-100 transparan */
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08);
         }
@@ -119,7 +119,22 @@
         Contact
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
     </a>
+
 </div>
+
+<!-- Right Actions (Tombol di Kanan) -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Tombol Login dan Register (Desktop) -->
+                <div class="hidden lg:flex items-center gap-2">
+                    {{-- <a href="{{ route('login') }}" class="px-5 py-2.5 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
+                        Masuk
+                    </a> --}}
+                    <a href="{{ route('login') }}" class="px-5 py-2.5 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
+                        Masuk
+                    </a>
+                </div>
+
+
 
                 <!-- Right Actions -->
                 <div class="flex items-center gap-2 sm:gap-4">
@@ -137,16 +152,6 @@
                         </svg>
                     </button>
 
-                    <!-- Shopping Cart -->
-                    {{-- <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300 relative group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                        </svg>
-                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-sage-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
-                            0
-                        </span>
-                    </button> --}}
-
                     <!-- Mobile Menu Button -->
                     <button class="lg:hidden p-2 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-lg transition-all duration-300" onclick="toggleMobileMenu()">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,24 +163,33 @@
 
             <!-- Mobile Navigation -->
             <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
-                <div class="py-4 space-y-1">
-                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Home
-                    </a>
-                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Toko
-                    </a>
-                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Koleksi
-                    </a>
-                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Tentang
-                    </a>
-                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-                        Kontak
-                    </a>
+    <div class="py-4 space-y-1">
+        <a href="#home" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Home
+        </a>
+        <a href="#produk" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Produk
+        </a>
+        <a href="#tentang-kami" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Tentang Kami
+        </a>
+        <a href="#testimoni" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Testimoni
+        </a>
+        <a href="#galeri" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Galeri
+        </a>
+        <a href="#contact" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
+            Contact
+        </a>
+
+        <!-- Tombol Login/Register Mobile -->
+                <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
+                    <a href="{{ route('register') }}" class="block text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg transition-all duration-300">Masuk</a>
+                    <a href="{{ route('login') }}" class="block text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg transition-all duration-300">Masuk</a>
                 </div>
-            </div>
+    </div>
+</div>
         </nav>
     </header>
 

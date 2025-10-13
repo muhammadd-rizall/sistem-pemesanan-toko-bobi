@@ -2,27 +2,36 @@
 
 @section('content')
 <!-- Hero Section with Stunning Design -->
+<section class="relative w-full h-screen flex items-center justify-center text-center text-white overflow-hidden">
+    <img src="{{ asset('storage/images/background-hero.jpg') }}"
+         alt="Background Keramik"
+         class="absolute inset-0 w-full h-full object-cover object-center">
+
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-2">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-down leading-tight drop-shadow-md">
+            <span class="text-sage-300">Percantik</span> Ruangan dengan Keramik <span class="text-sage-300">Terbaik</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed animate-fade-in-up mb-16 drop-shadow-sm">
+            Jelajahi koleksi keramik terbaik kami, dirancang untuk memperindah ruangan dengan keindahan dan kualitas yang tahan lama.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/product/1" class="bg-sage-600 hover:bg-sage-700 border border-white/30 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">Lihat Produk</a>
+            {{-- <a href="#contact" class="bg-white/20 backdrop-blur-sm border border-sage/700 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">Konsultasi Gratis</a> --}}
+        </div>
+    </div>
+</section>
+
 <div class="relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 bg-gradient-to-br from-sage-50 via-white to-cream-50"></div>
 
-    <div class="container relative mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <!-- Hero Content -->
-        <div class="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-            <!-- Decorative Element -->
-            <div class="flex justify-center mb-6 animate-fade-in">
-                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-sage-400 to-transparent rounded-full"></div>
-            </div>
+    <div class="container relative mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
 
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-sage-900 mb-6 animate-fade-in-down leading-tight">
-                <span class="text-sage-600">Percantik</span> Ruanganmu dengan Keramik <span class="text-sage-600">Terbaik</span>
-            </h1>
 
-            <p class="text-lg sm:text-l text-sage-700 max-w-2xl mx-auto leading-relaxed animate-fade-in-up mb-8">
-                Jelajahi koleksi keramik terbaik kami, dirancang untuk memperindah ruangan dengan keindahan dan kualitas yang tahan lama.
-            </p>
-
-            <!-- Search Bar -->
+        <!-- Search Bar -->
+        <div class="max-w-4xl mx-auto text-center mb-16 sm:mb-12">
             <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
                 <div class="relative">
                     <input type="text"
@@ -49,11 +58,13 @@
                 <div class="relative group">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
                         <option>Semua Kategori</option>
-                        <option>Vas & Pot</option>
-                        <option>Tekstil</option>
-                        <option>Pencahayaan</option>
-                        <option>Perabotan</option>
-                        <option>Seni Dinding</option>
+                        <option>Keramik Lantai</option>
+                        <option>Step Nosing Tangga</option>
+                        <option>Pintu Kamar Mandi</option>
+                        <option>Wastafel</option>
+                        <option>Shower</option>
+                        <option>Kloset</option>
+
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
                         <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -65,11 +76,11 @@
                 <!-- Sort Filter -->
                 <div class="relative group">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
-                        <option>Urutkan berdasarkan Populer</option>
+                        {{-- <option>Urutkan berdasarkan Populer</option> --}}
                         <option>Harga: Terendah ke Tertinggi</option>
                         <option>Harga: Tertinggi ke Terendah</option>
-                        <option>Terbaru Pertama</option>
-                        <option>Rating Terbaik</option>
+                        {{-- <option>Terbaru Pertama</option>
+                        <option>Rating Terbaik</option> --}}
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
                         <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -87,7 +98,7 @@
                class="group block animate-fade-in-up"
                style="animation-delay: {{ $index * 80 }}ms;">
 
-                <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+                <div class="relative bg-[#e8f0e8] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
                     <!-- Image Container -->
                     <div class="relative overflow-hidden aspect-square bg-cream-50">
                         <img src="{{ $product['image'] }}"
@@ -154,7 +165,7 @@
         </div>
 
         <!-- Load More Button -->
-        <div class="mt-16 text-center animate-fade-in">
+        <div class="mt-16 text-center animate-fade-in mb-32">
             <button class="group inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                 Muat Lebih Banyak Produk
                 <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,8 +173,58 @@
                 </svg>
             </button>
         </div>
+
+
+        <!-- Keunggulan Section -->
+        <section id="keunggulan" class="py-16 sm:py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-16 sm:mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-3">
+                Mengapa Bobi Ceramic's?
+            </h2>
+            <p class="text-lg text-sage-600">
+                Keunggulan yang kami tawarkan untuk Anda.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="mx-auto w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-sage-100 to-sage-200 rounded-full text-sage-600 shadow-sm">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-sage-900 mb-2">Tersedia Berbagai Motif</h3>
+                <p class="text-sage-700 leading-relaxed text-balance">Dari modern minimalis hingga klasik, temukan motif yang sempurna untuk ruangan Anda.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="mx-auto w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-sage-100 to-sage-200 rounded-full text-sage-600 shadow-sm">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-sage-900 mb-2">Harga yang Terjangkau</h3>
+                <p class="text-sage-700 leading-relaxed text-balance">Dapatkan produk berkualitas dengan harga yang sesuai untuk kebutuhan Anda.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <div class="mx-auto w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-sage-100 to-sage-200 rounded-full text-sage-600 shadow-sm">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H17z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-sage-900 mb-2">Gratis Konsultasi Desain</h3>
+                <p class="text-sage-700 leading-relaxed text-balance">Bingung memilih? Tim ahli kami siap memberikan rekomendasi terbaik untuk Anda.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
     </div>
 </div>
+
+
+
+
+
+
 
 <!-- Custom Animations & Styles -->
 <style>
