@@ -1,20 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\ProductController;
+// Beri alias agar tidak bingung dengan Controller Admin
+use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SupplierController;
 
-Route::get('/', [ProductController::class, 'index'])->name('products.index');
+/*
+|--------------------------------------------------------------------------
+| RUTE UNTUK PENGUNJUNG (FRONTEND)
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('products.show');
+// Rute untuk Halaman Utama / Home (yang sudah ada)
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
+// Rute untuk detail produk
+Route::get('/product/{id}', [FrontendController::class, 'show'])->name('products.show');
 
+// --- RUTE HALAMAN BARU ---
+Route::get('/produk', [FrontendController::class, 'produk'])->name('produk');
+Route::get('/tentang-kami', [FrontendController::class, 'tentang'])->name('tentang');
+Route::get('/testimoni', [FrontendController::class, 'testimoni'])->name('testimoni');
+Route::get('/galeri', [FrontendController::class, 'galeri'])->name('galeri');
+Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
 
-// Rute sementara untuk menampilkan form login dan register
+// Rute untuk Login & Register
 Route::get('/login', function () {
     return view('frontend.login');
 })->name('login');
@@ -22,7 +36,6 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('frontend.register');
 })->name('register');
-
 
 
 

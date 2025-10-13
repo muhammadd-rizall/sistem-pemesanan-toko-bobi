@@ -48,7 +48,7 @@
             /* background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08); */
-            background: #acd0ba; /* Ini warna sage-100 transparan */
+            background: #a9bea9; /* Ini warna sage-100 transparan */
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08);
         }
@@ -75,123 +75,100 @@
 <body class="bg-white text-gray-900 antialiased">
 
     <!-- Header -->
-    <header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4 sm:py-5">
-                <!-- Logo -->
-                <a href="{{ route('products.index') }}" class="group flex items-center gap-3">
-                    <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                            </svg>
-                        </div>
-                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75"></div>
+    <!-- Header -->
+<header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4 sm:py-5">
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="group flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        </svg>
                     </div>
-                    <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
-                        Bobi Ceramic's
-                    </span>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75"></div>
+                </div>
+                <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
+                    Bobi Ceramic's
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-8 text-base font-medium">
+                <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
                 </a>
+                <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Produk
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="{{ route('tentang') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Tentang Kami
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Testimoni
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Galeri
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="{{ route('kontak') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                    Contact
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+            </div>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden lg:flex items-center gap-8 text-base font-medium">
-    <a href="#home" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Home
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-    <a href="#produk" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Produk
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-    <a href="#tentang-kami" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Tentang Kami
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-    <a href="#testimoni" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Testimoni
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-    <a href="#galeri" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Galeri
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-    <a href="#contact" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-        Contact
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
-
-</div>
-
-<!-- Right Actions (Tombol di Kanan) -->
-            <div class="flex items-center gap-2 sm:gap-4">
-                <!-- Tombol Login dan Register (Desktop) -->
+            <!-- Right Actions (Tombol di Kanan) -->
+            <div class="flex items-center">
+                <!-- Tombol Login (Desktop) -->
                 <div class="hidden lg:flex items-center gap-2">
-                    {{-- <a href="{{ route('login') }}" class="px-5 py-2.5 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
-                        Masuk
-                    </a> --}}
                     <a href="{{ route('login') }}" class="px-5 py-2.5 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
                         Masuk
                     </a>
                 </div>
 
+                <!-- Pemisah -->
+                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
 
-
-                <!-- Right Actions -->
+                <!-- Ikon Kanan -->
                 <div class="flex items-center gap-2 sm:gap-4">
-                    <!-- Search Icon -->
                     <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </button>
-
-                    <!-- Wishlist -->
                     <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300 relative group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                        </svg>
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                     </button>
-
-                    <!-- Mobile Menu Button -->
                     <button class="lg:hidden p-2 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-lg transition-all duration-300" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
                 </div>
             </div>
+        </div>
 
-            <!-- Mobile Navigation -->
-            <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
-    <div class="py-4 space-y-1">
-        <a href="#home" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Home
-        </a>
-        <a href="#produk" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Produk
-        </a>
-        <a href="#tentang-kami" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Tentang Kami
-        </a>
-        <a href="#testimoni" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Testimoni
-        </a>
-        <a href="#galeri" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Galeri
-        </a>
-        <a href="#contact" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">
-            Contact
-        </a>
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
+            <div class="py-4 space-y-1">
+                <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Home</a>
+                <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Produk</a>
+                <a href="{{ route('tentang') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Tentang Kami</a>
+                <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Testimoni</a>
+                <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Galeri</a>
+                <a href="{{ route('kontak') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Contact</a>
 
-        <!-- Tombol Login/Register Mobile -->
+                <!-- Tombol Login/Register Mobile -->
                 <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
-                    <a href="{{ route('register') }}" class="block text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg transition-all duration-300">Masuk</a>
                     <a href="{{ route('login') }}" class="block text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg transition-all duration-300">Masuk</a>
                 </div>
-    </div>
-</div>
-        </nav>
-    </header>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
 
     <!-- Main Content -->
     <main>

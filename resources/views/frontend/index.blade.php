@@ -17,7 +17,7 @@
             Jelajahi koleksi keramik terbaik kami, dirancang untuk memperindah ruangan dengan keindahan dan kualitas yang tahan lama.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/product/1" class="bg-sage-600 hover:bg-sage-700 border border-white/30 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">Lihat Produk</a>
+            <a href="{{ route('produk') }}" class="bg-sage-600 hover:bg-sage-700 border border-white/30 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">Beli Sekarang -> </a>
             {{-- <a href="#contact" class="bg-white/20 backdrop-blur-sm border border-sage/700 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">Konsultasi Gratis</a> --}}
         </div>
     </div>
@@ -31,20 +31,22 @@
 
 
         <!-- Search Bar -->
-        <div class="max-w-4xl mx-auto text-center mb-16 sm:mb-12">
-            <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-                <div class="relative">
-                    <input type="text"
-                           placeholder="Cari produk anda..."
-                           class="w-full px-6 py-4 pr-14 rounded-full border-2 border-sage-200 focus:border-sage-400 focus:outline-none focus:ring-4 focus:ring-sage-100 transition-all duration-300 text-sage-800 placeholder-sage-400">
-                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+        <!-- Search Bar -->
+<form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto text-center mb-16 sm:mb-12">
+    <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+        <div class="relative">
+            <input type="text"
+                   name="search"
+                   placeholder="Cari keramik, wastafel, atau lainnya..."
+                   class="w-full px-6 py-4 pr-14 rounded-full border-2 border-sage-200 focus:border-sage-400 focus:outline-none focus:ring-4 focus:ring-sage-100 transition-all duration-300 text-sage-800 placeholder-sage-400">
+            <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </button>
         </div>
+    </div>
+</form>
 
         <!-- Filter Section -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in">
@@ -92,7 +94,7 @@
         </div>
 
         <!-- Products Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-12 px-16">
             @foreach($products as $index => $product)
             <a href="{{ route('products.show', $product['id']) }}"
                class="group block animate-fade-in-up"
@@ -164,7 +166,7 @@
             @endforeach
         </div>
 
-        <!-- Load More Button -->
+        {{-- <!-- Load More Button -->
         <div class="mt-16 text-center animate-fade-in mb-32">
             <button class="group inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                 Muat Lebih Banyak Produk
@@ -172,7 +174,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </button>
+        </div> --}}
+
+
+        <!-- Tombol Lihat Selengkapnya -->
+        <div class="mt-16 text-center">
+            <a href="{{ route('produk') }}" class="group inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                Lihat Semua Produk
+                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
         </div>
+    </div>
+</div>
 
 
         <!-- Keunggulan Section -->
