@@ -13,15 +13,68 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Ambil 6 produk terbaru untuk ditampilkan di halaman utama
+
+
+
         $products = [
-            ['id' => 1, 'name' => 'Keramik Lantai', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg')],
-            ['id' => 2, 'name' => 'Wastafel', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg')],
-            ['id' => 3, 'name' => 'Shower Mandi', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg')],
-            ['id' => 4, 'name' => 'Pintu Kamar Mandi', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg')],
-            ['id' => 5, 'name' => 'Kloset Duduk', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg')],
-            ['id' => 6, 'name' => 'Step Nosing Tangga', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg')],
-        ]; // Ini masih data dummy, kita batasi manual
+        [
+            'id' => 1,
+            'name' => 'Keramik Lantai Motif Kayu',
+            'price' => 'Rp 249.000',
+            'image' => asset('storage/products/keramik.jpeg'),
+            'merek' => 'Granito',
+            'deskripsi' => 'Keramik lantai berkualitas tinggi dengan motif kayu elegan, cocok untuk interior modern.'
+        ],
+        [
+            'id' => 2,
+            'name' => 'Wastafel Gantung Minimalis',
+            'price' => 'Rp 189.000',
+            'image' => asset('storage/products/wastafel.jpg'),
+            'merek' => 'Toto',
+            'deskripsi' => 'Desain hemat tempat dengan bahan keramik premium yang mudah dibersihkan.'
+        ],
+        [
+            'id' => 3,
+            'name' => 'Shower Mandi Tipe Raindance',
+            'price' => 'Rp 320.000',
+            'image' => asset('storage/products/shower.jpg'),
+            'merek' => 'Wasser',
+            'deskripsi' => 'Nikmati sensasi mandi hujan tropis dengan set shower modern dan hemat air.'
+        ],
+        [
+            'id' => 4,
+            'name' => 'Pintu Kamar Mandi PVC',
+            'price' => 'Rp 450.000',
+            'image' => asset('storage/products/pintu.jpg'),
+            'merek' => 'Platinum',
+            'deskripsi' => 'Pintu PVC anti-karat dan tahan air, ideal untuk kamar mandi Anda.'
+        ],
+        [
+            'id' => 5,
+            'name' => 'Kloset Duduk Hemat Air',
+            'price' => 'Rp 299.000',
+            'image' => asset('storage/products/kloset.jpg'),
+            'merek' => 'American Standard',
+            'deskripsi' => 'Kloset modern dengan teknologi dual flush untuk menghemat penggunaan air.'
+        ],
+        [
+            'id' => 6,
+            'name' => 'Step Nosing Tangga Anti-Slip',
+            'price' => 'Rp 150.000',
+            'image' => asset('storage/products/stepnosing.jpg'),
+            'merek' => 'Indogress',
+            'deskripsi' => 'Memberikan keamanan ekstra pada setiap pijakan tangga dengan permukaan anti-slip.'
+        ],
+    ];
+        // Ambil 6 produk terbaru untuk ditampilkan di halaman utama
+        // $products = [
+        //     ['id' => 1, 'name' => 'Keramik Lantai', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg')],
+        //     ['id' => 2, 'name' => 'Wastafel', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg')],
+        //     ['id' => 3, 'name' => 'Shower Mandi', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg')],
+        //     ['id' => 4, 'name' => 'Pintu Kamar Mandi', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg')],
+        //     ['id' => 5, 'name' => 'Kloset Duduk', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg')],
+        //     ['id' => 6, 'name' => 'Step Nosing Tangga', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg')],
+        // ]; // Ini masih data dummy, kita batasi manual
 
         // Jika Anda sudah menggunakan database, kodenya akan seperti ini:
         // $products = \App\Models\Produk::latest()->take(6)->get();

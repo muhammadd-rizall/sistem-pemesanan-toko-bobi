@@ -28,14 +28,36 @@ Route::get('/testimoni', [FrontendController::class, 'testimoni'])->name('testim
 Route::get('/galeri', [FrontendController::class, 'galeri'])->name('galeri');
 Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
 
-// Rute untuk Login & Register
+// // Rute untuk Login & Register
+// Route::get('/login', function () {
+//     return view('frontend.login');
+// })->name('login');
+
+// Route::get('/register', function () {
+//     return view('frontend.register');
+// })->name('register');
+
+
+// Rute GET untuk MENAMPILKAN form
 Route::get('/login', function () {
     return view('frontend.login');
-})->name('login');
+})->name('login'); // Nama untuk menampilkan form tetap 'login'
 
 Route::get('/register', function () {
     return view('frontend.register');
-})->name('register');
+})->name('register'); // Nama untuk menampilkan form tetap 'register'
+
+
+// Rute POST untuk MEMPROSES data dari form
+Route::post('/login', function () {
+    // Nanti logika login sesungguhnya akan ada di sini
+    return 'Proses login...';
+})->name('login.submit'); // Kita beri nama baru agar tidak konflik
+
+Route::post('/register', function () {
+    // Nanti logika register sesungguhnya akan ada di sini
+    return 'Proses register...';
+})->name('register.submit');
 
 
 

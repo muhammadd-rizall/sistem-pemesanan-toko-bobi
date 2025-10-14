@@ -8,7 +8,8 @@
             <div class="text-center">
                 <!-- Logo atau Judul -->
                 <div class="flex justify-center mb-4">
-                    <a href="{{ route('products.index') }}" class="group flex items-center gap-3">
+                    {{-- <a href="{{ route('products.index') }}" class="group flex items-center gap-3"> --}}
+                    <a href="{{ route('home') }}" class="group flex items-center gap-3">
                         <div class="w-12 h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center shadow-lg">
                             <svg class="w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                         </div>
