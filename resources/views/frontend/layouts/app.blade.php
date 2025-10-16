@@ -143,16 +143,35 @@
             <!-- Right Actions (Tombol di Kanan) -->
             <div class="flex items-center mr-12">
                 <!-- Tombol Login & Register (Desktop) -->
-                <div class="hidden lg:flex items-center gap-4">
+                {{-- <div class="hidden lg:flex items-center gap-4"> --}}
                     {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
                         Daftar
                     </button> --}}
                     <!-- Pemisah -->
-                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
+                    {{-- <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
                     <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
                         Masuk
-                    </button>
+                    </button> --}}
+                {{-- </div> --}}
+
+
+                <div class="hidden lg:flex items-center gap-4">
+                    <!-- Pemisah -->
+                    <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
+                    @guest
+                        <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Masuk</button>
+                        {{-- <button onclick="openModal(true)" class="px-5 py-2 ...">Daftar</button> --}}
+                    @else
+                        <span class="text-sage-800 font-medium">Hi, {{ Auth::user()->nama_lengkap }}</span>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">Logout</button>
+                        </form>
+                    @endguest
                 </div>
+
+
+
                 <!-- ... ikon kanan dan tombol mobile menu ... -->
             </div>
         </div>
@@ -217,7 +236,8 @@
                         <button onclick="closeModal('loginModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
                     </div>
                     <p class="mt-2 text-sage-600">Silahkan masukkan detail akun Anda.</p>
-                    <form class="mt-8 space-y-6" action="#" method="POST">
+                    {{-- <form class="mt-8 space-y-6" action="#" method="POST"> --}}
+                        <form class="mt-8 space-y-6" action="{{ route('login.submit') }}" method="POST">
                         @csrf
                         <div>
                             <label for="login-email-panel" class="block text-sm font-medium text-sage-700 mb-1">Email</label>
@@ -251,7 +271,8 @@
                          <button onclick="closeModal('registerModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
                     </div>
                     <p class="mt-2 text-sage-600">Silahkan isi data diri Anda.</p>
-                    <form class="mt-8 space-y-4" action="#" method="POST">
+                    {{-- <form class="mt-8 space-y-4" action="#" method="POST"> --}}
+                        <form class="mt-8 space-y-4" action="{{ route('register.submit') }}" method="POST">
                         @csrf
                         <div>
                             <label for="register-name-panel" class="block text-sm font-medium text-sage-700 mb-1">Nama Lengkap</label>

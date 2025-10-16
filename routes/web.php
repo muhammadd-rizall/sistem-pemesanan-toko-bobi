@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,31 +30,50 @@ Route::get('/galeri', [FrontendController::class, 'galeri'])->name('galeri');
 Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
 
 
-// Rute GET untuk MENAMPILKAN form
-Route::get('/login', function () {
-    return view('frontend.login');
-})->name('login'); // Nama untuk menampilkan form tetap 'login'
+// --- RUTE AUTENTIKASI ---
+// Rute untuk menampilkan modal (dikontrol JS, tapi kita definisikan untuk jaga-jaga)
+Route::get('/login', [FrontendController::class, 'index'])->name('login');
+Route::get('/register', [FrontendController::class, 'index'])->name('register');
 
-Route::get('/register', function () {
-    return view('frontend.register');
-})->name('register'); // Nama untuk menampilkan form tetap 'register'
-
-
-// Rute POST untuk MEMPROSES data dari form
-Route::post('/login', function () {
-    // Nanti logika login sesungguhnya akan ada di sini
-    return 'Proses login...';
-})->name('login.submit'); // Kita beri nama baru agar tidak konflik
-
-Route::post('/register', function () {
-    // Nanti logika register sesungguhnya akan ada di sini
-    return 'Proses register...';
-})->name('register.submit');
+// Rute untuk memproses data dari form
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-// Grup Route untuk Admin
-Route::prefix('admin')->group(function () {
+// // Rute GET untuk MENAMPILKAN form
+// Route::get('/login', function () {
+//     return view('frontend.login');
+// })->name('login'); // Nama untuk menampilkan form tetap 'login'
+
+// Route::get('/register', function () {
+//     return view('frontend.register');
+// })->name('register'); // Nama untuk menampilkan form tetap 'register'
+
+
+// // Rute POST untuk MEMPROSES data dari form
+// Route::post('/login', function () {
+//     // Nanti logika login sesungguhnya akan ada di sini
+//     return 'Proses login...';
+// })->name('login.submit'); // Kita beri nama baru agar tidak konflik
+
+// Route::post('/register', function () {
+//     // Nanti logika register sesungguhnya akan ada di sini
+//     return 'Proses register...';
+// })->name('register.submit');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| RUTE UNTUK ADMIN (DILINDUNGI DENGAN MIDDLEWARE)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    // Middleware 'auth' memastikan hanya user yang sudah login yang bisa akses
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //produk
@@ -86,10 +106,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/diskon/edit/{id}', [DiskonController::class, 'editDiskon'])->name('editDiskon');
     Route::post('/diskon/update/{id}', [DiskonController::class, 'updateDiskon'])->name('updateDiskon');
     Route::delete('/diskon/delete/{id}',[DiskonController::class, 'deleteDiskon'])->name('deleteDiskon');
-
-    // Tambahkan route admin lainnya di sini nanti
 });
-
-
 
 
