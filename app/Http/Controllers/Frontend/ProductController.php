@@ -11,75 +11,61 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // 1. Ambil kata kunci pencarian dari URL
+        $search = $request->input('search');
 
+        // 2. Definisikan SEMUA produk (ini akan kita gunakan untuk pencarian)
+        $allProducts = [
+            ['id' => 1, 'name' => 'Keramik Lantai Motif Kayu', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg'), 'merek' => 'Granito', 'deskripsi' => 'Keramik lantai berkualitas tinggi...'],
+            ['id' => 2, 'name' => 'Wastafel Gantung Minimalis', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg'), 'merek' => 'Toto', 'deskripsi' => 'Desain hemat tempat...'],
+            ['id' => 3, 'name' => 'Shower Mandi Tipe Raindance', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg'), 'merek' => 'Wasser', 'deskripsi' => 'Nikmati sensasi mandi hujan...'],
+            ['id' => 4, 'name' => 'Pintu Kamar Mandi PVC', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg'), 'merek' => 'Platinum', 'deskripsi' => 'Pintu PVC anti-karat...'],
+            ['id' => 5, 'name' => 'Kloset Duduk Hemat Air', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg'), 'merek' => 'American Standard', 'deskripsi' => 'Kloset modern dengan teknologi dual flush...'],
+            ['id' => 6, 'name' => 'Step Nosing Tangga Anti-Slip', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 7, 'name' => 'Produk 1', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 8, 'name' => 'Produk 2', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 9, 'name' => 'Produk 3', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
 
+        ];
 
-        $products = [
-        [
-            'id' => 1,
-            'name' => 'Keramik Lantai Motif Kayu',
-            'price' => 'Rp 249.000',
-            'image' => asset('storage/products/keramik.jpeg'),
-            'merek' => 'Granito',
-            'deskripsi' => 'Keramik lantai berkualitas tinggi dengan motif kayu elegan, cocok untuk interior modern.'
-        ],
-        [
-            'id' => 2,
-            'name' => 'Wastafel Gantung Minimalis',
-            'price' => 'Rp 189.000',
-            'image' => asset('storage/products/wastafel.jpg'),
-            'merek' => 'Toto',
-            'deskripsi' => 'Desain hemat tempat dengan bahan keramik premium yang mudah dibersihkan.'
-        ],
-        [
-            'id' => 3,
-            'name' => 'Shower Mandi Tipe Raindance',
-            'price' => 'Rp 320.000',
-            'image' => asset('storage/products/shower.jpg'),
-            'merek' => 'Wasser',
-            'deskripsi' => 'Nikmati sensasi mandi hujan tropis dengan set shower modern dan hemat air.'
-        ],
-        [
-            'id' => 4,
-            'name' => 'Pintu Kamar Mandi PVC',
-            'price' => 'Rp 450.000',
-            'image' => asset('storage/products/pintu.jpg'),
-            'merek' => 'Platinum',
-            'deskripsi' => 'Pintu PVC anti-karat dan tahan air, ideal untuk kamar mandi Anda.'
-        ],
-        [
-            'id' => 5,
-            'name' => 'Kloset Duduk Hemat Air',
-            'price' => 'Rp 299.000',
-            'image' => asset('storage/products/kloset.jpg'),
-            'merek' => 'American Standard',
-            'deskripsi' => 'Kloset modern dengan teknologi dual flush untuk menghemat penggunaan air.'
-        ],
-        [
-            'id' => 6,
-            'name' => 'Step Nosing Tangga Anti-Slip',
-            'price' => 'Rp 150.000',
-            'image' => asset('storage/products/stepnosing.jpg'),
-            'merek' => 'Indogress',
-            'deskripsi' => 'Memberikan keamanan ekstra pada setiap pijakan tangga dengan permukaan anti-slip.'
-        ],
-    ];
-        // Ambil 6 produk terbaru untuk ditampilkan di halaman utama
-        // $products = [
-        //     ['id' => 1, 'name' => 'Keramik Lantai', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg')],
-        //     ['id' => 2, 'name' => 'Wastafel', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg')],
-        //     ['id' => 3, 'name' => 'Shower Mandi', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg')],
-        //     ['id' => 4, 'name' => 'Pintu Kamar Mandi', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg')],
-        //     ['id' => 5, 'name' => 'Kloset Duduk', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg')],
-        //     ['id' => 6, 'name' => 'Step Nosing Tangga', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg')],
-        // ]; // Ini masih data dummy, kita batasi manual
+        // Ambil 6 produk pertama sebagai produk unggulan
+        $featuredProducts = array_slice($allProducts, 0, 8);
 
-        // Jika Anda sudah menggunakan database, kodenya akan seperti ini:
-        // $products = \App\Models\Produk::latest()->take(6)->get();
+        // Jika tidak ada pencarian, tampilkan 6 produk unggulan
+        if (!$search) {
+            return view('frontend.index', ['products' => $featuredProducts]);
+        }
 
-        return view('frontend.index', compact('products'));
+        // --- LOGIKA JIKA ADA PENCARIAN ---
+
+        // 1. Cari dulu di 6 produk unggulan
+        $resultsOnHome = collect($featuredProducts)->filter(function ($product) use ($search) {
+            return false !== stristr($product['name'], $search);
+        });
+
+        // Jika ditemukan di produk unggulan, tampilkan hasilnya di home
+        if ($resultsOnHome->isNotEmpty()) {
+            return view('frontend.index', ['products' => $resultsOnHome, 'search' => $search]);
+        }
+
+        // 2. Jika tidak ada, cari di SEMUA produk
+        $resultsOnFullList = collect($allProducts)->filter(function ($product) use ($search) {
+            return false !== stristr($product['name'], $search);
+        });
+
+        // Jika ditemukan di daftar lengkap, REDIRECT ke halaman produk
+        if ($resultsOnFullList->isNotEmpty()) {
+            return redirect()->route('produk', ['search' => $search]);
+        }
+
+        // 3. Jika tidak ditemukan sama sekali, tampilkan pesan error di home
+        return view('frontend.index', [
+            'products' => [], // Kirim array kosong
+            'search' => $search,
+            'searchFailed' => true, // Kirim penanda bahwa pencarian gagal
+        ]);
     }
 
     public function produk(Request $request)
@@ -90,12 +76,15 @@ class ProductController extends Controller
         // 2. Ambil semua data produk dari database
         // NOTE: Karena Anda belum menggunakan database, kita akan filter dari data dummy
         $allProducts = [
-            ['id' => 1, 'name' => 'Keramik Lantai', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg')],
-            ['id' => 2, 'name' => 'Wastafel Dinding', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg')],
-            ['id' => 3, 'name' => 'Shower Mandi Set', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg')],
-            ['id' => 4, 'name' => 'Pintu Kamar Mandi PVC', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg')],
-            ['id' => 5, 'name' => 'Kloset Duduk Modern', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg')],
-            ['id' => 6, 'name' => 'Step Nosing Tangga Kayu', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg')],
+            ['id' => 1, 'name' => 'Keramik Lantai Motif Kayu', 'price' => 'Rp 249.000', 'image' => asset('storage/products/keramik.jpeg'), 'merek' => 'Granito', 'deskripsi' => 'Keramik lantai berkualitas tinggi...'],
+            ['id' => 2, 'name' => 'Wastafel Gantung Minimalis', 'price' => 'Rp 189.000', 'image' => asset('storage/products/wastafel.jpg'), 'merek' => 'Toto', 'deskripsi' => 'Desain hemat tempat...'],
+            ['id' => 3, 'name' => 'Shower Mandi Tipe Raindance', 'price' => 'Rp 320.000', 'image' => asset('storage/products/shower.jpg'), 'merek' => 'Wasser', 'deskripsi' => 'Nikmati sensasi mandi hujan...'],
+            ['id' => 4, 'name' => 'Pintu Kamar Mandi PVC', 'price' => 'Rp 450.000', 'image' => asset('storage/products/pintu.jpg'), 'merek' => 'Platinum', 'deskripsi' => 'Pintu PVC anti-karat...'],
+            ['id' => 5, 'name' => 'Kloset Duduk Hemat Air', 'price' => 'Rp 299.000', 'image' => asset('storage/products/kloset.jpg'), 'merek' => 'American Standard', 'deskripsi' => 'Kloset modern dengan teknologi dual flush...'],
+            ['id' => 6, 'name' => 'Step Nosing Tangga Anti-Slip', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 7, 'name' => 'Produk 1', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 8, 'name' => 'Produk 2', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 9, 'name' => 'Produk 3', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
         ];
 
         // 3. Filter data produk JIKA ada input pencarian

@@ -31,31 +31,69 @@
 
 
         <!-- Search Bar -->
-        <!-- Search Bar -->
-<form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto text-center mb-16 sm:mb-12">
-    <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-        <div class="relative">
-            <input type="text"
-                   name="search"
-                   placeholder="Cari keramik, wastafel, atau lainnya..."
-                   class="w-full px-6 py-4 pr-14 rounded-full border-2 border-sage-200 focus:border-sage-400 focus:outline-none focus:ring-4 focus:ring-sage-100 transition-all duration-300 text-sage-800 placeholder-sage-400">
-            <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-</form>
+        <form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto text-center mb-12">
+            <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+                <div class="relative flex items-center">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Cari produk yang anda inginkan..."
+                        value="{{ request('search') }}"
+                        id="searchInput"
+                        class="w-full px-6 py-4 pr-28 rounded-full border border-sage-300 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-100 transition-all duration-300 text-sage-800 bg-white shadow-lg"
+                    >
+
+                    <!-- Tombol Reset -->
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="absolute right-12 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-700 mr-2 p-3 rounded-full transition-all duration-300 hover:scale-110"
+                        onclick="document.getElementById('searchInput').value=''; this.form.submit();"
+                        title="Reset pencarian"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Tombol Search -->
+                    <button
+                        type="submit"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                        title="Cari"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            // Sembunyikan tombol reset kalau input kosong
+            const searchInput = document.getElementById('searchInput');
+            const resetButton = document.getElementById('resetButton');
+
+            function toggleReset() {
+                resetButton.style.display = searchInput.value ? 'block' : 'none';
+            }
+
+            searchInput.addEventListener('input', toggleReset);
+            document.addEventListener('DOMContentLoaded', toggleReset);
+        </script>
+
 
         <!-- Filter Section -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in">
             <div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2">Koleksi Kami</h2>
-                <p class="text-sage-600">Produk pilihan khusus untuk Anda</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2 pl-4">Koleksi Kami</h2>
+                <p class="text-sage-600 pl-8">Produk pilihan khusus untuk Anda</p>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+            <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto pr-">
                 <!-- Category Filter -->
                 <div class="relative group">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
@@ -76,7 +114,7 @@
                 </div>
 
                 <!-- Sort Filter -->
-                <div class="relative group">
+                <div class="relative group pr-">
                     <select class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
                         {{-- <option>Urutkan berdasarkan Populer</option> --}}
                         <option>Harga: Terendah ke Tertinggi</option>
@@ -132,38 +170,6 @@
                         </div>
                     </div>
 
-                    <!-- Product Info -->
-                    {{-- <div class="p-5">
-                        <h3 class="text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-2 line-clamp-2 min-h-[3.5rem]">
-                            {{ $product['name'] }}
-                        </h3>
-
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-2xl font-bold text-sage-700">
-                                    {{ $product['price'] }}
-                                </p>
-                                {{-- <div class="flex items-center gap-1 mt-1">
-                                    <div class="flex text-amber-400">
-                                        @for($i = 0; $i < 5; $i++)
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        @endfor
-                                    </div>
-                                    <span class="text-xs text-sage-600 ml-1">(4.8)</span>
-                                </div> -
-                            </div>
-
-                            <button class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div> --}}
-
-
 
                     <!-- Product Info -->
                         <div class="p-5">
@@ -214,16 +220,6 @@
             </a>
             @endforeach
         </div>
-
-        {{-- <!-- Load More Button -->
-        <div class="mt-16 text-center animate-fade-in mb-32">
-            <button class="group inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                Muat Lebih Banyak Produk
-                <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
-        </div> --}}
 
 
         <!-- Tombol Lihat Selengkapnya -->
@@ -297,10 +293,10 @@
         <!-- =================================================================== -->
         <!-- LOKASI TOKO SECTION -->
         <!-- =================================================================== -->
-        <section id="lokasi" class="bg-white mb-8 sm:mb-4">
+        <section id="lokasi" class="bg-white mb-8 sm:mb-4 p-12">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Judul Section -->
-                <div class="max-w-3xl mx-auto text-center mb-12 mt-28">
+                <div class="max-w-3xl mx-auto text-center mb-10 mt-20">
                     <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-3">
                         Kunjungi Toko Kami
                     </h2>
