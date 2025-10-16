@@ -70,6 +70,12 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--sage-600);
         }
+
+        /* ... CSS Anda yang lain ... */
+
+        /* Modal Animation Styles (TAMBAHKAN INI) */
+        .modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .modal-content { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
     </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
@@ -121,11 +127,11 @@
                 </a>
             </div>
 
-            <!-- Pemisah -->
-                {{-- <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div> --}}
+            {{-- <!-- Pemisah -->
+                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div> --}}
 
             <!-- Right Actions (Tombol di Kanan) -->
-            <div class="flex items-center">
+            {{-- <div class="flex items-center">
                 <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
                 <!-- Tombol Login (Desktop) -->
                 <div class="hidden lg:flex items-center gap-2 mr-12">
@@ -133,20 +139,21 @@
                         Masuk
                     </a>
                 </div>
-
-
-                <!-- Ikon Kanan -->
-                {{-- <div class="flex items-center gap-2 sm:gap-4">
-                    <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div> --}}
+            <!-- Right Actions (Tombol di Kanan) -->
+            <div class="flex items-center mr-12">
+                <!-- Tombol Login & Register (Desktop) -->
+                <div class="hidden lg:flex items-center gap-4">
+                    {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
+                        Daftar
+                    </button> --}}
+                    <!-- Pemisah -->
+                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
+                    <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
+                        Masuk
                     </button>
-                    <button class="p-2 sm:p-2.5 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-full transition-all duration-300 relative group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                    </button>
-                    <button class="lg:hidden p-2 text-sage-700 hover:text-sage-600 hover:bg-sage-50 rounded-lg transition-all duration-300" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    </button>
-                </div> --}}
+                </div>
+                <!-- ... ikon kanan dan tombol mobile menu ... -->
             </div>
         </div>
 
@@ -162,7 +169,12 @@
 
                 <!-- Tombol Login/Register Mobile -->
                 <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
-                    <a href="{{ route('login') }}" class="block text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg transition-all duration-300">Masuk</a>
+                    <button onclick="openModal('loginModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">
+                        Masuk
+                    </button>
+                    <button onclick="openModal('registerModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">
+                        Daftar
+                    </button>
                 </div>
             </div>
         </div>
@@ -175,6 +187,106 @@
     <main>
         @yield('content')
     </main>
+
+        <!-- =================================================================== -->
+    <!-- DESAIN BARU: MODAL LOGIN DUA PANEL -->
+    <!-- =================================================================== -->
+    <div id="loginModal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0">
+        <div class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+
+                <!-- 1. Panel Gambar (Kiri) -->
+                <div class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
+                    <!-- Gambar Latar -->
+                    <img src="{{ asset('storage/images/login.jpg') }}" alt="Keramik" class="absolute inset-0 w-full h-full object-cover opacity-30">
+
+                    <!-- Konten Teks di Atas Gambar -->
+                    <div class="relative z-10">
+                        <h2 class="text-4xl font-bold drop-shadow-lg">Selamat Datang Kembali!</h2>
+                        <p class="mt-4 text-gray-200 max-w-xs mx-auto">Jika Anda sudah memiliki akun, silahkan login untuk melanjutkan.</p>
+                        <button onclick="switchModal('loginModal', 'registerModal')" class="mt-8 px-8 py-3 bg-white/20 border border-white/30 backdrop-blur-md rounded-full hover:bg-white/30 transition-colors">
+                            Buat Akun Baru
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Panel Form (Kanan) -->
+                <div class="p-8 md:p-12">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-3xl font-bold text-sage-900">Masuk</h2>
+                        <button onclick="closeModal('loginModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
+                    </div>
+                    <p class="mt-2 text-sage-600">Silahkan masukkan detail akun Anda.</p>
+                    <form class="mt-8 space-y-6" action="#" method="POST">
+                        @csrf
+                        <div>
+                            <label for="login-email-panel" class="block text-sm font-medium text-sage-700 mb-1">Email</label>
+                            <input id="login-email-panel" name="email" type="email" required placeholder="email@anda.com" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
+                        </div>
+                        <div>
+                            <label for="login-password-panel" class="block text-sm font-medium text-sage-700 mb-1">Password</label>
+                            <input id="login-password-panel" name="password" type="password" required placeholder="Password Anda" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 text-base font-bold rounded-lg text-white bg-sage-600 hover:bg-sage-700">Masuk</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- DESAIN BARU: MODAL REGISTER DUA PANEL -->
+    <!-- =================================================================== -->
+    <div id="registerModal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0">
+        <div class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden">
+             <div class="grid grid-cols-1 md:grid-cols-2">
+
+                <!-- 1. Panel Form (Kiri) -->
+                <div class="p-8 md:p-12">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-3xl font-bold text-sage-900">Daftar Akun Baru</h2>
+                         <button onclick="closeModal('registerModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
+                    </div>
+                    <p class="mt-2 text-sage-600">Silahkan isi data diri Anda.</p>
+                    <form class="mt-8 space-y-4" action="#" method="POST">
+                        @csrf
+                        <div>
+                            <label for="register-name-panel" class="block text-sm font-medium text-sage-700 mb-1">Nama Lengkap</label>
+                            <input id="register-name-panel" name="name" type="text" required placeholder="Nama Anda" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
+                        </div>
+                        <div>
+                            <label for="register-email-panel" class="block text-sm font-medium text-sage-700 mb-1">Email</label>
+                            <input id="register-email-panel" name="email" type="email" required placeholder="email@anda.com" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
+                        </div>
+                        <div>
+                            <label for="register-password-panel" class="block text-sm font-medium text-sage-700 mb-1">Password</label>
+                            <input id="register-password-panel" name="password" type="password" required placeholder="Buat Password" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 text-base font-bold rounded-lg text-white bg-sage-600 hover:bg-sage-700">Daftar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 2. Panel Gambar (Kanan) -->
+                <div class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
+                    <img src="{{ asset('storage/images/register.jpg') }}" alt="Keramik" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                    <div class="relative z-10">
+                        <h2 class="text-4xl font-bold drop-shadow-lg">Sudah Punya Akun?</h2>
+                        <p class="mt-4 text-gray-200 max-w-xs mx-auto">Jika Anda sudah terdaftar, silahkan login untuk masuk ke akun Anda.</p>
+                        <button onclick="switchModal('registerModal', 'loginModal')" class="mt-8 px-8 py-3 bg-white/20 border border-white/30 backdrop-blur-md rounded-full hover:bg-white/30 transition-colors">
+                            Masuk Di Sini
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="bg-sage-900 text-white mt-20 sm:mt-24">
@@ -266,6 +378,54 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
+
+        // --- MODAL SCRIPT (VERSI BARU DENGAN ANIMASI) ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('invisible', 'opacity-0');
+            // Animate in
+            setTimeout(() => {
+                modal.querySelector('.modal-content').classList.remove('opacity-0', '-translate-y-10');
+            }, 50); // delay kecil untuk memicu transisi
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = modal.querySelector('.modal-content');
+
+            // Animate out
+            modalContent.classList.add('opacity-0', '-translate-y-10');
+            modal.classList.add('opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('invisible');
+                document.body.style.overflow = '';
+            }, 300); // sinkronkan dengan durasi transisi
+        }
+
+        function switchModal(fromModalId, toModalId) {
+            closeModal(fromModalId);
+            setTimeout(() => openModal(toModalId), 150);
+        }
+
+        // Menutup modal saat mengklik area luar (backdrop)
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // Menutup modal saat menekan tombol Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                document.querySelectorAll('.modal:not(.invisible)').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
 
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');

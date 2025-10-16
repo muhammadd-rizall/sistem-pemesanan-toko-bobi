@@ -28,15 +28,6 @@ Route::get('/testimoni', [FrontendController::class, 'testimoni'])->name('testim
 Route::get('/galeri', [FrontendController::class, 'galeri'])->name('galeri');
 Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
 
-// // Rute untuk Login & Register
-// Route::get('/login', function () {
-//     return view('frontend.login');
-// })->name('login');
-
-// Route::get('/register', function () {
-//     return view('frontend.register');
-// })->name('register');
-
 
 // Rute GET untuk MENAMPILKAN form
 Route::get('/login', function () {
@@ -99,14 +90,6 @@ Route::prefix('admin')->group(function () {
     // Tambahkan route admin lainnya di sini nanti
 });
 
-// Route::get('/coba', function () {
-//     return view('coba');
-// });
-
-
-// Route::get('/coba2', function () {
-//     return view('backend.produk.item_produk');
-// });
 
 
 

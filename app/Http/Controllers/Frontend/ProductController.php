@@ -27,6 +27,7 @@ class ProductController extends Controller
             ['id' => 7, 'name' => 'Produk 1', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
             ['id' => 8, 'name' => 'Produk 2', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
             ['id' => 9, 'name' => 'Produk 3', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 10, 'name' => 'Produk 4', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
 
         ];
 
@@ -85,6 +86,7 @@ class ProductController extends Controller
             ['id' => 7, 'name' => 'Produk 1', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
             ['id' => 8, 'name' => 'Produk 2', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
             ['id' => 9, 'name' => 'Produk 3', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
+            ['id' => 10, 'name' => 'Produk 4', 'price' => 'Rp 150.000', 'image' => asset('storage/products/stepnosing.jpg'), 'merek' => 'Indogress', 'deskripsi' => 'Memberikan keamanan ekstra...'],
         ];
 
         // 3. Filter data produk JIKA ada input pencarian
