@@ -141,11 +141,31 @@
                             src="https://ui-avatars.com/api/?name=Admin&background=a8c9a8&color=2f4f39"
                             alt="Admin Profile">
                     </button>
-                    <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" x-cloak x-transition
+                    {{-- <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" x-cloak x-transition
                         class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-20 py-1">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">Profil</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">Logout</a>
+                    </div> --}}
+
+
+
+
+                    <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" x-cloak x-transition
+                        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-20 py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">Profil</a>
+
+                        <!-- Form untuk Logout -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">
+                                Logout
+                            </button>
+                        </form>
                     </div>
+
+
+
+
                 </div>
             </header>
 
