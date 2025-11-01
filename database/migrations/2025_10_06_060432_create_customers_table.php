@@ -13,17 +13,36 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('avatar')->nullable();
             $table->string('name');
-            $table->string('username')->unique();
+            $table->string('username');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone');
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->string('kecamatan');
-            $table->text('alamat');
-            $table->string('kode_pos');
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->text('provider_token')->nullable();
+            $table->text('provider_refresh_token')->nullable();
+            $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('customers_password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('otp_code', 255);
+            $table->timestamp('expires_at');
+            $table->boolean('is_used')->default(false);
+            $table->tinyInteger('attempts')->default(0);
+            $table->timestamp('created_at')->nullable();
+        });
+
+        Schema::create('customers_sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('customer_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
         });
     }
 
