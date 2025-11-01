@@ -26,24 +26,14 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        // 2. Tentukan role: Jika ini user pertama di database, jadikan 'admin'
-        $role = User::count() === 0 ? 'admin' : 'customer';
-
-        // 3. Buat user baru di database
         $user = User::create([
             'nama_lengkap' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $role,
         ]);
 
-        // 4. Login user yang baru saja dibuat
         Auth::login($user);
 
-        // 5. Arahkan (redirect) berdasarkan role
-        if ($role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
 
         return redirect()->route('home');
     }
@@ -53,27 +43,19 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // 1. Validasi input
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // 2. Coba untuk melakukan login
-        if (Auth::attempt($credentials, $request->boolean('remember-me'))) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // 3. Redirect berdasarkan role setelah login berhasil
-            if (auth()->user()->role === 'admin') {
-                return redirect()->intended(route('admin.dashboard'));
-            }
-
-            return redirect()->intended(route('home'));
+            return redirect()->intended('home');
         }
 
-        // 4. Jika login gagal, kembali ke halaman sebelumnya dengan pesan error
         throw ValidationException::withMessages([
-            'email' => 'Email atau password yang Anda masukkan salah.',
+            'email' => 'email atau password salah.',
         ]);
     }
 

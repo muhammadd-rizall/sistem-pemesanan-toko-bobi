@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Bobi Ceramic's - Dekorasi Rumah yang Elegan</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --sage-50: #f6f8f6;
@@ -26,7 +31,12 @@
             font-family: 'Inter', sans-serif;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Playfair Display', serif;
         }
 
@@ -48,7 +58,8 @@
             /* background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08); */
-            background: #a9bea9; /* Ini warna sage-100 transparan */
+            background: #a9bea9;
+            /* Ini warna sage-100 transparan */
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(74, 124, 89, 0.08);
         }
@@ -74,64 +85,87 @@
         /* ... CSS Anda yang lain ... */
 
         /* Modal Animation Styles (TAMBAHKAN INI) */
-        .modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .modal-content { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
     </style>
 </head>
+
 <body class="bg-white text-gray-900 antialiased">
 
     <!-- Header -->
-<header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
-    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4 sm:py-5">
-            <!-- Logo -->
-            <a href="{{ route('home') }}" class="group flex items-center gap-3">
-                <div class="relative">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                        </svg>
+    <header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4 sm:py-5">
+                <!-- Logo -->
+                <a href="{{ route('home') }}" class="group flex items-center gap-3">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75">
+                        </div>
                     </div>
-                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75"></div>
+                    <span
+                        class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
+                        Bobi Ceramic's
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-8 text-base font-medium">
+                    <a href="{{ route('home') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Home
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{{ route('produk') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Produk
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{{ route('tentang') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Tentang Kami
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{{ route('testimoni') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Testimoni
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{{ route('galeri') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Galeri
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{{ route('kontak') }}"
+                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
+                        Contact
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
                 </div>
-                <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
-                    Bobi Ceramic's
-                </span>
-            </a>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center gap-8 text-base font-medium">
-                <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Home
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Produk
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="{{ route('tentang') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Tentang Kami
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Testimoni
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Galeri
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="{{ route('kontak') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                    Contact
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-            </div>
-
-            {{-- <!-- Pemisah -->
+                {{-- <!-- Pemisah -->
                 <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div> --}}
 
-            <!-- Right Actions (Tombol di Kanan) -->
-            {{-- <div class="flex items-center">
+                <!-- Right Actions (Tombol di Kanan) -->
+                {{-- <div class="flex items-center">
                 <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
                 <!-- Tombol Login (Desktop) -->
                 <div class="hidden lg:flex items-center gap-2 mr-12">
@@ -140,10 +174,10 @@
                     </a>
                 </div>
             </div> --}}
-            <!-- Right Actions (Tombol di Kanan) -->
-            <div class="flex items-center mr-12">
-                <!-- Tombol Login & Register (Desktop) -->
-                {{-- <div class="hidden lg:flex items-center gap-4"> --}}
+                <!-- Right Actions (Tombol di Kanan) -->
+                <div class="flex items-center mr-12">
+                    <!-- Tombol Login & Register (Desktop) -->
+                    {{-- <div class="hidden lg:flex items-center gap-4"> --}}
                     {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
                         Daftar
                     </button> --}}
@@ -152,53 +186,73 @@
                     <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
                         Masuk
                     </button> --}}
-                {{-- </div> --}}
+                    {{-- </div> --}}
 
 
-                <div class="hidden lg:flex items-center gap-4">
-                    <!-- Pemisah -->
-                    <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
-                    @guest
-                        <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Masuk</button>
-                        {{-- <button onclick="openModal(true)" class="px-5 py-2 ...">Daftar</button> --}}
-                    @else
-                        <span class="text-sage-800 font-medium">Hi, {{ Auth::user()->nama_lengkap }}</span>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">Logout</button>
-                        </form>
-                    @endguest
-                </div>
+                    <div class="hidden lg:flex items-center gap-4">
+                        <!-- Pemisah -->
+                        <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
+
+                        @guest('customer')
+                            <button onclick="openModal('loginModal')"
+                                class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
+                                Masuk
+                            </button>
+                        @else
+                            <span class="text-sage-800 font-medium">Hi, {{ Auth::guard('customer')->user()->name }}</span>
+                            <form method="POST" action="{{ route('customer.logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">
+                                    Logout
+                                </button>
+                            </form>
+                        @endguest
+                    </div>
 
 
-
-                <!-- ... ikon kanan dan tombol mobile menu ... -->
-            </div>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
-            <div class="py-4 space-y-1">
-                <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Home</a>
-                <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Produk</a>
-                <a href="{{ route('tentang') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Tentang Kami</a>
-                <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Testimoni</a>
-                <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Galeri</a>
-                <a href="{{ route('kontak') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Contact</a>
-
-                <!-- Tombol Login/Register Mobile -->
-                <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
-                    <button onclick="openModal('loginModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">
-                        Masuk
-                    </button>
-                    <button onclick="openModal('registerModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">
-                        Daftar
-                    </button>
+                    <!-- ... ikon kanan dan tombol mobile menu ... -->
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
+                <div class="py-4 space-y-1">
+                    <a href="{{ route('home') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Home</a>
+                    <a href="{{ route('produk') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Produk</a>
+                    <a href="{{ route('tentang') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Tentang
+                        Kami</a>
+                    <a href="{{ route('testimoni') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Testimoni</a>
+                    <a href="{{ route('galeri') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Galeri</a>
+                    <a href="{{ route('kontak') }}"
+                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Contact</a>
+
+                    <!-- Tombol Login/Register Mobile -->
+                    <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
+                        <button onclick="openModal('loginModal')"
+                            class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">
+                            Masuk
+                        </button>
+                        <button onclick="openModal('registerModal')"
+                            class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">
+                            Daftar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {{-- Include Modal Login & Register --}}
+    @include('auth.customer.login')
+    @include('auth.customer.register')
+    @include('auth.customer.lupa_password')
+
 
 
 
@@ -207,106 +261,7 @@
         @yield('content')
     </main>
 
-        <!-- =================================================================== -->
-    <!-- DESAIN BARU: MODAL LOGIN DUA PANEL -->
-    <!-- =================================================================== -->
-    <div id="loginModal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0">
-        <div class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-2">
 
-                <!-- 1. Panel Gambar (Kiri) -->
-                <div class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
-                    <!-- Gambar Latar -->
-                    <img src="{{ asset('storage/images/login.jpg') }}" alt="Keramik" class="absolute inset-0 w-full h-full object-cover opacity-30">
-
-                    <!-- Konten Teks di Atas Gambar -->
-                    <div class="relative z-10">
-                        <h2 class="text-4xl font-bold drop-shadow-lg">Selamat Datang Kembali!</h2>
-                        <p class="mt-4 text-gray-200 max-w-xs mx-auto">Jika Anda sudah memiliki akun, silahkan login untuk melanjutkan.</p>
-                        <button onclick="switchModal('loginModal', 'registerModal')" class="mt-8 px-8 py-3 bg-white/20 border border-white/30 backdrop-blur-md rounded-full hover:bg-white/30 transition-colors">
-                            Buat Akun Baru
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. Panel Form (Kanan) -->
-                <div class="p-8 md:p-12">
-                    <div class="flex justify-between items-start">
-                        <h2 class="text-3xl font-bold text-sage-900">Masuk</h2>
-                        <button onclick="closeModal('loginModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
-                    </div>
-                    <p class="mt-2 text-sage-600">Silahkan masukkan detail akun Anda.</p>
-                    {{-- <form class="mt-8 space-y-6" action="#" method="POST"> --}}
-                        <form class="mt-8 space-y-6" action="{{ route('login.submit') }}" method="POST">
-                        @csrf
-                        <div>
-                            <label for="login-email-panel" class="block text-sm font-medium text-sage-700 mb-1">Email</label>
-                            <input id="login-email-panel" name="email" type="email" required placeholder="email@anda.com" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
-                        </div>
-                        <div>
-                            <label for="login-password-panel" class="block text-sm font-medium text-sage-700 mb-1">Password</label>
-                            <input id="login-password-panel" name="password" type="password" required placeholder="Password Anda" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
-                        </div>
-                        <div class="pt-2">
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 text-base font-bold rounded-lg text-white bg-sage-600 hover:bg-sage-700">Masuk</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- =================================================================== -->
-    <!-- DESAIN BARU: MODAL REGISTER DUA PANEL -->
-    <!-- =================================================================== -->
-    <div id="registerModal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0">
-        <div class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden">
-             <div class="grid grid-cols-1 md:grid-cols-2">
-
-                <!-- 1. Panel Form (Kiri) -->
-                <div class="p-8 md:p-12">
-                    <div class="flex justify-between items-start">
-                        <h2 class="text-3xl font-bold text-sage-900">Daftar Akun Baru</h2>
-                         <button onclick="closeModal('registerModal')" class="p-2 -mt-2 -mr-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">&times;</button>
-                    </div>
-                    <p class="mt-2 text-sage-600">Silahkan isi data diri Anda.</p>
-                    {{-- <form class="mt-8 space-y-4" action="#" method="POST"> --}}
-                        <form class="mt-8 space-y-4" action="{{ route('register.submit') }}" method="POST">
-                        @csrf
-                        <div>
-                            <label for="register-name-panel" class="block text-sm font-medium text-sage-700 mb-1">Nama Lengkap</label>
-                            <input id="register-name-panel" name="name" type="text" required placeholder="Nama Anda" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
-                        </div>
-                        <div>
-                            <label for="register-email-panel" class="block text-sm font-medium text-sage-700 mb-1">Email</label>
-                            <input id="register-email-panel" name="email" type="email" required placeholder="email@anda.com" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
-                        </div>
-                        <div>
-                            <label for="register-password-panel" class="block text-sm font-medium text-sage-700 mb-1">Password</label>
-                            <input id="register-password-panel" name="password" type="password" required placeholder="Buat Password" class="w-full px-4 py-3 border border-sage-200 rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
-                        </div>
-                        <div class="pt-2">
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 text-base font-bold rounded-lg text-white bg-sage-600 hover:bg-sage-700">Daftar</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- 2. Panel Gambar (Kanan) -->
-                <div class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
-                    <img src="{{ asset('storage/images/register.jpg') }}" alt="Keramik" class="absolute inset-0 w-full h-full object-cover opacity-30">
-                    <div class="relative z-10">
-                        <h2 class="text-4xl font-bold drop-shadow-lg">Sudah Punya Akun?</h2>
-                        <p class="mt-4 text-gray-200 max-w-xs mx-auto">Jika Anda sudah terdaftar, silahkan login untuk masuk ke akun Anda.</p>
-                        <button onclick="switchModal('registerModal', 'loginModal')" class="mt-8 px-8 py-3 bg-white/20 border border-white/30 backdrop-blur-md rounded-full hover:bg-white/30 transition-colors">
-                            Masuk Di Sini
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 
     <!-- Footer -->
@@ -317,9 +272,11 @@
                 <!-- Brand Section -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
                         </div>
                         <span class="text-2xl font-bold">Bobi Ceramic's</span>
@@ -328,14 +285,26 @@
                         Mengatur ruang-ruang indah dengan karya-karya abadi yang menceritakan kisah Anda.
                     </p>
                     <div class="flex gap-3 pt-2">
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -344,10 +313,16 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Toko</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Semua Produk</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Produk Baru</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Terlaris</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Diskon</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Semua Produk</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Produk Baru</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Terlaris</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Diskon</a></li>
 
                     </ul>
                 </div>
@@ -356,10 +331,17 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Bantuan</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Hubungi Kami</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Pengiriman</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">FAQ</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Lacak Pesanan</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Hubungi Kami</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Pengiriman</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">FAQ</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Lacak Pesanan</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -368,11 +350,10 @@
                     <h4 class="text-lg font-bold mb-4">Newsletter</h4>
                     <p class="text-sage-300 text-sm mb-4">Berlangganan penawaran dan pembaruan eksklusif.</p>
                     <form class="space-y-3">
-                        <input type="email"
-                               placeholder="Email Anda"
-                               class="w-full px-4 py-2.5 rounded-lg bg-sage-800 border border-sage-700 text-white placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300">
+                        <input type="email" placeholder="Email Anda"
+                            class="w-full px-4 py-2.5 rounded-lg bg-sage-800 border border-sage-700 text-white placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300">
                         <button type="submit"
-                                class="w-full px-4 py-2.5 bg-sage-600 hover:bg-sage-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                            class="w-full px-4 py-2.5 bg-sage-600 hover:bg-sage-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
                             Subscribe
                         </button>
                     </form>
@@ -467,7 +448,7 @@
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -480,4 +461,5 @@
         });
     </script>
 </body>
+
 </html>
