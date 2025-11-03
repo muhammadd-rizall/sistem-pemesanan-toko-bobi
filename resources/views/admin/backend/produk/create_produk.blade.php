@@ -65,7 +65,28 @@
                         @enderror
                     </div>
 
-                    {{-- haraga beli--}}
+                    {{-- Supplier --}}
+                    <div class="mb-4">
+                        <label for="supplier_id" class="block text-sm font-medium text-gray-800">
+                            Supplier <span class="text-red-500">*</span>
+                        </label>
+                        <select name="supplier_id" id="supplier_id"
+                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('supplier_id') ? 'border-red-500' : '' }}"
+                            required>
+                            <option value="" disabled selected>Pilih Supplier</option>
+                            @foreach ($suppliers as $supplier)
+                                <option value="{{ $supplier->id }}"
+                                    {{ old('supplier_id') == $supplier->id ? 'selected' : '' }}>
+                                    {{ $supplier->nama_perusahaan }} {{-- Asumsi nama kolomnya 'nama_perusahaan' --}}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('supplier_id')
+                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- harga beli--}}
                     <div class="mb-4">
                         <label for="harga_beli" class="block text-sm font-medium text-gray-800">
                             Harga Beli<span class="text-red-500">*</span>

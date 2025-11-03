@@ -72,6 +72,7 @@
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Merek</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[200px] max-w-[300px] hidden lg:table-cell">Deskripsi</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[100px] hidden md:table-cell">Kategori</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Supplier</th>
                                 <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden lg:table-cell">Harga Beli</th>
                                 <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Harga Jual</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-24 hidden sm:table-cell">Stok</th>
@@ -122,6 +123,13 @@
                                     <td class="px-4 py-4 text-left text-sm text-gray-700 hidden md:table-cell">
                                         <span class="px-2 py-1 bg-sage-100 text-sage-800 rounded-md text-xs font-medium">
                                             {{ $item->category?->name ?? 'Uncategorized' }}
+                                        </span>
+                                    </td>
+
+                                    <td class="px-4 py-4 text-left text-sm text-gray-700 hidden md:table-cell">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-xs font-medium">
+                                            {{-- Ganti 'nama_perusahaan' jika nama kolom di tabel suppliers Anda berbeda --}}
+                                            {{ $item->supplier?->nama_perusahaan ?? 'Tanpa Supplier' }}
                                         </span>
                                     </td>
 
@@ -185,7 +193,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11" class="px-4 py-12 text-center">
+                                    <td colspan="12" class="px-4 py-12 text-center">
                                         <div class="flex flex-col items-center justify-center">
                                             <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
