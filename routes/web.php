@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\CustomerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SocialAuthController;
@@ -31,15 +32,6 @@ Route::get('/tentang-kami', [FrontendController::class, 'tentang'])->name('tenta
 Route::get('/testimoni', [FrontendController::class, 'testimoni'])->name('testimoni');
 Route::get('/galeri', [FrontendController::class, 'galeri'])->name('galeri');
 Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
-
-
-// --- RUTE AUTENTIKASI ---
-// // Rute untuk menampilkan modal (dikontrol JS, tapi kita definisikan untuk jaga-jaga)
-// Route::get('/login', [FrontendController::class, 'index'])->name('login');
-// Route::get('/register', [FrontendController::class, 'index'])->name('register');
-
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -64,17 +56,11 @@ Route::prefix('/')->name('customer.')->group(function () {
         //redirect
         //google
         Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirectToGoogle'])->name('google.redirect');
-
-        // //facebook
-        // Route::get('/auth/facebook/redirect', [SocialAuthController::class, 'redirectToFacebook'])->name('facebook.redirect');
     });
 
     //callback
     //google
     Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('google.callback');
-
-    // //facebook
-    // Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback'])->name('facebook.callback');
 
     // Authenticated Customer Routes
     Route::middleware('auth:customer')->group(function () {
@@ -84,42 +70,26 @@ Route::prefix('/')->name('customer.')->group(function () {
 });
 
 
-
-
-
-
-// // Rute GET untuk MENAMPILKAN form
-// Route::get('/login', function () {
-//     return view('frontend.login');
-// })->name('login'); // Nama untuk menampilkan form tetap 'login'
-
-// Route::get('/register', function () {
-//     return view('frontend.register');
-// })->name('register'); // Nama untuk menampilkan form tetap 'register'
-
-
-// // Rute POST untuk MEMPROSES data dari form
-// Route::post('/login', function () {
-//     // Nanti logika login sesungguhnya akan ada di sini
-//     return 'Proses login...';
-// })->name('login.submit'); // Kita beri nama baru agar tidak konflik
-
-// Route::post('/register', function () {
-//     // Nanti logika register sesungguhnya akan ada di sini
-//     return 'Proses register...';
-// })->name('register.submit');
-
-
-
+/*
+|--------------------------------------------------------------------------
+| RUTE AUTENTIKASI ADMIN (HALAMAN LOGIN KHUSUS)
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admin')->group(function () {
+    // Rute yang bisa diakses 'guest' (belum login admin)
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login.form');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+});
 
 /*
 |--------------------------------------------------------------------------
 | RUTE UNTUK ADMIN (DILINDUNGI DENGAN MIDDLEWARE)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    // Middleware 'auth' memastikan hanya user yang sudah login yang bisa akses
+Route::middleware(['admin.role'])->prefix('admin')->group(function () {
+    // Middleware 'admin.role' yang baru Anda buat akan melindungi semua rute di sini
 
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //produk
@@ -143,7 +113,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/orders/delete/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
     Route::get('/orders/{id}', [OrderController::class, 'showOrder'])->name('detailOrder');
     Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('updateOrderStatus');
-
 
     //diskon
     Route::get('/diskon', [DiskonController::class, 'diskonView'])->name('diskonView');

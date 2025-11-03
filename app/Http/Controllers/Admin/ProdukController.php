@@ -35,7 +35,8 @@ class ProdukController extends Controller
     public function createProduk()
     {
         $categories = Category::all();
-        return view('admin.backend.produk.create_produk', compact('categories'));
+        $suppliers = Supplier::all();
+        return view('admin.backend.produk.create_produk', compact('categories', 'suppliers'));
     }
 
     public function storeProduk(Request $request)
@@ -45,6 +46,7 @@ class ProdukController extends Controller
             'merek' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'supplier_id' => 'required|exists:suppliers,id',
             'harga_beli' => 'required|numeric|min:0',
             'harga_jual' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
@@ -62,6 +64,7 @@ class ProdukController extends Controller
             'merek' => $validated['merek'],
             'deskripsi' => $validated['deskripsi'],
             'category_id' => $validated['category_id'],
+            'supplier_id' => $validated['supplier_id'],
             'harga_beli' => $validated['harga_beli'],
             'harga_jual' => $validated['harga_jual'],
             'stok' => $validated['stok'],
@@ -74,8 +77,10 @@ class ProdukController extends Controller
     public function editProduk($id)
     {
         $categories = Category::all();
+        $suppliers = Supplier::all();
         $item = Produk::findOrFail($id);
-        return view('admin.backend.produk.edit_produk', compact('item', 'categories'));
+
+        return view('admin.backend.produk.edit_produk', compact('item', 'categories', 'suppliers'));
     }
 
     public function updateProduk(Request $request, $id)
@@ -85,6 +90,7 @@ class ProdukController extends Controller
             'merek' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'supplier_id' => 'required|exists:suppliers,id',
             'harga_beli' => 'required|numeric|min:0',
             'harga_jual' => 'required|numeric|min:0',
             'status' => 'required|in:tersedia,tidak tersedia',
@@ -106,6 +112,7 @@ class ProdukController extends Controller
         $item->merek = $request->merek;
         $item->deskripsi = $request->deskripsi;
         $item->category_id = $request->category_id;
+        $item->supplier_id = $request->supplier_id;
         $item->harga_beli = $request->harga_jual;
         $item->harga_jual = $request->harga_jual;
         $item->status = $request->status;
