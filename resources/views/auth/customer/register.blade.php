@@ -25,7 +25,7 @@
                             Nama Lengkap
                         </label>
                         <input id="register-name-panel" name="name" type="text" value="{{ old('name') }}"
-                            placeholder="Nama Lengkap"
+                            placeholder="Nama Lengkap" autocomplete="name"
                             class="w-full px-4 py-3 border {{ $errors->has('name') ? 'border-red-500' : 'border-sage-200' }} rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
                         @error('name')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -38,7 +38,7 @@
                             Username
                         </label>
                         <input id="register-username-panel" name="username" type="text" value="{{ old('username') }}"
-                            placeholder="Username"
+                            placeholder="Username" autocomplete="username"
                             class="w-full px-4 py-3 border {{ $errors->has('username') ? 'border-red-500' : 'border-sage-200' }} rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
                         @error('username')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -51,7 +51,7 @@
                             Email
                         </label>
                         <input id="register-email-panel" name="email" type="email" value="{{ old('email') }}"
-                            placeholder="example@gmail.com"
+                            placeholder="example@gmail.com" autocomplete="email"
                             class="w-full px-4 py-3 border {{ $errors->has('email') ? 'border-red-500' : 'border-sage-200' }} rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500">
                         @error('email')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -64,6 +64,7 @@
                             Password
                         </label>
                         <input id="register-password-panel" name="password" type="password" placeholder="Password"
+                        autocomplete="new-password"
                             class="w-full px-4 py-3 border {{ $errors->has('password') ? 'border-red-500' : 'border-sage-200' }} rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500 pe-10">
 
                         <!-- Show/Hide Icon -->
@@ -82,7 +83,7 @@
                             Konfirmasi Password
                         </label>
                         <input id="register-password-confirm-panel" name="password_confirmation" type="password"
-                            placeholder="Konfirmasi Password"
+                            placeholder="Konfirmasi Password" autocomplete="new-password"
                             class="w-full px-4 py-3 border {{ $errors->has('password_confirmation') ? 'border-red-500' : 'border-sage-200' }} rounded-lg focus:outline-none focus:ring-sage-500 focus:border-sage-500 pe-10">
 
                         <!-- Show/Hide Icon -->

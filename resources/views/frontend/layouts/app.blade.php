@@ -100,152 +100,96 @@
     <!-- Header -->
     <header class="bg-sage-200 sticky top-0 z-50 transition-all duration-300 border-b border-sage-100" id="navbar">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4 sm:py-5">
-                <!-- Logo -->
-                <a href="{{ route('home') }}" class="group flex items-center gap-3">
-                    <div class="relative">
-                        <div
-                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg>
-                        </div>
-                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-sage-400 rounded-full animate-ping opacity-75">
-                        </div>
+        <div class="flex justify-between items-center py-4 sm:py-5">
+
+            <a href="{{ route('home') }}" class="group flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     </div>
-                    <span
-                        class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
-                        Bobi Ceramic's
-                    </span>
-                </a>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden lg:flex items-center gap-8 text-base font-medium">
-                    <a href="{{ route('home') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Home
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="{{ route('produk') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Produk
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="{{ route('tentang') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Tentang Kami
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="{{ route('testimoni') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Testimoni
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="{{ route('galeri') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Galeri
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="{{ route('kontak') }}"
-                        class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">
-                        Contact
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-sage-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
                 </div>
+                <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
+                    Bobi Ceramic's
+                </span>
+            </a>
 
-                {{-- <!-- Pemisah -->
-                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div> --}}
+            <div class="hidden lg:flex items-center gap-8 text-base font-medium">
+                @guest('customer')
+                    <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
+                    <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Produk</a>
+                    <a href="{{ route('tentang') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Tentang Kami</a>
+                    <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Testimoni</a>
+                    <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Galeri</a>
+                    <a href="{{ route('kontak') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Contact</a>
+                @else
+                    <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
+                    <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Belanja</a>
+                    <a href="{{ route('customer.dashboard') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Akun Saya</a>
+                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Pesanan</a>
+                @endguest
+            </div>
 
-                <!-- Right Actions (Tombol di Kanan) -->
-                {{-- <div class="flex items-center">
-                <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
-                <!-- Tombol Login (Desktop) -->
-                <div class="hidden lg:flex items-center gap-2 mr-12">
-                    <a href="{{ route('login') }}" class="px-5 py-2.5 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
-                        Masuk
-                    </a>
-                </div>
-            </div> --}}
-                <!-- Right Actions (Tombol di Kanan) -->
-                <div class="flex items-center mr-12">
-                    <!-- Tombol Login & Register (Desktop) -->
-                    {{-- <div class="hidden lg:flex items-center gap-4"> --}}
-                    {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">
-                        Daftar
-                    </button> --}}
-                    <!-- Pemisah -->
-                    {{-- <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
-                    <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
-                        Masuk
-                    </button> --}}
-                    {{-- </div> --}}
-
-
+            <div class="flex items-center">
+                @guest('customer')
                     <div class="hidden lg:flex items-center gap-4">
-                        <!-- Pemisah -->
-                        <div class="hidden lg:block w-px h-6 bg-sage-300 mx-4"></div>
-
-                        @guest('customer')
-                            <button onclick="openModal('loginModal')"
-                                class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
-                                Masuk
+                        <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">Masuk</button>
+                        <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Daftar</button>
+                    </div>
+                @else
+                    <div class="hidden lg:flex items-center gap-4">
+                        <a href="{{ route('customer.dashboard') }}" class="text-sage-800 font-medium hover:text-sage-600 transition-colors">
+                            Hi, {{ Auth::guard('customer')->user()->nama_lengkap }}
+                        </a>
+                        <form method="POST" action="{{ route('customer.logout') }}">
+                            @csrf
+                            <button type="submit" class="px-5 py-2 text-base font-medium text-white bg-red-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">
+                                Logout
                             </button>
-                        @else
-                            <span class="text-sage-800 font-medium">Hi, {{ Auth::guard('customer')->user()->name }}</span>
-                            <form method="POST" action="{{ route('customer.logout') }}">
-                                @csrf
-                                <button type="submit"
-                                    class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">
-                                    Logout
-                                </button>
-                            </form>
-                        @endguest
+                        </form>
                     </div>
+                @endguest
 
-
-                    <!-- ... ikon kanan dan tombol mobile menu ... -->
-                </div>
+                <button class="lg:hidden p-2 text-sage-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
+        </div>
 
-            <!-- Mobile Navigation -->
-            <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
+        <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
+            @guest('customer')
                 <div class="py-4 space-y-1">
-                    <a href="{{ route('home') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Home</a>
-                    <a href="{{ route('produk') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Produk</a>
-                    <a href="{{ route('tentang') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Tentang
-                        Kami</a>
-                    <a href="{{ route('testimoni') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Testimoni</a>
-                    <a href="{{ route('galeri') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Galeri</a>
-                    <a href="{{ route('kontak') }}"
-                        class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-all duration-300">Contact</a>
-
-                    <!-- Tombol Login/Register Mobile -->
-                    <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
-                        <button onclick="openModal('loginModal')"
-                            class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">
-                            Masuk
-                        </button>
-                        <button onclick="openModal('registerModal')"
-                            class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">
-                            Daftar
-                        </button>
-                    </div>
+                    <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
+                    <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Produk</a>
+                    <a href="{{ route('tentang') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Tentang Kami</a>
+                    <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Testimoni</a>
+                    <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Galeri</a>
+                    <a href="{{ route('kontak') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Contact</a>
                 </div>
-            </div>
-        </nav>
+                <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
+                    <button onclick="openModal('loginModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">Masuk</button>
+                    <button onclick="openModal('registerModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">Daftar</button>
+                </div>
+            @else
+                <div class="py-4 space-y-1">
+                    <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
+                    <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Belanja</a>
+                    <a href="{{ route('customer.dashboard') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Akun Saya</a>
+                    <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Pesanan</a>
+                </div>
+                <div class="border-t border-sage-200 mt-4 pt-4">
+                    <div class="px-4 py-2 text-base font-medium text-sage-900">
+                        Hi, {{ Auth::guard('customer')->user()->nama_lengkap }}
+                    </div>
+                    <form method="POST" action="{{ route('customer.logout') }}" class="mt-2">
+                        @csrf
+                        <button type="submit" class="block w-full text-center px-4 py-3 text-base font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-lg">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            @endguest
+        </div>
+    </nav>
     </header>
 
     {{-- Include Modal Login & Register --}}

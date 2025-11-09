@@ -51,6 +51,7 @@ class CustomerController extends Controller
     //login
     public function loginCustomer(Request $request)
     {
+        // 1. Validasi input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -62,15 +63,18 @@ class CustomerController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        // 2. Coba login menggunakan guard 'customer'
         if (Auth::guard('customer')->attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('home')->with('success', 'Login berhasil!');
+            return redirect()->route('customer.dashboard')->with('success', 'Login berhasil!');
 
         }
 
+        // 4. Jika login gagal
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ])->onlyInput('email');
+
     }
 
     // logout
@@ -80,6 +84,12 @@ class CustomerController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('home')->with('success', 'Logout berhasil!');
+    }
+
+    public function dashboard()
+    {
+        // Arahkan ke file yang benar: frontend.dashboard
+        return view('frontend.dashboard');
     }
 
 
