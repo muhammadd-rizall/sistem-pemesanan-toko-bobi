@@ -39,7 +39,7 @@ class SocialAuthController extends Controller
 
             auth()->guard('customer')->login($customer);
 
-            return redirect()->route('home');
+            return redirect()->route('customer.dashboard');
 
     }
 
@@ -79,7 +79,7 @@ class SocialAuthController extends Controller
 
 
 
-    
+
     /**
      * Generate username unik dari email atau nama
      */

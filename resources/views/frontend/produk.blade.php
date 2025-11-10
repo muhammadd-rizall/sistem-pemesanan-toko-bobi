@@ -7,11 +7,11 @@
             {{-- ============================================ --}}
             {{-- PAGE HEADER (RATA TENGAH) --}}
             {{-- ============================================ --}}
-            <div class="text-center mb-12 animate-fade-in-down">
+            <div class="text-center mb-12 animate-fade-in-down mt-6">
                 <h1 class="text-4xl sm:text-5xl font-bold text-sage-900">
                     Koleksi Produk Kami
                 </h1>
-                <p class="mt-3 text-lg text-sage-600 max-w-2xl mx-auto">
+                <p class="mt-3 text-lg text-sage-600 max-w-2xl mx-auto mb-16">
                     Temukan keramik berkualitas tinggi dengan berbagai motif dan ukuran untuk setiap kebutuhan ruangan Anda.
                 </p>
             </div>

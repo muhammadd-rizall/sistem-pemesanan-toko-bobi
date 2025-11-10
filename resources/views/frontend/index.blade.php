@@ -40,14 +40,14 @@
         <div class="container relative mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
 
             {{-- Search Bar --}}
-            <form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto mb-12">
+            {{-- <form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto mb-12">
                 <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
                     <div class="relative flex items-center">
                         <input type="text" name="search" id="searchInput"
                             placeholder="Cari produk yang anda inginkan..." value="{{ request('search') }}"
                             class="w-full px-6 py-4 pr-28 rounded-full border border-sage-300 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-100 transition-all duration-300 text-sage-800 bg-white shadow-lg">
 
-                        {{-- Reset Button --}}
+                        {{-- Reset Button --}
                         <button type="button" id="resetButton"
                             onclick="document.getElementById('searchInput').value=''; this.form.submit();"
                             title="Reset pencarian"
@@ -58,7 +58,7 @@
                             </svg>
                         </button>
 
-                        {{-- Search Button --}}
+                        {{-- Search Button --}
                         <button type="submit" title="Cari"
                             class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,18 +68,18 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             {{-- Filter Section --}}
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in mt-6">
                 <div>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2 pl-4">Koleksi Kami</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2 pl-4 ml-4">Koleksi Kami</h2>
                     <p class="text-sage-600 pl-8">Produk pilihan khusus untuk Anda</p>
                 </div>
 
-                <form action="{{ route('produk') }}" method="GET"
+                {{-- <form action="{{ route('produk') }}" method="GET"
                     class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-                    {{-- Category Filter --}}
+                    {{-- Category Filter --
                     <div class="relative group">
                         <select name="category" onchange="this.form.submit()"
                             class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
 
-                    {{-- Sort Filter --}}
+                    {{-- Sort Filter --
                     <div class="relative group">
                         <select name="sort" onchange="this.form.submit()"
                             class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
@@ -116,7 +116,7 @@
                             </svg>
                         </div>
                     </div>
-                </form>
+                </form> --}}
             </div>
 
             {{-- Products Grid --}}

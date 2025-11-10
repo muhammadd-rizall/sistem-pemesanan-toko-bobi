@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Latar belakang gradien yang lembut -->
-<div class="bg-gradient-to-br from-sage-50 via-white to-cream-50 pt-16 pb-16 sm:pt-20 sm:pb-20">
+<div class="bg-gradient-to-br from-sage-50 via-white to-cream-50 pt-16 pb-16 sm:pt-14 sm:pb-20">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header Selamat Datang -->
