@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total_harga_awal', 10, 2);
             $table->decimal('total_diskon', 10, 2)->default(0);
             $table->decimal('total_harga_akhir', 10, 2);
+            $table->string('no_hp');
             $table->text('alamat_pengiriman');
             $table->text('catatan')->nullable();
             $table->enum('status', ['pending', 'proses', 'dikirim',  'cancelled'])->default('pending');

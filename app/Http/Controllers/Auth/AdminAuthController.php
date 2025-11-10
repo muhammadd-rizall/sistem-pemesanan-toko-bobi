@@ -10,11 +10,18 @@ use Illuminate\Validation\ValidationException;
 class AdminAuthController extends Controller
 {
 
+    //
+    // Menampilkan form login admin
+    //
     public function showLoginForm()
     {
         return view('auth.admin.login');
     }
 
+
+    //
+    // Menangani proses login admin
+    //
     public function login(Request $request)
     {
         // 1. Validasi input
@@ -46,6 +53,10 @@ class AdminAuthController extends Controller
         ]);
     }
 
+
+    //
+    // Menangani proses logout admin
+    //
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();

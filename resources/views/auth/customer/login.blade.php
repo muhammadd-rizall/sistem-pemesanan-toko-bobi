@@ -1,25 +1,20 @@
 <!-- =================================================================== -->
 <!-- MODAL LOGIN DUA PANEL -->
 <!-- =================================================================== -->
-
-
 <div id="loginModal"
-    class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0">
+    class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 invisible opacity-0 transition-all duration-300">
 
     <div
-        class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden">
+        class="modal-content relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl transform opacity-0 -translate-y-10 overflow-hidden transition-all duration-300">
         <div class="grid grid-cols-1 md:grid-cols-2">
 
-            <!-- Panel Kiri: Gambar & Welcome Message -->
+            <!-- Panel Kiri -->
             <div
                 class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
                 <img src="{{ asset('storage/images/login.jpg') }}" alt="Keramik"
                     class="absolute inset-0 w-full h-full object-cover opacity-30">
-
                 <div class="relative z-10">
-                    <h2 class="text-4xl font-bold drop-shadow-lg">
-                        Selamat Datang Kembali!
-                    </h2>
+                    <h2 class="text-4xl font-bold drop-shadow-lg">Selamat Datang Kembali!</h2>
                     <p class="mt-4 text-gray-200 max-w-xs mx-auto">
                         Jika Anda sudah memiliki akun, silahkan login untuk melanjutkan.
                     </p>
@@ -30,9 +25,8 @@
                 </div>
             </div>
 
-            <!-- Panel Kanan: Form Login -->
+            <!-- Panel Kanan -->
             <div class="p-8 md:p-12">
-                <!-- Header -->
                 <div class="flex justify-between items-start mb-2">
                     <div>
                         <h2 class="text-3xl font-bold text-sage-900">Masuk</h2>
@@ -44,26 +38,28 @@
                     </button>
                 </div>
 
+                <!-- Alert Sukses -->
+                @if (session('registerSuccess'))
+                    <div id="successAlert"
+                        class="mb-6 p-4 bg-green-50 border-l-4 border-green-500 rounded-lg animate-fadeIn transition-opacity duration-700">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-green-700 text-sm font-medium">
+                                {{ session('reset_success') ?? session('registerSuccess') }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Form -->
-                <form class="mt-8 space-y-6" action="{{ route('customer.login') }}" method="POST">
+                <form class="mt-6 space-y-6" action="{{ route('customer.login') }}" method="POST">
                     @csrf
 
-                    <!-- Alert Success Reset Password -->
-                    @if (session('reset_success'))
-                        <div class="mb-6 p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <p class="text-green-700 text-sm font-medium">Password berhasil direset! Silakan login
-                                    dengan password baru Anda.</p>
-                            </div>
-                        </div>
-                    @endif
-
-                    <!-- Input Email -->
+                    <!-- Email -->
                     <div>
                         <label for="login-email-panel" class="block text-sm font-medium text-sage-700 mb-1">
                             Email
@@ -76,7 +72,7 @@
                         @enderror
                     </div>
 
-                    <!-- Input Password -->
+                    <!-- Password -->
                     <div>
                         <label for="login-password-panel" class="block text-sm font-medium text-sage-700 mb-1">
                             Password
@@ -92,7 +88,7 @@
                         @enderror
                     </div>
 
-                    <!-- Remember Me & Forgot Password -->
+                    <!-- Remember & Forgot -->
                     <div class="flex items-center justify-between">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" name="remember"
@@ -102,10 +98,10 @@
                         <button type="button" onclick="switchModal('loginModal', 'lupaPasswordModal')"
                             class="text-sm text-sage-600 hover:text-sage-700 hover:underline">
                             Lupa Password?
-                            </butto>
+                        </button>
                     </div>
 
-                    <!-- Submit Button -->
+                    <!-- Tombol -->
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full py-3 px-4 text-base font-bold rounded-lg text-white bg-sage-600 hover:bg-sage-700 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2 transition-colors">
@@ -123,11 +119,10 @@
                         </div>
                     </div>
 
-                    <!-- Social Login - Google Button -->
+                    <!-- Login Google -->
                     <div class="flex justify-center">
                         <a href="{{ route('customer.google.redirect') }}"
                             class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow">
-                            <!-- Logo Google Asli -->
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -148,22 +143,23 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
 
-<!-- Script: Auto-show modal jika ada error & Toggle Password -->
-@if ($errors->has('email') && !$errors->has('name') && !$errors->has('username'))
+<!-- Script: Auto show modal jika sukses -->
+@if (session('openLoginModal') || session('registerSuccess'))
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginModal = document.getElementById('loginModal');
-            if (loginModal) {
-                loginModal.classList.remove('invisible', 'opacity-0');
-                const modalContent = loginModal.querySelector('.modal-content');
-                if (modalContent) {
-                    modalContent.classList.remove('opacity-0', '-translate-y-10');
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            openModal('loginModal');
+
+            // Auto fade alert setelah 5 detik
+            const alert = document.getElementById('successAlert');
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 700); // hapus elemen setelah animasi
+                }, 5000);
             }
         });
     </script>
@@ -175,42 +171,39 @@
         const input = document.getElementById(inputId);
         if (input.type === 'password') {
             input.type = 'text';
-            iconElement.classList.remove('fa-eye');
-            iconElement.classList.add('fa-eye-slash');
+            iconElement.classList.replace('fa-eye', 'fa-eye-slash');
         } else {
             input.type = 'password';
-            iconElement.classList.remove('fa-eye-slash');
-            iconElement.classList.add('fa-eye');
+            iconElement.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+
+    // Helper: buka modal dengan transisi
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('invisible', 'opacity-0');
+            const modalContent = modal.querySelector('.modal-content');
+            setTimeout(() => modalContent.classList.remove('-translate-y-10', 'opacity-0'), 50);
         }
     }
 </script>
 
-@if (session('openLoginModal'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const registerModal = document.getElementById('registerModal');
-            const loginModal = document.getElementById('loginModal');
+<style>
+    /* Animasi Alert */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
 
-            if (registerModal) {
-                // Tutup modal register
-                registerModal.querySelector('.modal-content')?.classList.add('-translate-y-10', 'opacity-0');
-                registerModal.classList.add('invisible');
-            }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-            if (loginModal) {
-                // Buka modal login
-                loginModal.classList.remove('invisible', 'opacity-0');
-                // Jalankan animasi smooth
-                setTimeout(() => {
-                    loginModal.querySelector('.modal-content')?.classList.remove('-translate-y-10',
-                        'opacity-0');
-                }, 50);
-            }
-
-            // Pesan sukses
-            @if (session('success'))
-                alert("{{ session('success') }}");
-            @endif
-        });
-    </script>
-@endif
+    .animate-fadeIn {
+        animation: fadeIn 0.4s ease forwards;
+    }
+</style>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\CustomerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::prefix('/')->name('customer.')->group(function () {
     Route::middleware('auth:customer')->group(function () {
         Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
+
+        Route::get('/form-pemesanan/{id}', [CheckoutOrderController::class, 'formPemesanan'])->name('formPemesanan');
+        Route::post('/order/store', [CheckoutOrderController::class, 'orderStore'])->name('orders.store');
     });
 });
 
