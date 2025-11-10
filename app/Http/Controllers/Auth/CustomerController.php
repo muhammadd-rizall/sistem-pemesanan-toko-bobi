@@ -7,6 +7,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException; // Tambahkan ini jika perlu
 
 class CustomerController extends Controller
 {
@@ -69,13 +70,13 @@ class CustomerController extends Controller
         // 2. Coba login menggunakan guard 'customer'
         if (Auth::guard('customer')->attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('customer.dashboard')->with('success', 'Login berhasil!');
+            return redirect()->route('customer.dashboard')->with('success', 'Selamat datang! Login Anda berhasil.!');
 
         }
 
         // 4. Jika login gagal
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'email' => 'Email atau password yang Anda masukkan salah.',
         ])->onlyInput('email');
 
     }
@@ -89,7 +90,9 @@ class CustomerController extends Controller
         Auth::guard('customer')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('home')->with('success', 'Logout berhasil!');
+        // PERUBAHAN DI SINI: Tambahkan ->with('success', ...)
+        return redirect(route('home'))
+                   ->with('success', 'Anda telah berhasil logout.');
     }
 
     public function dashboard()
