@@ -243,13 +243,33 @@
                                     </div>
 
                                     {{-- POIN 3: Tombol Add to Cart (buka modal login) --}}
-                                    <button type="button" onclick="openModal('loginModal')"
+                                    {{-- POIN 3: Tombol Add to Cart dengan logika login --}}
+                                        @if (Auth::guard('customer')->check())
+                                            {{-- User SUDAH login sebagai customer --}}
+                                            <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}"
+                                            class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                                </svg>
+                                            </a>
+                                        @else
+                                            {{-- User BELUM login (masih guest) --}}
+                                            <button type="button" onclick="openModal('loginModal')"
+                                                    class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                                </svg>
+                                            </button>
+                                        @endif
+                                    {{-- <button type="button" onclick="openModal('loginModal')"
                                         class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                         </svg>
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </div>
                         </div>

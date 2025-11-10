@@ -11,7 +11,7 @@
         <form action="{{ route('produk') }}" method="GET" class="animate-fade-in mt-4 mb-12">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
 
-                <div class="relative w-full md:w-2/5">
+                <div class="relative w-full md:w-2/5 ml-14">
                     {{-- ... (Search bar tidak berubah) ... --}}
                     <input
                         type="text"
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto mr-14">
 
                     {{-- POIN 4: Filter Kategori dibuat dinamis & fungsional --}}
                     <div class="relative group">
@@ -125,11 +125,11 @@
                         </div>
 
                         <div class="absolute bottom-4 right-4 flex gap-2 transform translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
-                            <button class="bg-white/90 backdrop-blur-sm hover:bg-sage-600 text-sage-800 hover:text-white p-2.5 rounded-full transition-all duration-300 shadow-lg hover:scale-110">
+                            {{-- <button class="bg-white/90 backdrop-blur-sm hover:bg-sage-600 text-sage-800 hover:text-white p-2.5 rounded-full transition-all duration-300 shadow-lg hover:scale-110">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                                 </svg>
-                            </button>
+                            </button> --}}
 
                             {{-- POIN 1: Link hanya ada di ikon mata --}}
                             <a href="{{ route('products.show', $product->id) }}" class="bg-white/90 backdrop-blur-sm hover:bg-sage-600 text-sage-800 hover:text-white p-2.5 rounded-full transition-all duration-300 shadow-lg hover:scale-110">
@@ -145,7 +145,7 @@
                     <div class="p-5">
                         <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mb-2">
                              {{-- Controller sudah 'with('category')' --}}
-                            {{ $product->category->nama_kategori ?? 'Tidak Berkategori' }}
+                            {{ $product->category->name ?? 'Tidak Berkategori' }}
                         </p>
 
                         <h3 class="text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-1 h-14 overflow-hidden">
