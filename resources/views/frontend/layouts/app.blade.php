@@ -131,9 +131,9 @@
 
             <div class="flex items-center">
                 @guest('customer')
-                    <div class="hidden lg:flex items-center gap-4">
-                        <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-sage-800 hover:bg-sage-100 rounded-full transition-colors duration-300">Masuk</button>
-                        <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Daftar</button>
+                    <div class="hidden lg:flex items-center gap-4 mr-14">
+                        <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Masuk</button>
+                        {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Daftar</button> --}}
                     </div>
                 @else
                     <div class="hidden lg:flex items-center gap-4">
@@ -202,6 +202,30 @@
 
     <!-- Main Content -->
     <main>
+        {{-- UBAH BLOK KODE PESAN MENJADI SEPERTI INI --}}
+
+        {{-- Pesan Sukses (Hijau) --}}
+        @if (session('success'))
+            {{-- Kita hapus container dan rounded, ganti jadi border-y (atas-bawah) --}}
+            <div class="bg-green-100 border-y border-green-400 text-green-700" role="alert">
+                {{-- Tapi teks di dalamnya kita beri container agar tetap rapi --}}
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            </div>
+        @endif
+
+        {{-- Pesan Error (Merah) --}}
+        @if (session('error'))
+            {{-- Kita hapus container dan rounded, ganti jadi border-y (atas-bawah) --}}
+            <div class="bg-red-100 border-y border-red-400 text-red-700" role="alert">
+                {{-- Tapi teks di dalamnya kita beri container agar tetap rapi --}}
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            </div>
+        @endif
+        {{-- AKHIR BLOK KODE PERBAIKAN --}}
         @yield('content')
     </main>
 
