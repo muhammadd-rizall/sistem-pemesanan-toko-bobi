@@ -36,7 +36,7 @@ class AdminAuthController extends Controller
             // 3. Cek apakah user yang login adalah 'admin'
             if (Auth::user()->role === 'admin') {
                 $request->session()->regenerate();
-                return redirect()->intended(route('admin.dashboard'));
+                return redirect()->intended(route('admin.dashboard')) ->with('success', 'Selamat datang, Admin! Login berhasil.');
             }
 
             // 4. Jika role-nya bukan admin, logout paksa
@@ -62,7 +62,10 @@ class AdminAuthController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect(route('home'));
+
+        // PERUBAHAN DI SINI: Tambahkan ->with('success', ...)
+        return redirect(route('home'))
+                   ->with('success', 'Anda telah berhasil logout.');
     }
 
 
