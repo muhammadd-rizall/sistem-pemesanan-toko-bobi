@@ -29,6 +29,21 @@ class CategoriesSeeder extends Seeder
                 'description' => 'kloset duduk dan jongkok',
                 'slug' => 'kloset',
             ],
+            [
+                'name' => 'Step Nosing Tangga',
+                'description' => 'Step nosing untuk tangga',
+                'slug' => 'step-nosing-tangga',
+            ],
+            [
+                'name' => 'Pintu Kamar Mandi',
+                'description' => 'Pintu untuk kamar mandi',
+                'slug' => 'pintu-kamar-mandi',
+            ],
+            [
+                'name' => 'Shower',
+                'description' => 'Shower untuk kamar mandi',
+                'slug' => 'shower',
+            ],
         ];
 
         foreach ($categories as $cat) {
