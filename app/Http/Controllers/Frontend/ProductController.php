@@ -99,4 +99,36 @@ class ProductController extends Controller
 
         return view('frontend.show', compact('product'));
     }
+
+    /**
+     * Menampilkan halaman Tentang Kami.
+     */
+    public function tentang()
+    {
+        return view('frontend.tentang');
+    }
+
+    /**
+     * Menampilkan halaman Testimoni.
+     */
+    public function testimoni()
+    {
+        return view('frontend.testimoni');
+    }
+
+    /**
+     * Menampilkan halaman Galeri.
+     */
+    public function galeri()
+    {
+        return view('frontend.galeri');
+    }
+
+    /**
+     * Menampilkan halaman Kontak.
+     */
+    public function kontak()
+    {
+        return view('frontend.kontak');
+    }
 }

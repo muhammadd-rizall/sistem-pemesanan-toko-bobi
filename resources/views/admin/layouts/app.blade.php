@@ -155,7 +155,7 @@
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">Profil</a>
 
                         <!-- Form untuk Logout -->
-                        <form method="POST" action="{{ route('admin.logout') }}">
+                        <form method="POST" action="{{ route('admin.logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
                             @csrf
                             <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">
                                 Logout
@@ -170,6 +170,30 @@
             </header>
 
             <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+
+                {{-- =============================================== --}}
+                {{--         TAMBAHKAN KODE PESAN DI SINI          --}}
+                {{-- =============================================== --}}
+
+                {{-- Ini adalah pesan sukses (Hijau) --}}
+                @if (session('success'))
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg relative mb-5" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                {{-- Ini untuk pesan error jika nanti Anda butuh (Merah) --}}
+                @if (session('error'))
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg relative mb-5" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                {{-- =============================================== --}}
+                {{--           AKHIR DARI KODE PESAN               --}}
+                {{-- =============================================== --}}
+
+
                 @yield('content')
             </main>
         </div>
