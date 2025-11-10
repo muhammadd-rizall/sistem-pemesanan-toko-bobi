@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
-    // registrasi customer bisa ditambahkan di sini
 
-
-
+    //
+    // registrasi customer
+    //
     public function registerCustomer(Request $request)
     {
         $request->validate([
@@ -48,7 +48,10 @@ class CustomerController extends Controller
 
     }
 
-    //login
+
+    //
+    //login customer
+    //
     public function loginCustomer(Request $request)
     {
         // 1. Validasi input
@@ -77,7 +80,10 @@ class CustomerController extends Controller
 
     }
 
+
+    //
     // logout
+    //
     public function logoutCustomer(Request $request)
     {
         Auth::guard('customer')->logout();

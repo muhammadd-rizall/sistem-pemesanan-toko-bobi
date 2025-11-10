@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    //
+    // Menampilkan daftar order dengan fitur pencarian
+    //
     public function index()
     {
         $search = request()->query('search');
@@ -24,12 +28,19 @@ class OrderController extends Controller
         return view('admin.backend.order.list_order', compact('orders', 'search'));
     }
 
+    //
+    // Menampilkan detail order order
+    //
     public function showOrder($id)
     {
         $order = Order::with('customer', 'diskon', 'orderItems.produk')->findOrFail($id);
         return view('admin.backend.order.show_order', compact('order'));
     }
 
+
+    //
+    //menghapus order
+    //
     public function deleteOrder($id)
     {
         $order = Order::findOrFail($id);
@@ -39,6 +50,10 @@ class OrderController extends Controller
         return redirect()->route('listOrder')->with('success', 'Order berhasil dihapus.');
     }
 
+
+    //
+    //memperbarui status pengiriman
+    //
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate([
