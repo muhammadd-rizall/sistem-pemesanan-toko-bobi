@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('total_order', 10, 2);
             $table->decimal('jumlah_terbayar', 10, 2)->default(0);
             $table->decimal('sisa_pembayaran', 10, 2)->default(0);
-            $table->enum('metode_pembayaran', ['credit_card', 'bank_transfer', 'e_wallet', 'cash_on_delivery', 'qris'])->default('bank_transfer');
+            $table->string('metode_pembayaran');
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tanggal_bayar');
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class DiskonController extends Controller
 {
+    //
+    // menampilkan data diskon dan pencarian
+    //
     public function diskonView(Request $request)
     {
 
@@ -23,11 +26,18 @@ class DiskonController extends Controller
         return view('admin.backend.diskon.data', compact('datas', 'search'));
     }
 
+
+    //
+    // meanampilkan form tambah data diskon
+    //
     public function createDiskon()
     {
         return view('admin.backend.diskon.create');
     }
 
+    //
+    // menyimpan data diskon
+    //
     public function storeDiskon(Request $request)
     {
         $validated = $request->validate([
@@ -49,12 +59,19 @@ class DiskonController extends Controller
         return redirect()->route('diskonView')->with('success', 'Diskon berhasil ditambahkan.');
     }
 
+
+    //
+    // mengedit data diskon
+    //
     public function editDiskon($id)
     {
         $data = Diskon::findOrFail($id);
         return view('admin.backend.diskon.edit', compact('data'));
     }
 
+    //
+    // memperbarui data diskon
+    //
     public function updateDiskon(Request $request, $id)
     {
         $data = Diskon::findOrFail($id);
@@ -76,6 +93,9 @@ class DiskonController extends Controller
         return redirect()->route('diskonView')->with('success', 'Diskon berhasil diperbarui.');
     }
 
+    //
+    // menghapus data diskon
+    //
     public function deleteDiskon($id)
     {
         $diskon = Diskon::findOrFail($id);

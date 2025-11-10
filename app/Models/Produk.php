@@ -12,6 +12,12 @@ class Produk extends Model
     protected $table = 'produks';
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'harga_beli' => 'float',
+        'harga_jual' => 'float',
+        'stok' => 'integer',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
