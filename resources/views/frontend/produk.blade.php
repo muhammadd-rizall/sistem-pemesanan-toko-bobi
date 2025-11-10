@@ -97,7 +97,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-10 px-16">
             @foreach($products as $index => $product)
-            <a href="{{ route('products.show', $product['id']) }}"
+            <a href="{{ route('products.show', $product->id) }}"
                class="group block animate-fade-in-up"
                style="animation-delay: {{ $index * 80 }}ms;">
 
@@ -105,8 +105,8 @@
                 <div class="relative bg-[#e8f0e8] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-2">
                     <!-- Image Container -->
                     <div class="relative overflow-hidden h-48 bg-cream-50">
-                        <img src="{{ $product['image'] }}"
-                             alt="{{ $product['name'] }}"
+                        <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('storage/products/default.png') }}"
+                             alt="{{ $product->nama_produk }}"
                              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out">
 
                         <!-- Gradient Overlay -->
@@ -138,17 +138,17 @@
                         <div class="p-5">
                             <!-- Merek -->
                             {{-- <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mb-2">
-                                {{ $product['merek'] }}
+                                {{ $product->merek }}
                             </p> --}}
 
                             <!-- Nama Produk -->
                             <h3 class="text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-1 h-14 overflow-hidden">
-                                {{ $product['name'] }}
+                                {{ $product->nama_produk }}
                             </h3>
 
                             <!-- Deskripsi Singkat -->
                             <p class="text-xs text-gray-500 opacity-70 mt-1 mb-3 line-clamp-2 h-8">
-                                {{ $product['deskripsi'] }}
+                                {{ $product->deskripsi }}
                             </p>
 
                             <!-- Info Harga & Stok -->
@@ -156,12 +156,12 @@
                                 <div>
                                     <!-- Harga -->
                                     <p class="text-xl font-bold text-sage-800">
-                                        {{ $product['price'] }}
+                                        {{ 'Rp ' . number_format($product->harga_jual, 0, ',', '.') }}
                                     </p>
                                     <!-- Status Stok (Contoh Statis) -->
                                     <div class="mt-1">
                                         <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mb-2">
-                                            {{ $product['merek'] }}
+                                            {{ $product->merek }}
                                         </p>
                                     </div>
                                 </div>

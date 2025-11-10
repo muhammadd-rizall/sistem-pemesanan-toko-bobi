@@ -138,7 +138,7 @@
                 @else
                     <div class="hidden lg:flex items-center gap-4">
                         <a href="{{ route('customer.dashboard') }}" class="text-sage-800 font-medium hover:text-sage-600 transition-colors">
-                            Hi, {{ Auth::guard('customer')->user()->nama_lengkap }}
+                            Hi, {{ Auth::guard('customer')->user()->name }}
                         </a>
                         <form method="POST" action="{{ route('customer.logout') }}">
                             @csrf
@@ -404,6 +404,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

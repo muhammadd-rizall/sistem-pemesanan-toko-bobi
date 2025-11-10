@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+
+    //
+    //menampilkan data supplier dengan pencarian
+    //
     public function supplierView(Request $request)
     {
         $search = $request->input('search');
@@ -23,11 +27,19 @@ class SupplierController extends Controller
         return view('admin.backend.supplier.data', compact('datas', 'search'));
     }
 
+
+    //
+    //menampilkan form tambah supplier
+    //
     public function createSupplier()
     {
         return view('admin.backend.supplier.create');
     }
 
+
+    //
+    // menyimpan data supplier
+    //
     public function storeSupplier(Request $request)
     {
         $validated = $request->validate([
@@ -46,12 +58,20 @@ class SupplierController extends Controller
         return redirect()->route('supplierView')->with('success', 'Supplier berhasil ditambahkan.');
     }
 
+
+    //
+    // mengedit data supplier
+    //
     public function editSupplier($id)
     {
         $data = Supplier::findOrFail($id);
         return view('admin.backend.supplier.edit', compact('data'));
     }
 
+
+    //
+    // memperbarui data supplier
+    //
     public function updateSupplier(Request $request, $id)
     {
         $validated = $request->validate([
@@ -72,6 +92,10 @@ class SupplierController extends Controller
         return redirect()->route('supplierView')->with('success', 'Supplier berhasil diupdate.');
     }
 
+
+    //
+    // menghapus data supplier
+    //
     public function deleteSupplier($id)
     {
         $supplier = Supplier::findOrFail($id);

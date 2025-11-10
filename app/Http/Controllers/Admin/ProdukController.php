@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
+
+    //
+    //menampilkan data produk dengan pencarian
+    //
     public function produkView(Request $request)
     {
         $search = $request->input('search');
@@ -32,6 +36,10 @@ class ProdukController extends Controller
     }
 
 
+
+    //
+    //menampilkan form tambah produk
+    //
     public function createProduk()
     {
         $categories = Category::all();
@@ -39,6 +47,10 @@ class ProdukController extends Controller
         return view('admin.backend.produk.create_produk', compact('categories', 'suppliers'));
     }
 
+
+    //
+    // menyimpan data produk
+    //
     public function storeProduk(Request $request)
     {
         $validated = $request->validate([
@@ -74,6 +86,10 @@ class ProdukController extends Controller
         return redirect()->route('produk_view')->with('success', 'Produk berhasil ditambahkan.');
     }
 
+
+    //
+    // mengedit data produk
+    //
     public function editProduk($id)
     {
         $categories = Category::all();
@@ -83,6 +99,10 @@ class ProdukController extends Controller
         return view('admin.backend.produk.edit_produk', compact('item', 'categories', 'suppliers'));
     }
 
+
+    //
+    // memperbarui data produk
+    //
     public function updateProduk(Request $request, $id)
     {
         $request->validate([
@@ -122,6 +142,10 @@ class ProdukController extends Controller
         return redirect()->route('produk_view')->with('success', 'Produk berhasil diperbarui.');
     }
 
+
+    //
+    // menghapus data produk
+    //
     public function deleteProduk($id)
     {
         $item = Produk::findOrFail($id);
