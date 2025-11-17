@@ -1,11 +1,11 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <div class="container mx-auto px-6 py-12 max-w-7xl">
+    <div class="container mx-auto px-4 py-8 sm:px-6 sm:py-12 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <!-- Product Image -->
             {{-- Bagian gambar sticky tetap sama --}}
-            <div class="sticky top-28">
+            <div class="lg:sticky lg:top-28">
                 <div class="overflow-hidden rounded-2xl shadow-xl bg-gray-50 border border-sage-200">
                     <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('storage/products/default.png') }}"
                         alt="{{ $product->nama_produk }}"
@@ -21,10 +21,10 @@
                     {{ $product->category->name ?? 'Tidak Berkategori' }}
                 </div>
 
-                <h1 class="text-4xl lg:text-5xl font-bold text-sage-900 leading-tight">{{ $product->nama_produk }}</h1>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-sage-900 leading-tight">{{ $product->nama_produk }}</h1>
 
                 <div class="flex items-baseline gap-3">
-                    <p class="text-4xl font-bold text-sage-800">
+                    <p class="text-3xl sm:text-4xl font-bold text-sage-800">
                         {{ 'Rp ' . number_format($product->harga_jual, 0, ',', '.') }}
                     </p>
                     <span class="text-sm text-gray-500 uppercase tracking-wide">IDR</span>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="pt-6 space-y-4">
-                    <div class="flex items-center gap-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
                         <div class="flex items-center gap-2">
                             <div
                                 class="w-3 h-3 rounded-full {{ $product->stok > 0 ? 'bg-green-500' : 'bg-red-500' }} animate-pulse">
