@@ -66,39 +66,39 @@
                     <table class="min-w-max w-full text-sm sm:text-base divide-y divide-sage-100">
                         <thead class="bg-[#7eb17e] text-black uppercase text-xs tracking-wider">
                             <tr>
-                                <th class="px-4 py-3 text-center font-bold">No</th>
-                                <th class="px-4 py-3 text-center font-bold">Nama Perusahaan</th>
-                                <th class="px-4 py-3 text-center font-bold">Kontak Person</th>
-                                <th class="px-4 py-3 text-center font-bold">No Telepon</th>
-                                <th class="px-4 py-3 text-center font-bold">Email</th>
-                                <th class="px-4 py-3 text-center font-bold">Provinsi</th>
-                                <th class="px-4 py-3 text-center font-bold">Kota</th>
-                                <th class="px-4 py-3 text-center font-bold">Kecamatan</th>
-                                <th class="px-4 py-3 text-center font-bold">Alamat</th>
-                                <th class="px-4 py-3 text-center font-bold">Status</th>
-                                <th class="px-4 py-3 text-center font-bold">Aksi</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">No</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-left font-bold min-w-[150px]">Nama Perusahaan</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden md:table-cell">Kontak Person</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden md:table-cell">No Telepon</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden lg:table-cell">Email</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden lg:table-cell">Provinsi</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden lg:table-cell">Kota</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden xl:table-cell">Kecamatan</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-left font-bold hidden xl:table-cell min-w-[200px]">Alamat</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Status</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-sage-100">
                             @forelse ($datas as $index => $data)
                                 <tr class="hover:bg-sage-50 transition duration-200">
-                                    <td class="px-4 py-3 text-center">{{ $index + $datas->firstItem() }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->nama_perusahaan }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->kontak_person }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->phone }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->email }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->provinsi }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->kota }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->kecamatan }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->alamat }}</td>
-                                    <td class="px-4 py-3 text-center">
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">{{ $index + $datas->firstItem() }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-left">{{ $data->nama_perusahaan }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden md:table-cell">{{ $data->kontak_person }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden md:table-cell">{{ $data->phone }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden lg:table-cell">{{ $data->email }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden lg:table-cell">{{ $data->provinsi }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden lg:table-cell">{{ $data->kota }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden xl:table-cell">{{ $data->kecamatan }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-left hidden xl:table-cell">{{ $data->alamat }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-full {{ $data->status == 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                             {{ ucfirst($data->status) }}
                                         </span>
 
                                     </td>
-                                    <td class="px-4 py-3 text-center">
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">
                                         <div class="flex items-center justify-center gap-2">
                                             <a href="{{ route('editSupplier', $data->id) }}"
                                                 class="p-2 text-blue-600 hover:bg-blue-100 rounded-full transition duration-200"

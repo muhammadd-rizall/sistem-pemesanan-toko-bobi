@@ -133,7 +133,7 @@
                 </span>
             </a>
 
-            <div class="hidden lg:flex items-center gap-8 text-base font-medium">
+            <div class="hidden md:flex items-center gap-4 lg:gap-8 text-base font-medium">
                 @guest('customer')
                     <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
                     <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Produk</a>
@@ -151,12 +151,12 @@
 
             <div class="flex items-center">
                 @guest('customer')
-                    <div class="hidden lg:flex items-center gap-4 mr-14">
+                    <div class="hidden md:flex items-center gap-4 mr-4 lg:mr-14">
                         <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Masuk</button>
                         {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Daftar</button> --}}
                     </div>
                 @else
-                    <div class="hidden lg:flex items-center gap-4">
+                    <div class="hidden md:flex items-center gap-4">
                         <a href="{{ route('customer.dashboard') }}" class="text-sage-800 font-medium hover:text-sage-600 transition-colors">
                             Hi, {{ Auth::guard('customer')->user()->name }}
                         </a>
@@ -169,13 +169,13 @@
                     </div>
                 @endguest
 
-                <button class="lg:hidden p-2 text-sage-700" onclick="toggleMobileMenu()">
+                <button class="md:hidden p-2 text-sage-700" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
         </div>
 
-        <div class="mobile-menu lg:hidden border-t border-sage-100" id="mobileMenu">
+        <div class="mobile-menu md:hidden border-t border-sage-100" id="mobileMenu">
             @guest('customer')
                 <div class="py-4 space-y-1">
                     <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>

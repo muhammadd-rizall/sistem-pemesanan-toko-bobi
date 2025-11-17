@@ -28,14 +28,17 @@
     </style>
 </head>
 
-<body class="bg-sage-50 font-sans antialiased">
+<body class="bg-sage-50 font-sans antialiased" x-data="{ sidebarOpen: false }">
+
+    {{-- Overlay for mobile --}}
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-30 lg:hidden" x-cloak></div>
 
     {{-- 1. Hapus class 'group' dari sini --}}
     <div class="flex h-screen bg-gray-100">
 
         {{-- 2. Tambahkan class 'peer' ke sidebar --}}
-        <aside
-            class="sidebar peer bg-sage-800 text-white w-20 hover:w-64 transition-all duration-300 ease-in-out flex flex-col fixed h-full z-40">
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+            class="sidebar peer bg-sage-800 text-white w-64 lg:w-20 lg:hover:w-64 transition-all duration-300 ease-in-out flex flex-col fixed h-full z-40 lg:translate-x-0">
 
             <div class="flex items-center justify-center h-20 border-b border-sage-700/50">
                 <div class="w-10 h-10 bg-sage-600 rounded-lg flex items-center justify-center min-w-[40px]">
@@ -129,10 +132,18 @@
 
         {{-- 3. Ganti 'group-hover' menjadi 'peer-hover' di sini --}}
         <div
-            class="flex-1 flex flex-col pl-20 peer-hover:pl-64 lg:peer-hover:pl-64 transition-all duration-300 ease-in-out">
+            class="flex-1 flex flex-col lg:pl-20 lg:peer-hover:pl-64 transition-all duration-300 ease-in-out">
             <header class="bg-white shadow-sm flex items-center justify-between px-6 py-4 z-30">
-                <div class="font-semibold text-lg text-sage-800">
-                    Bobi Ceramic's Dashboard
+                <div class="flex items-center">
+                    <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden text-gray-500 focus:outline-none mr-4">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20M4 12H20M4 18H11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="font-semibold text-lg text-sage-800">
+                        Bobi Ceramic's Dashboard
+                    </div>
                 </div>
                 <div x-data="{ dropdownOpen: false }" class="relative">
                     <button @click="dropdownOpen = !dropdownOpen"

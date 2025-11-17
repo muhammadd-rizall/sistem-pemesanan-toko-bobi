@@ -55,12 +55,12 @@
                     <thead class="bg-[#7eb17e] text-black uppercase text-xs tracking-wider">
                         <tr>
                             <th class="px-4 py-3 text-center font-bold">No</th>
-                            <th class="px-2 py-3 text-center font-bold">Customer</th>
-                            <th class="px-4 py-3 text-center font-bold">Total Harga Awal</th>
-                            <th class="px-4 py-3 text-center font-bold">Diskon</th>
-                            <th class="px-4 py-3 text-center font-bold">Total Diskon</th>
+                            <th class="px-2 py-3 text-left font-bold min-w-[120px]">Customer</th>
+                            <th class="px-4 py-3 text-center font-bold hidden md:table-cell">Total Harga Awal</th>
+                            <th class="px-4 py-3 text-center font-bold hidden lg:table-cell">Diskon</th>
+                            <th class="px-4 py-3 text-center font-bold hidden md:table-cell">Total Diskon</th>
                             <th class="px-4 py-3 text-center font-bold">Total Harga Akhir</th>
-                            <th class="px-4 py-3 text-center font-bold">Catatan</th>
+                            <th class="px-4 py-3 text-center font-bold hidden lg:table-cell">Catatan</th>
                             <th class="px-4 py-3 text-center font-bold">Status</th>
                             <th class="px-4 py-3 text-center font-bold">Aksi</th>
                         </tr>
@@ -71,17 +71,17 @@
                                 style="animation-delay: {{ $index * 50 }}ms;">
                                 <td class="px-4 py-3 text-center text-sm text-gray-500">{{ $index + $orders->firstItem() }}
                                 </td>
-                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">
+                                <td class="px-4 py-3 text-left text-sm text-gray-600 font-semibold">
                                     {{ $order->customer->name }}</td>
-                                <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
+                                <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold hidden md:table-cell">Rp
                                     {{ number_format($order->total_harga_awal, 0, ',', '.') }}</td>
-                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">
+                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold hidden lg:table-cell">
                                     {{ $order->diskon_id }}</td>
-                                <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
+                                <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold hidden md:table-cell">Rp
                                     {{ number_format($order->total_diskon, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
                                     {{ number_format($order->total_harga_akhir, 0, ',', '.') }}</td>
-                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold">{{ $order->catatan }}
+                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold hidden lg:table-cell">{{ $order->catatan }}
                                 </td>
                                 <td class="px-4 py-3 text-center">
                                     @php
