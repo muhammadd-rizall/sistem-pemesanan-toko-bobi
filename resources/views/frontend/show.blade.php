@@ -30,7 +30,7 @@
                     <span class="text-sm text-gray-500 uppercase tracking-wide">IDR</span>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-sage-200">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-sage-200">
                     <div>
                         <h4 class="text-xs font-bold uppercase tracking-wider text-sage-700 mb-1">Merek</h4>
                         <p class="text-lg font-medium text-sage-900">{{ $product->merek }}</p>

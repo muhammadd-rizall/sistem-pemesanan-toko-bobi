@@ -20,10 +20,10 @@
             {{-- SEARCH & FILTER FORM (RATA KIRI) --}}
             {{-- ============================================ --}}
             <form action="{{ route('produk') }}" method="GET" class="animate-fade-in mt-4 mb-10">
-                <div class="flex flex-col md:flex-row md:justify-center items-end gap-4 flex-wrap">
+                <div class="flex flex-col md:flex-row md:justify-between items-end gap-4 flex-wrap">
 
                     {{-- Search Bar --}}
-                    <div class="relative w-full md:w-1/3">
+                    <div class="relative w-full md:w-auto md:flex-grow">
                         <input type="text" name="search" id="searchInput" value="{{ request('search') }}"
                             placeholder="Cari produk yang anda inginkan..."
                             class="w-full pl-5 pr-24 py-3 border-2 border-sage-300 rounded-full focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300 shadow-sm bg-white text-sage-700">
@@ -86,14 +86,14 @@
                     </p>
                 </div>
             @else
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-10 px-2 sm:px-8">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 px-2 sm:px-6 lg:px-8">
                     @foreach ($products as $index => $product)
                         <div class="group block animate-fade-in-up" style="animation-delay: {{ $index * 80 }}ms;">
                             <div
                                 class="relative bg-[#f5f8f5] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 transform hover:-translate-y-2">
 
                                 {{-- Product Image --}}
-                                <div class="relative overflow-hidden h-48 bg-cream-50">
+                                <div class="relative overflow-hidden h-40 sm:h-48 bg-cream-50">
                                     <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('storage/products/default.png') }}"
                                         alt="{{ $product->nama_produk }}"
                                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out">
@@ -129,17 +129,17 @@
                                 </div>
 
                                 {{-- Product Info --}}
-                                <div class="p-5">
+                                <div class="p-3 sm:p-5">
                                     <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mb-2">
                                         {{ $product->category->name ?? 'Tidak Berkategori' }}
                                     </p>
                                     <h3
-                                        class="text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-3 line-clamp-2">
+                                        class="text-base sm:text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-3 line-clamp-2">
                                         {{ $product->nama_produk }}
                                     </h3>
-                                    <div class="flex items-center justify-between mt-4">
+                                    <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0 mt-4">
                                         <div>
-                                            <p class="text-xl font-bold text-sage-800">
+                                            <p class="text-lg sm:text-xl font-bold text-sage-800">
                                                 Rp {{ number_format($product->harga_jual, 0, ',', '.') }}
                                             </p>
                                             <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mt-1">
@@ -148,7 +148,7 @@
                                         </div>
                                         @if (Auth::guard('customer')->check())
                                             <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}"
-                                                class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                                                class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,7 +157,7 @@
                                             </a>
                                         @else
                                             <button type="button" onclick="openModal('loginModal')"
-                                                class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                                                class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

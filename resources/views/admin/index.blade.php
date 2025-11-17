@@ -50,41 +50,41 @@
             <table class="w-full text-left">
                 <thead>
                     <tr class="text-sm font-semibold text-gray-500 border-b-2 border-sage-100">
-                        <th class="py-3 px-4">ID Pesanan</th>
-                        <th class="py-3 px-4">Pelanggan</th>
-                        <th class="py-3 px-4">Tanggal</th>
-                        <th class="py-3 px-4">Total</th>
-                        <th class="py-3 px-4 text-center">Status</th>
+                        <th class="py-2 px-2 sm:py-3 sm:px-4">ID Pesanan</th>
+                        <th class="py-2 px-2 sm:py-3 sm:px-4">Pelanggan</th>
+                        <th class="py-2 px-2 sm:py-3 sm:px-4">Tanggal</th>
+                        <th class="py-2 px-2 sm:py-3 sm:px-4">Total</th>
+                        <th class="py-2 px-2 sm:py-3 sm:px-4 text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
                     <tr class="border-b border-sage-100 hover:bg-sage-50 transition-colors">
-                        <td class="py-4 px-4 font-medium">#12345</td>
-                        <td class="py-4 px-4">John Doe</td>
-                        <td class="py-4 px-4">29 Sep 2025</td>
-                        <td class="py-4 px-4 font-semibold">Rp 450.000</td>
-                        <td class="py-4 px-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Selesai</span></td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-medium">#12345</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">John Doe</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">29 Sep 2025</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-semibold">Rp 450.000</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Selesai</span></td>
                     </tr>
                     <tr class="border-b border-sage-100 hover:bg-sage-50 transition-colors">
-                        <td class="py-4 px-4 font-medium">#12344</td>
-                        <td class="py-4 px-4">Jane Smith</td>
-                        <td class="py-4 px-4">29 Sep 2025</td>
-                        <td class="py-4 px-4 font-semibold">Rp 250.000</td>
-                        <td class="py-4 px-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Dikirim</span></td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-medium">#12344</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">Jane Smith</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">29 Sep 2025</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-semibold">Rp 250.000</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Dikirim</span></td>
                     </tr>
                     <tr class="border-b border-sage-100 hover:bg-sage-50 transition-colors">
-                        <td class="py-4 px-4 font-medium">#12343</td>
-                        <td class="py-4 px-4">Mike Johnson</td>
-                        <td class="py-4 px-4">28 Sep 2025</td>
-                        <td class="py-4 px-4 font-semibold">Rp 750.000</td>
-                        <td class="py-4 px-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">Diproses</span></td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-medium">#12343</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">Mike Johnson</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">28 Sep 2025</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-semibold">Rp 750.000</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">Diproses</span></td>
                     </tr>
                      <tr class="hover:bg-sage-50 transition-colors">
-                        <td class="py-4 px-4 font-medium">#12342</td>
-                        <td class="py-4 px-4">Sarah Lee</td>
-                        <td class="py-4 px-4">27 Sep 2025</td>
-                        <td class="py-4 px-4 font-semibold">Rp 150.000</td>
-                        <td class="py-4 px-4 text-center"><span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-medium">Dibatalkan</span></td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-medium">#12342</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">Sarah Lee</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4">27 Sep 2025</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 font-semibold">Rp 150.000</td>
+                        <td class="py-3 px-2 sm:py-4 sm:px-4 text-center"><span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-medium">Dibatalkan</span></td>
                     </tr>
                 </tbody>
             </table>

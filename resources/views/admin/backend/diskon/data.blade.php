@@ -66,31 +66,31 @@
                     <table class="min-w-max w-full text-sm sm:text-base divide-y divide-sage-100">
                         <thead class="bg-[#7eb17e] text-black uppercase text-xs tracking-wider">
                             <tr>
-                                <th class="px-4 py-3 text-center font-bold">No</th>
-                                <th class="px-4 py-3 text-center font-bold">Kode Diskon</th>
-                                <th class="px-4 py-3 text-center font-bold">Nilai Diskon</th>
-                                <th class="px-4 py-3 text-center font-bold">Tanggal Mulai</th>
-                                <th class="px-4 py-3 text-center font-bold">Tanggal Berakhir</th>
-                                <th class="px-4 py-3 text-center font-bold">Status</th>
-                                <th class="px-4 py-3 text-center font-bold">Aksi</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">No</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Kode Diskon</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Nilai Diskon</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden md:table-cell">Tanggal Mulai</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold hidden md:table-cell">Tanggal Berakhir</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Status</th>
+                                <th class="px-2 py-2 sm:px-4 sm:py-3 text-center font-bold">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-sage-100">
                             @forelse ($datas as $index => $data)
                                 <tr class="hover:bg-sage-50 transition duration-200">
-                                    <td class="px-4 py-3 text-center">{{ $index + $datas->firstItem() }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->kode_diskon }}</td>
-                                    <td class="px-4 py-3 text-center">Rp {{ number_format($data->nilai_diskon, 0, ',', '.') }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->tanggal_mulai }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $data->tanggal_berakhir }}</td>
-                                    <td class="px-4 py-3 text-center">
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">{{ $index + $datas->firstItem() }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">{{ $data->kode_diskon }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">Rp {{ number_format($data->nilai_diskon, 0, ',', '.') }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden md:table-cell">{{ $data->tanggal_mulai }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center hidden md:table-cell">{{ $data->tanggal_berakhir }}</td>
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-full {{ $data->status == 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                             {{ ucfirst($data->status) }}
                                         </span>
 
                                     </td>
-                                    <td class="px-4 py-3 text-center">
+                                    <td class="px-2 py-2 sm:px-4 sm:py-3 text-center">
                                         <div class="flex items-center justify-center gap-2">
                                             <a href="{{ route('editDiskon', $data->id) }}"
                                                 class="p-2 text-blue-600 hover:bg-blue-100 rounded-full transition duration-200"

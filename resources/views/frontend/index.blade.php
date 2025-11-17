@@ -4,7 +4,7 @@
     {{-- ============================================ --}}
     {{-- HERO SECTION --}}
     {{-- ============================================ --}}
-    <section class="relative w-full h-screen flex items-center justify-center text-center text-white overflow-hidden">
+    <section class="relative w-full h-[80vh] sm:h-screen flex items-center justify-center text-center text-white overflow-hidden">
         <img src="{{ asset('storage/images/background-hero.jpg') }}" alt="Background Keramik"
             class="absolute inset-0 w-full h-full object-cover object-center">
 
@@ -12,7 +12,7 @@
 
         <div class="relative z-10 max-w-5xl mx-auto px-2">
             <h1
-                class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-down leading-tight drop-shadow-md">
+                class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-down leading-tight drop-shadow-md">
                 <span class="text-sage-300">Percantik</span> Ruangan dengan Keramik <span class="text-sage-300">Terbaik</span>
             </h1>
 
@@ -120,14 +120,14 @@
             </div>
 
             {{-- Products Grid --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-10 px-10">
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 px-2 sm:px-6 lg:px-8">
                 @foreach ($products as $index => $product)
                     <div class="group block animate-fade-in-up" style="animation-delay: {{ $index * 80 }}ms;">
                         <div
                             class="relative bg-[#e8f0e8] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-2">
 
                             {{-- Image Container --}}
-                            <div class="relative overflow-hidden h-48 bg-cream-50">
+                            <div class="relative overflow-hidden h-40 sm:h-48 bg-cream-50">
                                 <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('images/no-image.jpg') }}"
                                     alt="{{ $product->nama_produk }}"
                                     onerror="this.src='{{ asset('images/no-image.jpg') }}'"
@@ -159,19 +159,19 @@
                             </div>
 
                             {{-- Product Info --}}
-                            <div class="p-5">
+                            <div class="p-3 sm:p-5">
                                 <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mb-2">
                                     {{ $product->category->name ?? 'Tidak Berkategori' }}
                                 </p>
 
                                 <h3
-                                    class="text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-3 line-clamp-2">
+                                    class="text-base sm:text-lg font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300 mb-3 line-clamp-2">
                                     {{ $product->nama_produk }}
                                 </h3>
 
-                                <div class="flex items-center justify-between mt-4">
+                                <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0 mt-4">
                                     <div>
-                                        <p class="text-xl font-bold text-sage-800">
+                                        <p class="text-lg sm:text-xl font-bold text-sage-800">
                                             Rp {{ number_format((float) $product->harga_jual, 0, ',', '.') }}
                                         </p>
                                         <p class="text-xs font-semibold text-sage-600 uppercase tracking-wider mt-1">
@@ -182,7 +182,7 @@
                                     {{-- Add to Cart Button --}}
                                     @if (Auth::guard('customer')->check())
                                         <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}"
-                                            class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -191,7 +191,7 @@
                                         </a>
                                     @else
                                         <button type="button" onclick="openModal('loginModal')"
-                                            class="w-12 h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -235,7 +235,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:gap-10 px-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 px-4 sm:px-8 md:px-16">
                 {{-- Card 1: Berbagai Motif --}}
                 <div class="bg-white p-8 rounded-2xl border border-sage-200 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up"
                     style="animation-delay: 0.1s;">
