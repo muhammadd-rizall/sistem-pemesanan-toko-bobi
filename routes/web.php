@@ -40,10 +40,10 @@ Route::get('/kontak', [FrontendController::class, 'kontak'])->name('kontak');
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/')->name('customer.')->group(function () {
+Route::prefix('/')->group(function () {
 
     // Guest Routes (belum login)
-    Route::middleware('guest:customer')->group(function () {
+    Route::middleware('guest:customer')->name('customer.')->group(function () {
         Route::post('/register', [CustomerController::class, 'registerCustomer'])->name('register');
         Route::match(['get', 'post'], '/login', [CustomerController::class, 'loginCustomer'])->name('login');
 
@@ -60,10 +60,10 @@ Route::prefix('/')->name('customer.')->group(function () {
 
     //callback
     //google
-    Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('google.callback');
+    Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('customer.google.callback');
 
     // Authenticated Customer Routes
-    Route::middleware('auth:customer')->group(function () {
+    Route::middleware('auth:customer')->name('customer.')->group(function () {
         Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
 
