@@ -45,8 +45,7 @@ Route::prefix('/')->name('customer.')->group(function () {
     // Guest Routes (belum login)
     Route::middleware('guest:customer')->group(function () {
         Route::post('/register', [CustomerController::class, 'registerCustomer'])->name('register');
-        Route::post('/login', [CustomerController::class, 'loginCustomer'])->name('login');
-        Route::get('/login', [CustomerController::class, 'loginCustomer'])->name('login');
+        Route::match(['get', 'post'], '/login', [CustomerController::class, 'loginCustomer'])->name('login');
 
         // Forgot Password
         Route::post('/forgot-password/send-otp', [ForgotPasswordController::class, 'sendOtp'])->name('forgotPassword.sendOtp');
