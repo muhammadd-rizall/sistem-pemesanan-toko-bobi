@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// Beri alias agar tidak bingung dengan Controller Admin
+
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiskonController;
@@ -53,13 +53,11 @@ Route::prefix('/')->group(function () {
         Route::post('/forgot-password/reset', [ForgotPasswordController::class, 'resetPassword'])->name('forgotPassword.resetPassword');
         Route::post('/forgot-password/resend-otp', [ForgotPasswordController::class, 'resendOtp'])->name('forgotPassword.resendOtp');
 
-        //redirect
-        //google
+        // Google OAuth redirect
         Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirectToGoogle'])->name('google.redirect');
     });
 
-    //callback
-    //google
+    // Google OAuth callback
     Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('customer.google.callback');
 
     // Authenticated Customer Routes
@@ -67,10 +65,15 @@ Route::prefix('/')->group(function () {
         Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
 
-        Route::get('/form-pemesanan/{id}', [CheckoutOrderController::class, 'formPemesanan'])->name('formPemesanan');
-        Route::post('/order/store', [CheckoutOrderController::class, 'orderStore'])->name('orders.store');
+        Route::get('orders/{product}/create', [CheckoutOrderController::class, 'create'])->name('orders.create');
+        Route::post('orders/preview', [CheckoutOrderController::class, 'preview'])->name('orders.preview.store');
+        Route::get('orders/{order}/preview', [CheckoutOrderController::class, 'showPreview'])->name('orders.preview.show');
+        Route::post('orders/{order}/pay', [CheckoutOrderController::class, 'pay'])->name('orders.pay'); // hanya untuk trigger JS Snap
+        Route::get('orders/{order}/success', [CheckoutOrderController::class, 'success'])->name('orders.success');
+        Route::post('midtrans/callback', [CheckoutOrderController::class, 'midtransCallback'])->name('midtrans.callback');
     });
 });
+
 
 
 /*

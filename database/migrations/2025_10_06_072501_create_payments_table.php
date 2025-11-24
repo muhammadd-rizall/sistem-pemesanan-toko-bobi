@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('jumlah_terbayar', 10, 2)->default(0);
             $table->decimal('sisa_pembayaran', 10, 2)->default(0);
             $table->string('metode_pembayaran');
+            $table->string('snap_token')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tanggal_bayar');
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
