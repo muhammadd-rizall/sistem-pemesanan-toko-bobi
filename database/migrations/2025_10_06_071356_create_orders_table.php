@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('diskon_id')->nullable()->constrained('diskons')->onDelete('set null');
+            $table->string('invoice_number')->unique();
             $table->decimal('total_harga_awal', 10, 2);
             $table->decimal('total_diskon', 10, 2)->default(0);
             $table->decimal('total_harga_akhir', 10, 2);

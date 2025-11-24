@@ -16,6 +16,7 @@ return new class extends Migration
             // $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->foreignId('supplier_id')->nullable()->constrained();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('diskon_id')->nullable()->constrained('diskons')->onDelete('set null');
             $table->string('nama_produk');
             $table->string('merek')->nullable();
             $table->text('deskripsi')->nullable();

@@ -147,7 +147,7 @@
                                             </p>
                                         </div>
                                         @if (Auth::guard('customer')->check())
-                                            <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}"
+                                            <a href="{{ route('customer.orders.create', ['product' => $product->id]) }}"
                                                 class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">

@@ -27,4 +27,8 @@ class Produk extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
+    public function diskon()
+    {
+        return $this->belongsTo(Diskon::class, 'diskon_id');
+    }
 }

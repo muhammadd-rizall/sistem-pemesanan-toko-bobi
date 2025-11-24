@@ -70,7 +70,7 @@ class CustomerController extends Controller
         // 2. Coba login menggunakan guard 'customer'
         if (Auth::guard('customer')->attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('customer.dashboard')->with('success', 'Selamat datang! Login Anda berhasil.!');
+            return redirect()->route('home')->with('success', 'Selamat datang! Login Anda berhasil.!');
 
         }
 

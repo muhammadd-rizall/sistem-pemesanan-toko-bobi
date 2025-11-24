@@ -4,7 +4,8 @@
     {{-- ============================================ --}}
     {{-- HERO SECTION --}}
     {{-- ============================================ --}}
-    <section class="relative w-full h-[80vh] sm:h-screen flex items-center justify-center text-center text-white overflow-hidden">
+    <section
+        class="relative w-full h-[80vh] sm:h-screen flex items-center justify-center text-center text-white overflow-hidden">
         <img src="{{ asset('storage/images/background-hero.jpg') }}" alt="Background Keramik"
             class="absolute inset-0 w-full h-full object-cover object-center">
 
@@ -39,84 +40,13 @@
 
         <div class="container relative mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
 
-            {{-- Search Bar --}}
-            {{-- <form action="{{ route('produk') }}" method="GET" class="max-w-4xl mx-auto mb-12">
-                <div class="max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-                    <div class="relative flex items-center">
-                        <input type="text" name="search" id="searchInput"
-                            placeholder="Cari produk yang anda inginkan..." value="{{ request('search') }}"
-                            class="w-full px-6 py-4 pr-28 rounded-full border border-sage-300 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-100 transition-all duration-300 text-sage-800 bg-white shadow-lg">
-
-                        {{-- Reset Button --}
-                        <button type="button" id="resetButton"
-                            onclick="document.getElementById('searchInput').value=''; this.form.submit();"
-                            title="Reset pencarian"
-                            class="absolute right-12 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-700 mr-2 p-3 rounded-full transition-all duration-300 hover:scale-110">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        {{-- Search Button --}
-                        <button type="submit" title="Cari"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-sage-600 hover:bg-sage-700 text-white p-3 rounded-full transition-all duration-300 hover:scale-110">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </form> --}}
-
             {{-- Filter Section --}}
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in mt-6">
+            <div
+                class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 animate-fade-in mt-6">
                 <div>
                     <h2 class="text-3xl sm:text-4xl font-bold text-sage-900 mb-2 pl-4 ml-4">Koleksi Kami</h2>
                     <p class="text-sage-600 pl-8">Produk pilihan khusus untuk Anda</p>
                 </div>
-
-                {{-- <form action="{{ route('produk') }}" method="GET"
-                    class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-                    {{-- Category Filter --
-                    <div class="relative group">
-                        <select name="category" onchange="this.form.submit()"
-                            class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
-                            <option value="">Semua Kategori</option>
-                            <option value="1">Keramik</option>
-                            <option value="2">Step Nosing Tangga</option>
-                            <option value="3">Pintu Kamar Mandi</option>
-                            <option value="4">Wastafel</option>
-                            <option value="5">Shower</option>
-                            <option value="6">Kloset</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
-                            <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    {{-- Sort Filter --
-                    <div class="relative group">
-                        <select name="sort" onchange="this.form.submit()"
-                            class="w-full sm:w-48 appearance-none bg-white border-2 border-sage-200 hover:border-sage-400 rounded-xl py-3 pl-4 pr-10 text-sage-800 focus:outline-none focus:ring-4 focus:ring-sage-100 focus:border-sage-400 transition-all duration-300 cursor-pointer font-medium">
-                            <option value="terbaru">Urutkan: Terbaru</option>
-                            <option value="harga_asc">Harga: Terendah</option>
-                            <option value="harga_desc">Harga: Tertinggi</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sage-600">
-                            <svg class="fill-current h-5 w-5 transform group-hover:scale-110 transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path
-                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3z" />
-                            </svg>
-                        </div>
-                    </div>
-                </form> --}}
             </div>
 
             {{-- Products Grid --}}
@@ -169,7 +99,8 @@
                                     {{ $product->nama_produk }}
                                 </h3>
 
-                                <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0 mt-4">
+                                <div
+                                    class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0 mt-4">
                                     <div>
                                         <p class="text-lg sm:text-xl font-bold text-sage-800">
                                             Rp {{ number_format((float) $product->harga_jual, 0, ',', '.') }}
@@ -181,10 +112,9 @@
 
                                     {{-- Add to Cart Button --}}
                                     @if (Auth::guard('customer')->check())
-                                        <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}"
+                                        <a href="{{ route('customer.orders.create', ['product' => $product->id]) }}"
                                             class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                             </svg>
@@ -192,8 +122,7 @@
                                     @else
                                         <button type="button" onclick="openModal('loginModal')"
                                             class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sage-600 hover:bg-sage-700 flex items-center justify-center text-white transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                             </svg>
@@ -213,8 +142,8 @@
                     Lihat Semua Produk
                     <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                        </path>
                     </svg>
                 </a>
             </div>
