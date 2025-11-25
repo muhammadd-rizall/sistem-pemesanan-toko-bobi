@@ -95,10 +95,15 @@ class CustomerController extends Controller
                    ->with('success', 'Anda telah berhasil logout.');
     }
 
-    public function dashboard()
+    public function pesanan()
     {
         // Arahkan ke file yang benar: frontend.dashboard
-        return view('frontend.dashboard');
+        return view('frontend.pesanan');
+    }
+
+    public function profile()
+    {
+        return view('frontend.profile');
     }
 
 

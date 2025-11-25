@@ -62,8 +62,9 @@ Route::prefix('/')->group(function () {
 
     // Authenticated Customer Routes
     Route::middleware('auth:customer')->name('customer.')->group(function () {
-        Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
+        Route::get('/pesanan', [CustomerController::class, 'pesanan'])->name('dashboard');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
+        Route::get('/profile', [CustomerController::class, 'profile'])->name('profile');
 
         Route::get('orders/{product}/create', [CheckoutOrderController::class, 'create'])->name('orders.create');
         Route::post('orders/preview', [CheckoutOrderController::class, 'preview'])->name('orders.preview.store');

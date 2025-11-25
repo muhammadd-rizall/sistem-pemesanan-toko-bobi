@@ -9,6 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -92,6 +93,9 @@
         .modal-content {
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
         }
+
+        /* Tambahkan ini agar tidak ada kedipan saat loading */
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 
@@ -133,8 +137,8 @@
                 @else
                     <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
                     <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Belanja</a>
-                    <a href="{{ route('customer.dashboard') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Akun Saya</a>
-                    <a href="#" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Pesanan</a>
+                    {{-- <a href="{{ route('customer.dashboard') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Akun Saya</a> --}}
+                    <a href="{{ route('customer.dashboard') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Pesanan</a>
                 @endguest
             </div>
 
@@ -145,16 +149,74 @@
                         {{-- <button onclick="openModal('registerModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">Daftar</button> --}}
                     </div>
                 @else
-                    <div class="hidden md:flex items-center gap-4">
-                        <a href="{{ route('customer.dashboard') }}" class="text-sage-800 font-medium hover:text-sage-600 transition-colors">
-                            Hi, {{ Auth::guard('customer')->user()->name }}
-                        </a>
-                        <form method="POST" action="{{ route('customer.logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
-                            @csrf
-                            <button type="submit" class="px-5 py-2 text-base font-medium text-white bg-red-600 hover:bg-red-700 rounded-full transition-colors duration-300 shadow-sm">
-                                Logout
+                    {{-- Tampilan Desktop: Profil Dropdown --}}
+                    <div class="hidden lg:flex items-center gap-4" x-data="{ open: false }">
+                        <div class="relative">
+                            <button @click="open = !open"
+                                    @keydown.escape.window="open = false"
+                                    class="flex items-center gap-2 focus:outline-none group transition-all duration-300">
+
+                                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-sage-200 group-hover:border-sage-500 transition-all duration-300 shadow-sm ring-2 ring-transparent group-focus:ring-sage-200">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') }}&background=a8c9a8&color=2f4f39"
+                                        alt="Profile"
+                                        class="w-full h-full object-cover">
+                                </div>
+
+                                <svg class="w-4 h-4 text-sage-600 group-hover:text-sage-800 transition-transform duration-300"
+                                    :class="{'rotate-180': open}"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
                             </button>
-                        </form>
+
+                            <div x-show="open"
+                                x-cloak
+                                @click.outside="open = false"
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 scale-95 transform -translate-y-2"
+                                x-transition:enter-end="opacity-100 scale-100 transform translate-y-0"
+                                x-transition:leave="transition ease-in duration-150"
+                                x-transition:leave-start="opacity-100 scale-100 transform translate-y-0"
+                                x-transition:leave-end="opacity-0 scale-95 transform -translate-y-2"
+                                class="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-xl border border-sage-100 py-2 z-50 origin-top-right">
+
+                                <div class="px-5 py-3 border-b border-sage-50 bg-sage-50/30">
+                                    <p class="text-xs font-medium text-sage-500 uppercase tracking-wider">Akun Saya</p>
+                                    <p class="text-sm font-bold text-sage-900 truncate mt-0.5">
+                                        {{ Auth::guard('customer')->user()->nama_lengkap }}
+                                    </p>
+                                </div>
+
+                                <div class="py-1">
+                                    <a href="{{ route('customer.profile') }}"
+                                        class="group flex items-center gap-3 px-5 py-2.5 text-sm text-sage-700 hover:bg-sage-50 hover:text-sage-900 transition-colors">
+                                            <div class="w-8 h-8 rounded-lg bg-sage-100 text-sage-600 flex items-center justify-center group-hover:bg-sage-200 transition-colors shadow-sm">
+                                                {{-- Icon User / ID Card --}}
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0c0 .884-.56 1.6-1.385 1.904M10 6a1.992 1.992 0 01-1.385-1.904m0 0c0-.575.15-1.114.416-1.582M10 6a1.992 1.992 0 00-1.385 1.904m2.77-3.808A1.992 1.992 0 0110 2.096"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="block font-medium">Profil Saya</span>
+                                                <span class="text-xs text-sage-500 group-hover:text-sage-600">Kelola informasi akun anda</span>
+                                            </div>
+                                        </a>
+                                </div>
+
+                                <div class="py-1 border-t border-sage-50">
+                                    <form method="POST" action="{{ route('customer.logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
+                                        @csrf
+                                        <button type="submit"
+                                                class="w-full group flex items-center gap-3 px-5 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                                            <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            </div>
+                                            <span class="font-medium">Logout</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endguest
 
