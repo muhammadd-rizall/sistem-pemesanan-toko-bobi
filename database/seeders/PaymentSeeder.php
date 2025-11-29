@@ -17,59 +17,52 @@ class PaymentSeeder extends Seeder
             return;
         }
 
-        $metodePembayaran = ['transfer bank', 'cash', 'midtrans', 'qris'];
-
         foreach ($orders as $order) {
+
             $totalOrder = $order->total_harga_akhir;
 
-            // Random jenis pembayaran manual
-            $jenisList = ['full', 'dp'];
-            $jenisPembayaran = $jenisList[array_rand($jenisList)];
-
-            $jumlahTerbayar = 0;
-            $sisaPembayaran = 0;
-            $status = 'pending';
+            // Jenis pembayaran: full atau dp
+            $jenisPembayaran = collect(['full', 'dp'])->random();
 
             if ($jenisPembayaran === 'full') {
-                // Full payment
                 $jumlahTerbayar = $totalOrder;
                 $sisaPembayaran = 0;
-                $status = 'completed';
-
+                $paymentStatus = 'paid';
             } else {
-                // DP: 30-70%
-                $persenDp = rand(30, 70);
-                $jumlahTerbayar = round($totalOrder * ($persenDp / 100), 2);
+                // DP 30-70%
+                $dpPercent = rand(30, 70);
+                $jumlahTerbayar = round($totalOrder * ($dpPercent / 100), 2);
                 $sisaPembayaran = $totalOrder - $jumlahTerbayar;
 
-                // Status pembayaran
-                if ($sisaPembayaran <= 0) {
-                    $status = 'completed';
-                } else {
-                    $statusList = ['pending', 'completed'];
-                    $status = $statusList[array_rand($statusList)];
-                }
+                // Status (random tapi valid enum)
+                $paymentStatus = $sisaPembayaran == 0
+                    ? 'paid'
+                    : collect(['unpaid', 'pending'])->random();
             }
 
-            // Random bukti pembayaran 60% ada, 40% null
-            $buktiPembayaran = rand(1, 100) <= 60
+            // Metode pembayaran HARUS sesuai migration
+            $metodePembayaran = collect(['cod', 'midtrans'])->random();
+
+            // Random bukti (50% ada)
+            $buktiPembayaran = rand(1, 100) <= 50
                 ? 'bukti_pembayaran/' . uniqid() . '.jpg'
                 : null;
 
-            // Random tanggal bayar manual (1–30 hari lalu)
-            $hariLalu = rand(1, 30);
-            $tanggalBayar = now()->subDays($hariLalu);
+            // Tanggal bayar antara 1-30 hari lalu
+            $tanggalBayar = now()->subDays(rand(1, 30));
 
             Payment::create([
-                'order_id'          => $order->id,
-                'jenis_pembayaran'  => $jenisPembayaran,
-                'total_order'       => $totalOrder,
-                'jumlah_terbayar'   => $jumlahTerbayar,
-                'sisa_pembayaran'   => $sisaPembayaran,
-                'metode_pembayaran' => $metodePembayaran[array_rand($metodePembayaran)],
-                'bukti_pembayaran'  => $buktiPembayaran,
-                'tanggal_bayar'     => $tanggalBayar,
-                'status'            => $status,
+                'order_id'           => $order->id,
+                'jenis_pembayaran'   => $jenisPembayaran,
+                'total_order'        => $totalOrder,
+                'jumlah_terbayar'    => $jumlahTerbayar,
+                'sisa_pembayaran'    => $sisaPembayaran,
+                'metode_pembayaran'  => $metodePembayaran,
+                'snap_token'         => 'token_' . uniqid(),
+                'snap_redirect_url'  => 'https://example.com/pay/' . uniqid(),
+                'bukti_pembayaran'   => $buktiPembayaran,
+                'tanggal_bayar'      => $tanggalBayar,
+                'pembayaran_status'  => $paymentStatus,
             ]);
         }
     }

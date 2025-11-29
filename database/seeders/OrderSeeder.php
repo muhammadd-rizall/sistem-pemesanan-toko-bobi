@@ -11,7 +11,7 @@ class OrderSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ambil data customer
+        // Ambil customer
         $customers = Customer::pluck('id')->toArray();
 
         if (empty($customers)) {
@@ -19,7 +19,7 @@ class OrderSeeder extends Seeder
             return;
         }
 
-        // DATA ORDER DASAR
+        // Data dummy alamat + catatan
         $orders = [
             [
                 'alamat_pengiriman' => 'Jl. Melati No. 12, Bandung',
@@ -45,25 +45,22 @@ class OrderSeeder extends Seeder
 
         foreach ($orders as $item) {
 
-            // TOTAL AWAL RANDOM
+            // Total harga random
             $totalAwal = rand(100000, 5000000);
+            $hargaAkhir = $totalAwal; // belum ada diskon
 
-            // HARGA AKHIR SAMA (tidak ada diskon)
-            $hargaAkhir = $totalAwal;
-
-            // CUSTOMER RANDOM
+            // Customer acak
             $customerId = $customers[array_rand($customers)];
 
-            // NO HP RANDOM
-            $nohp = '08' . str_pad(rand(0, 9999999999), 10, '0', STR_PAD_LEFT);
+            // Random nomor HP
+            $nohp = '08' . str_pad(rand(1000000000, 9999999999), 10, '0', STR_PAD_LEFT);
 
-            // STATUS RANDOM
-            $statusList = ['pending', 'proses', 'dikirim', 'cancelled'];
-            $pembayaranList = ['pending', 'lunas', 'belum_lunas'];
+            // Status order
+            $statusList = ['pending', 'proses', 'dikirim', 'selesai', 'cancelled'];
 
             Order::create([
                 'customer_id'       => $customerId,
-                'invoice_number'    => 'INV-' . Str::upper(Str::random(8)),
+                'invoice_number'    => 'INV-' . strtoupper(Str::random(8)),
 
                 'total_harga_awal'  => $totalAwal,
                 'total_diskon'      => 0,
@@ -74,7 +71,6 @@ class OrderSeeder extends Seeder
                 'catatan'           => $item['catatan'],
 
                 'status'            => $statusList[array_rand($statusList)],
-                'pembayaran_status' => $pembayaranList[array_rand($pembayaranList)],
             ]);
         }
     }
