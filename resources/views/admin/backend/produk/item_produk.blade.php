@@ -73,7 +73,7 @@
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[200px] max-w-[300px] hidden lg:table-cell">Deskripsi</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[100px] hidden md:table-cell">Kategori</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Supplier</th>
-                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden lg:table-cell">Harga Beli</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden lg:table-cell">Diskon</th>
                                 <th class="px-4 py-3 text-right text-xs font-semibold text-black uppercase tracking-wider min-w-[120px] hidden md:table-cell">Harga Jual</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-24 hidden sm:table-cell">Stok</th>
                                 <th class="px-4 py-3 text-center text-xs font-semibold text-black uppercase tracking-wider w-32 hidden sm:table-cell">Status</th>
@@ -128,13 +128,16 @@
 
                                     <td class="px-4 py-4 text-left text-sm text-gray-700 hidden md:table-cell">
                                         <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-xs font-medium">
-                                            {{-- Ganti 'nama_perusahaan' jika nama kolom di tabel suppliers Anda berbeda --}}
                                             {{ $item->supplier?->nama_perusahaan ?? 'Tanpa Supplier' }}
                                         </span>
                                     </td>
 
                                     <td class="px-4 py-4 text-right text-sm font-medium text-gray-900 hidden lg:table-cell">
-                                        Rp {{ number_format($item->harga_beli, 0, ',', '.') }}
+                                        @if ($item->diskon && $item->diskon->status === 'active' && (!$item->diskon->tanggal_berakhir || \Carbon\Carbon::parse($item->diskon->tanggal_berakhir)->isFuture()))
+                                            {{ $item->diskon->kode_diskon }}
+                                        @else
+                                            _
+                                        @endif
                                     </td>
 
                                     <td class="px-4 py-4 text-right text-sm font-semibold text-sage-700 hidden md:table-cell">

@@ -26,5 +26,10 @@ class Order extends Model
         return $this->hasOne(Payment::class, 'order_id');
     }
 
-   
+    public function diskon()
+    {
+        return $this->belongsTo(Diskon::class, 'diskon_id');
+    }
+
+
 }

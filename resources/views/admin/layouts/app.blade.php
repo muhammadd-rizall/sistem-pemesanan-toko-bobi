@@ -181,34 +181,11 @@
             </header>
 
             <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
-
-                {{-- =============================================== --}}
-                {{--         TAMBAHKAN KODE PESAN DI SINI          --}}
-                {{-- =============================================== --}}
-
-                {{-- Ini adalah pesan sukses (Hijau) --}}
-                @if (session('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg relative mb-5" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                {{-- Ini untuk pesan error jika nanti Anda butuh (Merah) --}}
-                @if (session('error'))
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg relative mb-5" role="alert">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                {{-- =============================================== --}}
-                {{--           AKHIR DARI KODE PESAN               --}}
-                {{-- =============================================== --}}
-
-
                 @yield('content')
             </main>
         </div>
     </div>
+    @stack('scripts')
 </body>
 
 </html>

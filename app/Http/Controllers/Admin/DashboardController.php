@@ -3,64 +3,99 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Produk;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Nanti Anda bisa mengirim data ke view dari sini
-        return view('admin.index');
-    }
+        // Total Customers
+        $totalCustomers = Customer::count();
+        $lastMonthCustomers = Customer::whereMonth('created_at', Carbon::now()->subMonth()->month)
+            ->whereYear('created_at', Carbon::now()->subMonth()->year)
+            ->count();
+        $customerGrowth = $lastMonthCustomers > 0
+            ? (($totalCustomers - $lastMonthCustomers) / $lastMonthCustomers) * 100
+            : 0;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Total Orders
+        $totalOrders = Order::count();
+        $lastMonthOrders = Order::whereMonth('created_at', Carbon::now()->subMonth()->month)
+            ->whereYear('created_at', Carbon::now()->subMonth()->year)
+            ->count();
+        $orderGrowth = $lastMonthOrders > 0
+            ? (($totalOrders - $lastMonthOrders) / $lastMonthOrders) * 100
+            : 0;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Total Revenue
+        $totalRevenue = Order::whereIn('status', ['selesai', 'dikirim', 'proses'])
+            ->sum('total_harga_akhir');
+        $lastMonthRevenue = Order::whereIn('status', ['selesai', 'dikirim', 'proses'])
+            ->whereMonth('created_at', Carbon::now()->subMonth()->month)
+            ->whereYear('created_at', Carbon::now()->subMonth()->year)
+            ->sum('total_harga_akhir');
+        $revenueGrowth = $lastMonthRevenue > 0
+            ? (($totalRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100
+            : 0;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Total Products
+        $totalProducts = Produk::count();
+        $lastMonthProducts = Produk::whereMonth('created_at', Carbon::now()->subMonth()->month)
+            ->whereYear('created_at', Carbon::now()->subMonth()->year)
+            ->count();
+        $productGrowth = $lastMonthProducts > 0
+            ? (($totalProducts - $lastMonthProducts) / $lastMonthProducts) * 100
+            : 0;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // Chart Data - 12 Bulan Terakhir untuk Pesanan
+        $orderChartData = [];
+        $orderChartLabels = [];
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        for ($i = 11; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $orderChartLabels[] = $date->locale('id')->isoFormat('MMM Y');
+            $orderChartData[] = Order::whereMonth('created_at', $date->month)
+                ->whereYear('created_at', $date->year)
+                ->count();
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Chart Data - 12 Bulan Terakhir untuk Pendapatan
+        $revenueChartData = [];
+        $revenueChartLabels = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $revenueChartLabels[] = $date->locale('id')->isoFormat('MMM Y');
+            $revenueChartData[] = Order::whereIn('status', ['selesai', 'dikirim', 'proses'])
+                ->whereMonth('created_at', $date->month)
+                ->whereYear('created_at', $date->year)
+                ->sum('total_harga_akhir');
+        }
+
+        // Recent Orders
+        $recentOrders = Order::with('customer')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('admin.index', compact(
+            'totalCustomers',
+            'customerGrowth',
+            'totalOrders',
+            'orderGrowth',
+            'totalRevenue',
+            'revenueGrowth',
+            'totalProducts',
+            'productGrowth',
+            'orderChartData',
+            'orderChartLabels',
+            'revenueChartData',
+            'revenueChartLabels',
+            'recentOrders'
+        ));
     }
 }

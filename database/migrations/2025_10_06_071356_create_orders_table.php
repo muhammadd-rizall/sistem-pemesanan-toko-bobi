@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->text('alamat_pengiriman');
             $table->text('catatan')->nullable();
-            $table->enum('status', ['pending', 'proses', 'dikirim',  'cancelled'])->default('pending');
-            $table->enum('pembayaran_status', ['pending', 'lunas', 'belum_lunas'])->default('pending');
+            $table->enum('status', ['pending', 'proses', 'dikirim', 'selesai', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }

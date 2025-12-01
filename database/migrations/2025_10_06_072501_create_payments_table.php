@@ -18,13 +18,12 @@ return new class extends Migration
             $table->decimal('total_order', 10, 2);
             $table->decimal('jumlah_terbayar', 10, 2)->default(0);
             $table->decimal('sisa_pembayaran', 10, 2)->default(0);
-            $table->string('metode_pembayaran');
+            $table->enum('metode_pembayaran',['cod','midtrans'])->default('midtrans');
             $table->string('snap_token')->nullable();
+             $table->string('snap_redirect_url')->nullable();
             $table->string('bukti_pembayaran')->nullable();
-            $table->dateTime('tanggal_bayar');
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
-
-
+            $table->dateTime('tanggal_bayar')->nullable();
+            $table->string('pembayaran_status');
             $table->timestamps();
         });
     }

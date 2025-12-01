@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Diskon;
 
-use App\Models\Category;
 use App\Models\Produk;
+use App\Models\Category;
 use App\Models\Supplier;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProdukController extends Controller
 {
@@ -59,7 +60,7 @@ class ProdukController extends Controller
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'supplier_id' => 'required|exists:suppliers,id',
-            'harga_beli' => 'required|numeric|min:0',
+            // 'harga_beli' => 'required|numeric|min:0',
             'harga_jual' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
             'gambar_produk' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -77,7 +78,7 @@ class ProdukController extends Controller
             'deskripsi' => $validated['deskripsi'],
             'category_id' => $validated['category_id'],
             'supplier_id' => $validated['supplier_id'],
-            'harga_beli' => $validated['harga_beli'],
+            // 'harga_beli' => $validated['harga_beli'],
             'harga_jual' => $validated['harga_jual'],
             'stok' => $validated['stok'],
             'gambar_produk' => $images,
@@ -95,8 +96,23 @@ class ProdukController extends Controller
         $categories = Category::all();
         $suppliers = Supplier::all();
         $item = Produk::findOrFail($id);
+        $assignedDiskon = $item->diskon; // Get the currently assigned diskon
 
-        return view('admin.backend.produk.edit_produk', compact('item', 'categories', 'suppliers'));
+        // Get active and upcoming discounts
+        $activeDiskons = Diskon::where('tanggal_berakhir', '>=', now())
+                               ->orWhereNull('tanggal_berakhir') // Include discounts without an end date
+                               ->get();
+
+        // Combine active discounts with the assigned discount (if not already in active list)
+        $diskons = collect();
+        if ($assignedDiskon) {
+            $diskons->push($assignedDiskon);
+        }
+        $diskons = $diskons->merge($activeDiskons);
+        $diskons = $diskons->unique('id')->sortBy('kode_diskon'); // Ensure uniqueness and sort
+
+
+        return view('admin.backend.produk.edit_produk', compact('item', 'categories', 'suppliers', 'diskons'));
     }
 
 
@@ -111,7 +127,8 @@ class ProdukController extends Controller
             'deskripsi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'supplier_id' => 'required|exists:suppliers,id',
-            'harga_beli' => 'required|numeric|min:0',
+            'diskon_id' =>  'nullable|exists:diskons,id',
+            // 'harga_beli' => 'required|numeric|min:0',
             'harga_jual' => 'required|numeric|min:0',
             'status' => 'required|in:tersedia,tidak tersedia',
             'stok' => 'required|integer|min:0',
@@ -133,7 +150,8 @@ class ProdukController extends Controller
         $item->deskripsi = $request->deskripsi;
         $item->category_id = $request->category_id;
         $item->supplier_id = $request->supplier_id;
-        $item->harga_beli = $request->harga_jual;
+        $item->diskon_id = $request->diskon_id;
+        // $item->harga_beli = $request->harga_jual;
         $item->harga_jual = $request->harga_jual;
         $item->status = $request->status;
         $item->stok = $request->stok;

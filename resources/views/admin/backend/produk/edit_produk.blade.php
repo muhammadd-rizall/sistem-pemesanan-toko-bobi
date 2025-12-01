@@ -86,15 +86,23 @@
                     @enderror
                 </div>
 
-                {{-- harga beli --}}
-                <div class="mb-4">
-                    <label for="harga_beli" class="block text-sm font-medium text-gray-800">
-                        Harga Beli <span class="text-red-500">*</span>
+                {{-- Diskon --}}
+                 <div class="mb-4">
+                    <label for="diskon_id" class="block text-sm font-medium text-gray-800">
+                        Diskon <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" name="harga_beli" id="harga_beli"
-                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('harga_beli') ? 'border-red-500' : '' }}"
-                        value="{{ $item->harga_beli }}" required>
-                    @error('harga_beli')
+                    <select name="diskon_id" id="diskon_id"
+                        class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('diskon_id') ? 'border-red-500' : '' }}"
+                        required>
+                        <option value="" disabled>Pilih Diskon</option>
+                        @foreach ($diskons as $diskon)
+                            <option value="{{ $diskon->id }}"
+                                {{ $item->diskon_id == $diskon->id ? 'selected' : '' }}> 
+                                {{ $diskon->kode_diskon }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('diskon_id')
                         <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>

@@ -55,9 +55,9 @@
                     <thead class="bg-[#7eb17e] text-black uppercase text-xs tracking-wider">
                         <tr>
                             <th class="px-4 py-3 text-center font-bold">No</th>
+                            <th class="px-4 py-3 text-center font-bold hidden lg:table-cell">Invoice Number</th>
                             <th class="px-2 py-3 text-left font-bold min-w-[120px]">Customer</th>
                             <th class="px-4 py-3 text-center font-bold hidden md:table-cell">Total Harga Awal</th>
-                            <th class="px-4 py-3 text-center font-bold hidden lg:table-cell">Diskon</th>
                             <th class="px-4 py-3 text-center font-bold hidden md:table-cell">Total Diskon</th>
                             <th class="px-4 py-3 text-center font-bold">Total Harga Akhir</th>
                             <th class="px-4 py-3 text-center font-bold hidden lg:table-cell">Catatan</th>
@@ -71,12 +71,12 @@
                                 style="animation-delay: {{ $index * 50 }}ms;">
                                 <td class="px-4 py-3 text-center text-sm text-gray-500">{{ $index + $orders->firstItem() }}
                                 </td>
+                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold hidden lg:table-cell">
+                                    {{ $order->invoice_number }}</td>
                                 <td class="px-4 py-3 text-left text-sm text-gray-600 font-semibold">
                                     {{ $order->customer->name }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold hidden md:table-cell">Rp
                                     {{ number_format($order->total_harga_awal, 0, ',', '.') }}</td>
-                                <td class="px-4 py-3 text-center text-sm text-gray-600 font-semibold hidden lg:table-cell">
-                                    {{ $order->diskon_id }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold hidden md:table-cell">Rp
                                     {{ number_format($order->total_diskon, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-center text-sm text-sage-700 font-semibold">Rp
@@ -86,10 +86,11 @@
                                 <td class="px-4 py-3 text-center">
                                     @php
                                         $statusClasses = [
-                                            'pending' => 'bg-yellow-100 text-yellow-800',
-                                            'proses' => 'bg-green-100 text-green-800',
+                                            'pending' => 'bg-gray-100 text-gray-800',
+                                            'proses' => 'bg-yellow-100 text-yellow-800',
                                             'dikirim' => 'bg-blue-100 text-blue-800',
-                                            'cancelled' => 'bg-gray-100 text-gray-800',
+                                            'selesai' => 'bg-green-100 text-green-800',
+                                            'cancelled' => 'bg-red-100 text-red-800',
                                         ];
                                     @endphp
                                     <span

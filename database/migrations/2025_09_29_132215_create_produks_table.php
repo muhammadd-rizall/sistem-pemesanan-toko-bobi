@@ -16,11 +16,11 @@ return new class extends Migration
             // $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->foreignId('supplier_id')->nullable()->constrained();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('diskon_id')->nullable()->constrained('diskons')->onDelete('set null');
+            $table->foreignId('diskon_id')->nullable()->constrained('diskons')->onDelete('set null')->onUpdate('cascade');
             $table->string('nama_produk');
             $table->string('merek')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->decimal('harga_beli',10,2);
+            // $table->decimal('harga_beli',10,2);
             $table->decimal('harga_jual',10,2);
             $table->integer('stok');
             $table->enum('status', ['tersedia', 'tidak tersedia'])->default('tersedia');
