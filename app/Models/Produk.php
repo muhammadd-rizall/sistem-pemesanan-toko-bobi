@@ -31,4 +31,6 @@ class Produk extends Model
     {
         return $this->belongsTo(Diskon::class, 'diskon_id');
     }
+
+    
 }

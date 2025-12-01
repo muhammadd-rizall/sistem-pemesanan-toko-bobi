@@ -36,7 +36,7 @@ class OrderController extends Controller
             'alamat_pengiriman' => 'required|string',
             'catatan'           => 'nullable|string',
             'total_diskon'      => 'nullable|numeric',
-            'metode_pembayaran' => 'required|in:midtrans,cod', // COD
+            'metode_pembayaran' => 'required|in:midtrans,cod',
         ]);
 
         $product = Produk::findOrFail($validated['product_id']);
@@ -68,11 +68,14 @@ class OrderController extends Controller
             'harga_total'  => $subtotal,
         ]);
 
-        // Simpan payment
+        // Simpan payment dengan semua kolom yang diperlukan
         Payment::create([
             'order_id'          => $order->id,
+            'jenis_pembayaran'  => 'full',
             'metode_pembayaran' => $validated['metode_pembayaran'],
             'total_order'       => $total_akhir,
+            'jumlah_terbayar'   => 0,
+            'sisa_pembayaran'   => $total_akhir, 
             'pembayaran_status' => 'unpaid',
         ]);
 
@@ -83,8 +86,9 @@ class OrderController extends Controller
     public function showPreview(Order $order)
     {
         $snap_token = null;
+
         // Jika COD → langsung ke halaman preview tanpa Snap Token
-        if ($order->payment->metode_pembayaran === 'cod') { // COD
+        if ($order->payment->metode_pembayaran === 'cod') {
             return view('frontend.checkout.preview_pemesanan', compact('order', 'snap_token'));
         }
 
@@ -95,7 +99,7 @@ class OrderController extends Controller
 
         $transaction = [
             'transaction_details' => [
-                'order_id'     => $order->payment->id,
+                'order_id'     => $order->invoice_number,
                 'gross_amount' => $order->total_harga_akhir,
             ],
             'customer_details' => [
@@ -114,12 +118,11 @@ class OrderController extends Controller
         return view('frontend.checkout.preview_pemesanan', compact('order', 'snap_token'));
     }
 
-
     // Proses pembayaran
     public function pay(Request $request, Order $order)
     {
         // COD → tidak pakai Midtrans
-        if ($order->payment->metode_pembayaran === 'cod') { // COD
+        if ($order->payment->metode_pembayaran === 'cod') {
             // COD = pembayaran nanti, jadi unpaid
             $order->payment->update([
                 'pembayaran_status' => 'unpaid',
@@ -135,38 +138,6 @@ class OrderController extends Controller
         return redirect()->route('customer.orders.preview.show', $order);
     }
 
-
-    // Midtrans callback
-    public function midtransCallback(Request $request)
-    {
-        $payment_id         = $request->order_id;
-        $transaction_status = $request->transaction_status;
-
-        $payment = Payment::find($payment_id);
-
-        if (!$payment) {
-            return response()->json(['error' => 'Payment not found'], 404);
-        }
-        $order = $payment->order;
-
-        // Callback hanya untuk MIDTRANS
-        if ($payment->metode_pembayaran === 'cod') { // COD
-            return response()->json(['message' => 'COD does not use callback']);
-        }
-
-        if ($transaction_status === 'capture' || $transaction_status === 'settlement') {
-            $payment->update(['pembayaran_status' => 'paid']);
-            $order->update(['status' => 'proses']);
-        } elseif ($transaction_status === 'pending') {
-            $payment->update(['pembayaran_status' => 'pending']);
-            $order->update(['status' => 'pending']);
-        } elseif (in_array($transaction_status, ['deny', 'cancel', 'expire'])) {
-            $payment->update(['pembayaran_status' => 'failed']);
-            $order->update(['status' => 'cancelled']);
-        }
-
-        return response()->json(['message' => 'OK']);
-    }
 
 
     // Halaman sukses

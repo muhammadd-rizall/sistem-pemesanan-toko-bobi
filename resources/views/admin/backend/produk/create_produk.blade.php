@@ -86,7 +86,7 @@
                         @enderror
                     </div>
 
-                    {{-- harga beli--}}
+                    {{-- harga beli
                     <div class="mb-4">
                         <label for="harga_beli" class="block text-sm font-medium text-gray-800">
                             Harga Beli<span class="text-red-500">*</span>
@@ -97,7 +97,7 @@
                         @error('harga_beli')
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     {{-- haraga jual --}}
                     <div class="mb-4">

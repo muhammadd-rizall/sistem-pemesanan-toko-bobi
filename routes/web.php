@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\CustomerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
+use App\Http\Controllers\checkout\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +71,7 @@ Route::prefix('/')->group(function () {
         Route::get('orders/{order}/preview', [CheckoutOrderController::class, 'showPreview'])->name('orders.preview.show');
         Route::post('orders/{order}/pay', [CheckoutOrderController::class, 'pay'])->name('orders.pay'); // hanya untuk trigger JS Snap
         Route::get('orders/{order}/success', [CheckoutOrderController::class, 'success'])->name('orders.success');
-        Route::post('midtrans/callback', [CheckoutOrderController::class, 'midtransCallback'])->name('midtrans.callback');
+        Route::post('midtrans/callback', [PaymentsController::class, 'midtransCallback'])->name('midtrans.callback');
     });
 });
 

@@ -23,7 +23,7 @@ return new class extends Migration
              $table->string('snap_redirect_url')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tanggal_bayar')->nullable();
-            $table->enum('pembayaran_status', ['unpaid', 'pending', 'paid', 'failed'])->default('unpaid');
+            $table->string('pembayaran_status');
             $table->timestamps();
         });
     }
