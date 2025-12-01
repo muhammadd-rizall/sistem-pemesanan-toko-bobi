@@ -1,6 +1,27 @@
 @extends('admin.layouts.app')
 @section('content')
     <div class="max-w-4xl mx-auto px-4 py-6">
+        <!-- Alert Sukses -->
+        @if (session('success'))
+            <div id="success-alert"
+                class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg shadow-md flex items-center justify-between"
+                role="alert">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-green-700" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm">{{ session('success') }}</span>
+                </div>
+                <button type="button" class="text-green-700 hover:text-green-900"
+                    onclick="document.getElementById('success-alert').remove();">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        @endif
 
         <div class="bg-white rounded-3xl shadow-2xl p-8">
 
@@ -174,4 +195,14 @@
         </div>
 
     </div>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.classList.add('opacity-0', 'transition', 'duration-500');
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 3000);
+    </script>
 @endsection
