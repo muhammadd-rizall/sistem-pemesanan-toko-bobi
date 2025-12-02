@@ -31,5 +31,19 @@ class Order extends Model
         return $this->belongsTo(Diskon::class, 'diskon_id');
     }
 
+    /**
+     * Accessor for formatting the phone number.
+     *
+     * @return string
+     */
+    public function getFormattedNoHpAttribute()
+    {
+        $noHp = $this->attributes['no_hp'];
+        $cleaned = preg_replace('/[^0-9]/', '', $noHp);
 
+        // Format with spaces, e.g., 0812 3456 7890
+        $formatted = trim(chunk_split($cleaned, 4, ' '));
+
+        return $formatted;
+    }
 }

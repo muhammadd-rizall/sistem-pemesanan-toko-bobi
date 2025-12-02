@@ -39,7 +39,7 @@
                     </p>
 
                     <p class="text-sm text-gray-600">Phone :
-                        <span class="text-gray-800">{{ $order->no_hp }}</span>
+                        <span class="text-gray-800">{{ $order->formatted_no_hp }}</span>
                     </p>
 
                     <p class="text-sm text-gray-600">Alamat Pengiriman :

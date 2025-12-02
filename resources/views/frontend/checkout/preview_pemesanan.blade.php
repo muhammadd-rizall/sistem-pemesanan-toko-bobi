@@ -28,7 +28,7 @@
                 <div class="border-t pt-4">
                     <h3 class="font-semibold text-gray-700">Informasi Pengiriman</h3>
                     <p>Nama Customer: {{ $order->customer->name }}</p>
-                    <p>Nomor Hp: {{ $order->no_hp }}</p>
+                    <p>Nomor Hp: {{ $order->formatted_no_hp }}</p>
                     <p>Alamat: {{ $order->alamat_pengiriman }}</p>
                     <p>Catatan: {{ $order->catatan ?? '-' }}</p>
                 </div>
@@ -90,4 +90,3 @@
         @endpush
     @endif
 @endsection
-            

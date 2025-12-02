@@ -16,18 +16,6 @@
                         <p class="text-gray-600">Lengkapi data di bawah untuk melanjutkan pesanan Anda</p>
                     </div>
 
-                    {{-- <!-- Validation Errors -->
-                    @if ($errors->any())
-                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6" role="alert">
-                            <p class="font-bold">Oops! Ada beberapa kesalahan:</p>
-                            <ul class="mt-2 list-disc list-inside">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif --}}
-
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <!-- Main Form -->
                         <div class="lg:col-span-2 space-y-6">
@@ -124,11 +112,9 @@
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Nomor WhatsApp <span
                                         class="text-red-500">*</span></label>
                                 <div class="relative mb-4">
-                                    <span class="absolute left-4 top-3.5 text-gray-600 font-medium">+62</span>
                                     <input type="tel" id="no_hp" name="no_hp" required
-                                        class="w-full pl-14 pr-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#7eb17e] focus:outline-none transition"
-                                        placeholder="812 3456 7890" pattern="[0-9]{9,13}" maxlength="13"
-                                        value="{{ old('no_hp') }}">
+                                        class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#7eb17e] focus:outline-none transition"
+                                        placeholder="0812 3456 7890" maxlength="15" value="{{ old('no_hp') }}">
                                 </div>
 
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Alamat Pengiriman <span
@@ -218,6 +204,30 @@
     @push('scripts')
         @auth('customer')
             <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const phoneInput = document.getElementById('no_hp');
+                    if (phoneInput) {
+                        phoneInput.addEventListener('input', function(e) {
+                            let value = e.target.value.replace(/[^0-9]/g, ''); // Hanya angka
+
+                            if (value.length > 0 && value.charAt(0) !== '0') {
+                                if (value.startsWith('62')) {
+                                    value = '0' + value.substring(2);
+                                } else if (value.charAt(0) === '8') {
+                                    value = '0' + value;
+                                }
+                            }
+
+                            if (value.length > 13) {
+                                value = value.substring(0, 13);
+                            }
+
+                            e.target.value = value;
+                        });
+                    }
+                });
+
+
                 const productPrice = {{ $product->harga_jual }};
                 const quantityInput = document.getElementById('quantity');
                 const decreaseBtn = document.getElementById('decrease-qty');
