@@ -31,7 +31,8 @@
 <body class="bg-sage-50 font-sans antialiased" x-data="{ sidebarOpen: false }">
 
     {{-- Overlay for mobile --}}
-    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-30 lg:hidden" x-cloak></div>
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-30 lg:hidden"
+        x-cloak></div>
 
     {{-- 1. Hapus class 'group' dari sini --}}
     <div class="flex h-screen bg-gray-100">
@@ -54,7 +55,7 @@
             <nav class="flex-1 px-4 py-6 space-y-2">
                 {{-- Link Dashboard --}}
                 <a href="{{ route('admin.dashboard') }}"
-                    class="flex items-center px-4 py-2.5 bg-sage-700 rounded-lg transition-colors">
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
@@ -65,7 +66,7 @@
 
                 {{-- Supplier --}}
                 <a href="{{ route('supplierView') }}"
-                    class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('supplierView') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.67 0-8 1.34-8 4v2h8v-2c0-.68.16-1.33.44-1.92M16 13c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -73,10 +74,9 @@
                     <span class="nav-text ml-4 whitespace-nowrap">Supplier</span>
                 </a>
 
-
                 {{-- Link Produk --}}
                 <a href="{{ route('produk_view') }}"
-                    class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('produk_view') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
@@ -86,7 +86,7 @@
 
                 {{-- Link Pemesanan --}}
                 <a href="{{ route('listOrder') }}"
-                    class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('listOrder') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
@@ -95,9 +95,9 @@
                     <span class="nav-text ml-4 whitespace-nowrap">Pemesanan</span>
                 </a>
 
-                {{-- BARU: Link Promosi/Diskon --}}
+                {{-- Link Promosi/Diskon --}}
                 <a href="{{ route('diskonView') }}"
-                    class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('diskonView') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-5 5a2 2 0 01-2.828 0l-7-7A2 2 0 013 8V5a2 2 0 012-2z">
@@ -106,7 +106,7 @@
                     <span class="nav-text ml-4 whitespace-nowrap">Promosi</span>
                 </a>
 
-                {{-- BARU: Link Galeri --}}
+                {{-- Link Galeri --}}
                 <a href="#"
                     class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,17 @@
                     <span class="nav-text ml-4 whitespace-nowrap">Galeri</span>
                 </a>
 
-                {{-- BARU: Link User --}}
+                {{-- Link Review --}}
+                <a href="{{ route('review') }}"
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('review') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
+                    <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 8h10M7 12h6m-6 4h8m5-10v8a2 2 0 01-2 2H9l-4 4v-4H5a2 2 0 01-2-2V6a2 2 0 012-2h12a2 2 0 012 2z" />
+                    </svg>
+                    <span class="nav-text ml-4 whitespace-nowrap">Review</span>
+                </a>
+
+                {{-- Link User --}}
                 <a href="#"
                     class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,14 +141,14 @@
         </aside>
 
         {{-- 3. Ganti 'group-hover' menjadi 'peer-hover' di sini --}}
-        <div
-            class="flex-1 flex flex-col lg:pl-20 lg:peer-hover:pl-64 transition-all duration-300 ease-in-out">
+        <div class="flex-1 flex flex-col lg:pl-20 lg:peer-hover:pl-64 transition-all duration-300 ease-in-out">
             <header class="bg-white shadow-sm flex items-center justify-between px-6 py-4 z-30">
                 <div class="flex items-center">
-                    <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden text-gray-500 focus:outline-none mr-4">
+                    <button @click="sidebarOpen = !sidebarOpen"
+                        class="lg:hidden text-gray-500 focus:outline-none mr-4">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 6H20M4 12H20M4 18H11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                            <path d="M4 6H20M4 12H20M4 18H11Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="font-semibold text-lg text-sage-800">
@@ -166,9 +176,11 @@
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">Profil</a>
 
                         <!-- Form untuk Logout -->
-                        <form method="POST" action="{{ route('admin.logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
+                        <form method="POST" action="{{ route('admin.logout') }}"
+                            onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
                             @csrf
-                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">
+                            <button type="submit"
+                                class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-sage-100">
                                 Logout
                             </button>
                         </form>

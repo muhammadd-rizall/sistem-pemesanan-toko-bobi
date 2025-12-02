@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AdminAuthController;
@@ -129,4 +130,8 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     Route::get('/diskon/edit/{id}', [DiskonController::class, 'editDiskon'])->name('editDiskon');
     Route::post('/diskon/update/{id}', [DiskonController::class, 'updateDiskon'])->name('updateDiskon');
     Route::delete('/diskon/delete/{id}', [DiskonController::class, 'deleteDiskon'])->name('deleteDiskon');
+
+    //review
+    Route::get('/review', [ReviewController::class, 'review'])->name('review');
+    Route::delete('/review/delete/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
 });
