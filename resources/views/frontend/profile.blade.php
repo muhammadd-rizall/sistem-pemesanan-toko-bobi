@@ -25,9 +25,16 @@
                     <div class="px-6 pb-8 text-center relative">
                         <div class="relative -mt-16 mb-4 inline-block group">
                             <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white relative z-10 transition-transform duration-300 group-hover:scale-105">
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap) }}&background=e8f0e8&color=2f4f39&size=256&bold=true"
+                                <img src="{{ (!empty(Auth::guard('customer')->user()->avatar))
+                                    ? (str_starts_with(Auth::guard('customer')->user()->avatar, 'http')
+                                        ? Auth::guard('customer')->user()->avatar
+                                        : url('upload/user_images/'.Auth::guard('customer')->user()->avatar))
+                                    : 'https://ui-avatars.com/api/?name='.urlencode(Auth::guard('customer')->user()->nama_lengkap).'&background=e8f0e8&color=2f4f39&size=256&bold=true' }}"
+                                    alt="Profile"
+                                    class="w-full h-full object-cover">
+                                {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap) }}&background=e8f0e8&color=2f4f39&size=256&bold=true"
                                      alt="Profile"
-                                     class="w-full h-full object-cover">
+                                     class="w-full h-full object-cover"> --}}
                             </div>
                             {{-- Badge Status --}}
                             <div class="absolute bottom-2 right-2 z-20 bg-green-500 border-2 border-white w-5 h-5 rounded-full" title="Active"></div>
@@ -69,7 +76,7 @@
                             <label class="text-xs font-bold text-sage-400 uppercase tracking-wider group-hover:text-sage-600 transition-colors">Nama Lengkap</label>
                             <div class="p-3.5 bg-sage-50/50 rounded-xl border border-sage-100 text-sage-900 font-semibold flex items-center gap-3 group-hover:border-sage-300 transition-all duration-300">
                                 <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                {{ Auth::guard('customer')->user()->nama_lengkap }}
+                                {{ Auth::guard('customer')->user()->name }}
                             </div>
                         </div>
 
