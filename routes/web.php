@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 use App\Http\Controllers\checkout\PaymentsController;
+use App\Http\Controllers\Frontend\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +65,9 @@ Route::prefix('/')->group(function () {
 
     // Authenticated Customer Routes
     Route::middleware('auth:customer')->name('customer.')->group(function () {
-        Route::get('/pesanan', [CustomerController::class, 'pesanan'])->name('dashboard');
+        Route::get('/order', [OrdersController::class, 'pesanan'])->name('dashboard');
+        Route::post('/order/{id}/cancel', [OrdersController::class, 'cancel'])->name('cancel');
+        Route::post('/order/{id}/selesai',[OrdersController::class, 'selesai'])->name('selesai');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
         Route::get('/profile', [CustomerController::class, 'profile'])->name('profile');
 

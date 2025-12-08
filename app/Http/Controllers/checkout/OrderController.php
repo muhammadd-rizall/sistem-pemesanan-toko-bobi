@@ -91,39 +91,51 @@ class OrderController extends Controller
     }
 
     // Halaman preview
-    public function showPreview(Order $order)
+    public function showPreview(Request $request, Order $order)
     {
+        // Secara default, tampilkan tombol bayar, kecuali action=view
+        $show_payment_button = $request->query('action') !== 'view';
+
+        // Hanya tampilkan tombol jika status masih 'pending'
+        if ($order->status !== 'pending') {
+            $show_payment_button = false;
+        }
+
         $snap_token = null;
 
-        // Jika COD → langsung ke halaman preview tanpa Snap Token
-        if ($order->payment->metode_pembayaran === 'cod') {
-            return view('frontend.checkout.preview_pemesanan', compact('order', 'snap_token'));
+        // Buat Snap Token hanya jika tombol bayar akan ditampilkan & metode pembayaran adalah Midtrans
+        if ($show_payment_button && $order->payment->metode_pembayaran === 'midtrans') {
+            // Jika sudah ada snap_token, gunakan yang lama
+            if ($order->payment->snap_token) {
+                $snap_token = $order->payment->snap_token;
+            } else {
+                // Jika belum ada, buat baru
+                Config::$serverKey    = config('midtrans.server_key');
+                Config::$isSanitized  = true;
+                Config::$isProduction = false;
+
+                $transaction = [
+                    'transaction_details' => [
+                        'order_id'     => $order->invoice_number,
+                        'gross_amount' => $order->total_harga_akhir,
+                    ],
+                    'customer_details' => [
+                        'first_name' => $order->customer->name,
+                        'phone'      => $order->no_hp,
+                    ],
+                ];
+
+                try {
+                    $snap_token = Snap::getSnapToken($transaction);
+                    // Simpan token agar tidak generate ulang
+                    $order->payment->update(['snap_token' => $snap_token]);
+                } catch (\Exception $e) {
+                    return back()->with('error', 'Gagal membuat payment Midtrans: ' . $e->getMessage());
+                }
+            }
         }
 
-        // Midtrans
-        Config::$serverKey    = config('midtrans.server_key');
-        Config::$isSanitized  = true;
-        Config::$isProduction = false;
-
-        $transaction = [
-            'transaction_details' => [
-                'order_id'     => $order->invoice_number,
-                'gross_amount' => $order->total_harga_akhir,
-            ],
-            'customer_details' => [
-                'first_name' => $order->customer->name,
-                'phone'      => $order->no_hp,
-            ],
-        ];
-
-        try {
-            $snap_token = Snap::getSnapToken($transaction);
-            $order->payment->update(['snap_token' => $snap_token]);
-        } catch (\Exception $e) {
-            return back()->with('error', 'Gagal membuat payment Midtrans: ' . $e->getMessage());
-        }
-
-        return view('frontend.checkout.preview_pemesanan', compact('order', 'snap_token'));
+        return view('frontend.checkout.preview_pemesanan', compact('order', 'snap_token', 'show_payment_button'));
     }
 
     // Proses pembayaran

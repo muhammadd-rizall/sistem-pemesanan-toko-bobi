@@ -7,7 +7,6 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException; // Tambahkan ini jika perlu
 
 class CustomerController extends Controller
 {
@@ -95,11 +94,7 @@ class CustomerController extends Controller
                    ->with('success', 'Anda telah berhasil logout.');
     }
 
-    public function pesanan()
-    {
-        // Arahkan ke file yang benar: frontend.dashboard
-        return view('frontend.pesanan');
-    }
+
 
     public function profile()
     {
