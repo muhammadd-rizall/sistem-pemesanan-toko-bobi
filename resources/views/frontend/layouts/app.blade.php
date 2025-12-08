@@ -153,7 +153,16 @@
                             <div class="relative">
                                 <button @click="open = !open" @keydown.escape.window="open = false" class="flex items-center gap-2 focus:outline-none group transition-all duration-300">
                                     <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-sage-200 group-hover:border-sage-500 transition-all duration-300 shadow-sm ring-2 ring-transparent group-focus:ring-sage-200">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') }}&background=a8c9a8&color=2f4f39" alt="Profile" class="w-full h-full object-cover">
+                                        <img src="{{ (!empty(Auth::guard('customer')->user()->avatar))
+                                        ? (str_starts_with(Auth::guard('customer')->user()->avatar, 'http')
+                                            ? Auth::guard('customer')->user()->avatar
+                                            : url('upload/user_images/'.Auth::guard('customer')->user()->avatar))
+                                        : 'https://ui-avatars.com/api/?name='.urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User').'&background=a8c9a8&color=2f4f39' }}"
+                                        alt="Profile"
+                                        class="w-full h-full object-cover">
+                                    {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') }}&background=a8c9a8&color=2f4f39"
+                                        alt="Profile"
+                                        class="w-full h-full object-cover"> --}}
                                     </div>
                                     <svg class="w-4 h-4 text-sage-600 group-hover:text-sage-800 transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>

@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Frontend\OrdersController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +134,10 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     Route::get('/diskon/edit/{id}', [DiskonController::class, 'editDiskon'])->name('editDiskon');
     Route::post('/diskon/update/{id}', [DiskonController::class, 'updateDiskon'])->name('updateDiskon');
     Route::delete('/diskon/delete/{id}', [DiskonController::class, 'deleteDiskon'])->name('deleteDiskon');
+
+    //user
+    Route::get('/users', [UserController::class, 'userView'])->name('userView');
+    Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
 
     //review
     Route::get('/review', [ReviewController::class, 'review'])->name('review');
