@@ -13,6 +13,10 @@ class Review extends Model
 
     public function produk()
     {
-        return $this->belongsTo(Produks::class, 'produk_id');
+        return $this->belongsTo(Produk::class, 'produk_id');
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 }

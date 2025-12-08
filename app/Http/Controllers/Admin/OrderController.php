@@ -44,7 +44,7 @@ class OrderController extends Controller
     public function deleteOrder($id)
     {
         $order = Order::findOrFail($id);
-        $order->orderItems()->delete(); // Hapus item order terkait
+        $order->orderItems()->delete();
         $order->delete();
 
         return redirect()->route('listOrder')->with('success', 'Order berhasil dihapus.');
@@ -57,7 +57,7 @@ class OrderController extends Controller
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate([
-            'status' => 'required|in:pending,proses,dikirim,cancelled',
+            'status' => 'required|in:pending,proses,dikirim,selesai,cancelled',
         ]);
 
         $order->status = $request->status;

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\AdminAuthController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 use App\Http\Controllers\checkout\PaymentsController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +65,9 @@ Route::prefix('/')->group(function () {
 
     // Authenticated Customer Routes
     Route::middleware('auth:customer')->name('customer.')->group(function () {
-        Route::get('/pesanan', [CustomerController::class, 'pesanan'])->name('dashboard');
+        Route::get('/order', [OrdersController::class, 'pesanan'])->name('dashboard');
+        Route::post('/order/{id}/cancel', [OrdersController::class, 'cancel'])->name('cancel');
+        Route::post('/order/{id}/selesai',[OrdersController::class, 'selesai'])->name('selesai');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
         Route::get('/profile', [CustomerController::class, 'profile'])->name('profile');
 
@@ -131,7 +134,7 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     Route::post('/diskon/update/{id}', [DiskonController::class, 'updateDiskon'])->name('updateDiskon');
     Route::delete('/diskon/delete/{id}', [DiskonController::class, 'deleteDiskon'])->name('deleteDiskon');
 
-    //user
-    Route::get('/users', [UserController::class, 'userView'])->name('userView');
-    Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+    //review
+    Route::get('/review', [ReviewController::class, 'review'])->name('review');
+    Route::delete('/review/delete/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
 });
