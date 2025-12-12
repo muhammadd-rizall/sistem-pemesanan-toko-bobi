@@ -67,9 +67,9 @@
                     @if (Auth::guard('customer')->check())
                         {{-- User sudah login sebagai customer --}}
                         @if ($product->stok > 0)
-                            <a href="{{ route('customer.formPemesanan', ['id' => $product->id]) }}">
+                            <a href="{{ route('customer.orders.create', ['product' => $product->id]) }}">
                                 <button
-                                    class="w-full bg-sage-600 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-sage-700 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sage-400 focus:ring-opacity-50">
+                                    class="w-full bg-sage-600 text-white font-bold text-lg py-4 px-8 rounded-xl hover:bg-sage-700 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sage-400 focus:ring-opacity-50 mt-10">
                                     <span class="flex items-center justify-center gap-3">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
