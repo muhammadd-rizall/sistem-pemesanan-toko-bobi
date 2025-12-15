@@ -31,6 +31,20 @@ class Order extends Model
         return $this->belongsTo(Diskon::class, 'diskon_id');
     }
 
+    public function review()
+    {
+        return $this->hasOne(Review::class, 'order_id');
+    }
+
+    public function getIsReviewedAttribute()
+    {
+        return $this->review()->exists();
+    }
+
+
+
+
+
     /**
      * Accessor for formatting the phone number.
      *

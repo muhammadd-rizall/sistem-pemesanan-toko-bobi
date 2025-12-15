@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
         $diskonIds = Diskon::pluck('id')->toArray();
         $diskonIds[] = null;
 
-        $gambarDefault = 'produks/get_started.jpg';
+        $gambarDefault = 'produks/691b32a4b81d3_1763390116.jpg';
 
         $produkList = [
             [
