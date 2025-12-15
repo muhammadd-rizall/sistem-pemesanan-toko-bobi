@@ -2,22 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Frontend\ProductController as FrontendController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\DiskonController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\DiskonController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\Admin\SupplierController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\CustomerController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialAuthController;
-use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
-use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Frontend\OrdersController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\ReviewsController;
+use App\Http\Controllers\checkout\PaymentsController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Frontend\ProductController as FrontendController;
+use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,7 @@ Route::prefix('/')->group(function () {
     Route::middleware('auth:customer')->name('customer.')->group(function () {
         Route::get('/order', [OrdersController::class, 'pesanan'])->name('dashboard');
         Route::post('/order/{id}/cancel', [OrdersController::class, 'cancel'])->name('cancel');
-        Route::post('/order/{id}/selesai',[OrdersController::class, 'selesai'])->name('selesai');
+        Route::post('/order/{id}/selesai', [OrdersController::class, 'selesai'])->name('selesai');
         Route::post('/logout', [CustomerController::class, 'logoutCustomer'])->name('logout');
         Route::get('/profile', [CustomerController::class, 'profile'])->name('profile');
 
@@ -78,6 +79,13 @@ Route::prefix('/')->group(function () {
         Route::post('orders/{order}/pay', [CheckoutOrderController::class, 'pay'])->name('orders.pay'); // hanya untuk trigger JS Snap
         Route::get('orders/{order}/success', [CheckoutOrderController::class, 'success'])->name('orders.success');
         Route::post('midtrans/callback', [PaymentsController::class, 'midtransCallback'])->name('midtrans.callback');
+
+
+        Route::get('/reviews', [ReviewsController::class, 'index'])->name('review.index');
+        Route::get('/review/{order}', [ReviewsController::class, 'createReview'])->name('review.create');
+        Route::post('/review/{order}', [ReviewsController::class, 'store'])->name('review.store');
+        Route::get('/review/{review}/edit', [ReviewsController::class, 'edit'])->name('review.edit');
+        Route::post('/review/{review}/update', [ReviewsController::class, 'update'])->name('review.update');
     });
 });
 
