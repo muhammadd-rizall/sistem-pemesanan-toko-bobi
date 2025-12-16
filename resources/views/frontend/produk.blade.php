@@ -26,7 +26,7 @@
                     <div class="relative w-full md:w-auto md:flex-grow">
                         <input type="text" name="search" id="searchInput" value="{{ request('search') }}"
                             placeholder="Cari produk yang anda inginkan..."
-                            class="w-full pl-5 pr-24 py-3 border-2 border-sage-300 rounded-full focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300 shadow-sm bg-white text-sage-700">
+                            class="w-full pl-5 pr-24 py-3 border-2 border-sage-300 rounded focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300 shadow-sm bg-white text-sage-700">
 
                         <div class="absolute inset-y-0 right-0 flex items-center pr-2">
                             {{-- Reset Button --}}
@@ -53,7 +53,7 @@
 
                     {{-- Filter Kategori --}}
                     <select name="category" onchange="this.form.submit()"
-                        class="w-full md:w-48 h-12 border-2 border-sage-300 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sage-700 rounded-lg px-3 bg-white transition-all duration-200">
+                        class="w-full md:w-48 h-12 border-2 border-sage-300 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sage-700 rounded px-3 bg-white transition-all duration-200">
                         <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>Semua Kategori</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
@@ -65,7 +65,7 @@
 
                     {{-- Sortir --}}
                     <select name="sort" onchange="this.form.submit()"
-                        class="w-full md:w-48 h-12 border-2 border-sage-300 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sage-700 rounded-lg px-3 bg-white transition-all duration-200">
+                        class="w-full md:w-48 h-12 border-2 border-sage-300 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sage-700 rounded px-3 bg-white transition-all duration-200">
                         <option value="">Urutkan</option>
                         <option value="harga_asc" {{ request('sort') == 'harga_asc' ? 'selected' : '' }}>Harga Terendah
                         </option>
@@ -90,7 +90,7 @@
                     @foreach ($products as $index => $product)
                         <div class="group block animate-fade-in-up" style="animation-delay: {{ $index * 80 }}ms;">
                             <div
-                                class="relative bg-[#f5f8f5] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 transform hover:-translate-y-2">
+                                class="relative bg-[#f5f8f5] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 transform hover:-translate-y-2 flex flex-col h-full">
 
                                 {{-- Product Image --}}
                                 <div class="relative overflow-hidden h-40 sm:h-48 bg-cream-50">

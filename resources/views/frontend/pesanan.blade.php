@@ -21,7 +21,7 @@
                         <div class="flex items-center justify-between flex-wrap gap-4">
 
                             <div>
-                                <h1 class="text-4xl md:text-5xl font-bold text-white font-playfair mb-2">Akun Saya</h1>
+                                <h1 class="text-4xl md:text-4xl font-bold text-white font-playfair mb-2">Akun Saya</h1>
                                 <p class="text-sage-100 text-lg">
                                     Selamat datang kembali,
                                     <span class="font-semibold text-white">
@@ -67,7 +67,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Total Pesanan</p>
-                            <p class="text-3xl font-bold text-slate-900 mt-2">{{ $totalPesanan }}</p>
+                            <p class="text-2xl font-bold text-slate-900 mt-2">{{ $totalPesanan }}</p>
                         </div>
                         <div class="bg-blue-100 rounded-2xl p-4">
                             <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Total Belanja</p>
-                            <p class="text-3xl font-bold text-slate-900 mt-2">
+                            <p class="text-2xl font-bold text-slate-900 mt-2">
                                 Rp {{ number_format($totalBelanja, 0, ',', '.') }}
                             </p>
                         </div>
@@ -103,7 +103,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Pesanan Aktif</p>
-                            <p class="text-3xl font-bold text-slate-900 mt-2">{{ $totalAktif }}</p>
+                            <p class="text-2xl font-bold text-slate-900 mt-2">{{ $totalAktif }}</p>
                         </div>
                         <div class="bg-orange-100 rounded-2xl p-4">
                             <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -54,7 +54,7 @@
                 @foreach ($products as $index => $product)
                     <div class="group block animate-fade-in-up" style="animation-delay: {{ $index * 80 }}ms;">
                         <div
-                            class="relative bg-[#e8f0e8] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-2">
+                            class="relative bg-[#e8f0e8] border border-sage-300 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-2 flex flex-col h-full">
 
                             {{-- Image Container --}}
                             <div class="relative overflow-hidden h-40 sm:h-48 bg-cream-50">
