@@ -32,6 +32,11 @@ class Produk extends Model
         return $this->belongsTo(Diskon::class, 'diskon_id');
     }
 
-    
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'produk_id'); // Pastikan nama model Review dan foreign key benar
+    }
+
+
 
 }

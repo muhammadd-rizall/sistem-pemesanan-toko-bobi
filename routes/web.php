@@ -32,6 +32,9 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 // Rute untuk detail produk
 Route::get('/product/{id}', [FrontendController::class, 'show'])->name('products.show');
 
+// --- TAMBAHAN PENTING: Rute untuk melihat semua review produk (Tanpa Login) ---
+Route::get('/product/{id}/reviews', [FrontendController::class, 'productReviews'])->name('product.reviews');
+
 // --- RUTE HALAMAN BARU ---
 Route::get('/produk', [FrontendController::class, 'produk'])->name('produk');
 Route::get('/tentang-kami', [FrontendController::class, 'tentang'])->name('tentang');
@@ -86,6 +89,7 @@ Route::prefix('/')->group(function () {
         Route::post('/review/{order}', [ReviewsController::class, 'store'])->name('review.store');
         Route::get('/review/{review}/edit', [ReviewsController::class, 'edit'])->name('review.edit');
         Route::post('/review/{review}/update', [ReviewsController::class, 'update'])->name('review.update');
+
     });
 });
 
