@@ -95,6 +95,26 @@
                     <span class="nav-text ml-4 whitespace-nowrap">Pemesanan</span>
                 </a>
 
+                {{-- Link Laporan Penjualan --}}
+                <a href="{{ route('penjualan.index') }}"
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('penjualan.*') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
+                    <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    <span class="nav-text ml-4 whitespace-nowrap">Laporan Penjualan</span>
+                </a>
+
+                {{-- Link Laporan Pembelian --}}
+                <a href="{{ route('pembelian.index') }}"
+                    class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('pembelian.*') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">
+                    <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span class="nav-text ml-4 whitespace-nowrap">Laporan Pembelian</span>
+                </a>
+
                 {{-- Link Promosi/Diskon --}}
                 <a href="{{ route('diskonView') }}"
                     class="flex items-center px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('diskonView') ? 'bg-sage-700 text-white' : 'text-sage-100 hover:bg-sage-700 hover:text-white' }}">

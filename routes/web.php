@@ -19,6 +19,8 @@ use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
+use App\Http\Controllers\Admin\PenjualanController;
+use App\Http\Controllers\Admin\PembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,4 +152,19 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     //review
     Route::get('/review', [ReviewController::class, 'review'])->name('review');
     Route::delete('/review/delete/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
+
+    // Routes Laporan Penjualan
+    Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+    Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::put('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::delete('/penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
+    Route::get('/penjualan/export', [PenjualanController::class, 'export'])->name('penjualan.export');
+
+    // Routes Laporan Pembelian
+    Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
+    Route::post('/pembelian', [PembelianController::class, 'store'])->name('pembelian.store');
+    Route::put('/pembelian/{pembelian}', [PembelianController::class, 'update'])->name('pembelian.update');
+    Route::delete('/pembelian/{pembelian}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
+    Route::get('/pembelian/export', [PembelianController::class, 'export'])->name('pembelian.export');
+
 });
