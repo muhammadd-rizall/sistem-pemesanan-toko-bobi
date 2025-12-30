@@ -109,7 +109,7 @@
                         : route('home');
                 @endphp
 
-                <a href="{{ $logoRoute }}" class="group flex items-center gap-3">
+                <a href="{{ url('/admin/login') }}" class="group flex items-center gap-3">
                     <div class="relative">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
                             <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

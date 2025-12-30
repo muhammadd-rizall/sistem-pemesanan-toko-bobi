@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             OrderSeeder::class,
             OrderItemSeeder::class,
+            PembelianSeeder::class,
+            PenjualanSeeder::class,
 
         ]);
     }

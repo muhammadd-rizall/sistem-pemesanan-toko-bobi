@@ -58,9 +58,9 @@
 
                             {{-- Image Container --}}
                             <div class="relative overflow-hidden h-40 sm:h-48 bg-cream-50">
-                                <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('images/no-image.jpg') }}"
+                                    <img src="{{ $product->gambar_produk ? asset('storage/' . $product->gambar_produk) : asset('images/no-image.jpg') }}"
                                     alt="{{ $product->nama_produk }}"
-                                    onerror="this.src='{{ asset('images/no-image.jpg') }}'"
+                                    loading="lazy"
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out">
 
                                 <div
