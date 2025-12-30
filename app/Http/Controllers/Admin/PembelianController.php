@@ -75,7 +75,7 @@ class PembelianController extends Controller
         Pembelian::create($validated);
 
         return redirect()
-            ->route('admin.pembelian.index')
+            ->route('pembelian.index')
             ->with('success', 'Pembelian offline berhasil dicatat');
     }
 
@@ -93,7 +93,7 @@ class PembelianController extends Controller
         $pembelian->update($validated);
 
         return redirect()
-            ->route('admin.pembelian.index')
+            ->route('pembelian.index')
             ->with('success', 'Data pembelian berhasil diperbarui');
     }
 
@@ -102,7 +102,63 @@ class PembelianController extends Controller
         $pembelian->delete();
 
         return redirect()
-            ->route('admin.pembelian.index')
+            ->route('pembelian.index')
             ->with('success', 'Data pembelian berhasil dihapus');
     }
+
+    public function export(Request $request)
+    {
+        $filter = $request->get('filter', 'semua');
+        $query = Pembelian::with(['produk', 'supplier']);
+
+        // sama seperti filter di index
+        switch ($filter) {
+            case 'hari_ini':
+                $query->whereDate('tanggal', today());
+                break;
+            case 'minggu_ini':
+                $query->whereBetween('tanggal', [
+                    now()->startOfWeek(),
+                    now()->endOfWeek()
+                ]);
+                break;
+            case 'bulan_ini':
+                $query->whereMonth('tanggal', now()->month)
+                    ->whereYear('tanggal', now()->year);
+                break;
+            case 'tahun_ini':
+                $query->whereYear('tanggal', now()->year);
+                break;
+        }
+
+        $pembelian = $query->latest('tanggal')->get();
+
+        // Bisa export CSV misal pake Laravel-Excel, atau sekadar download CSV manual
+        $filename = 'pembelian_' . now()->format('Ymd_His') . '.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+        ];
+
+        $callback = function () use ($pembelian) {
+            $file = fopen('php://output', 'w');
+            // Header CSV
+            fputcsv($file, ['Kode', 'Tanggal', 'Produk', 'Supplier', 'Jumlah', 'Harga Satuan', 'Total']);
+            foreach ($pembelian as $item) {
+                fputcsv($file, [
+                    $item->kode_pembelian,
+                    $item->tanggal->format('d/m/Y'),
+                    $item->produk->nama ?? '-',
+                    $item->supplier->nama_perusahaan ?? '-',
+                    $item->jumlah,
+                    $item->harga_satuan,
+                    $item->total,
+                ]);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
 }

@@ -64,7 +64,7 @@ class PenjualanController extends Controller
     {
         $data = $request->validate([
             'tanggal'       => 'required|date',
-            'produk_id'     => 'required|exists:produk,id',
+            'produk_id'     => 'required|exists:produks,id',
             'jumlah'        => 'required|integer|min:1',
             'harga_satuan'  => 'required|numeric|min:0',
             'pembeli'       => 'nullable|string|max:255',
@@ -84,7 +84,7 @@ class PenjualanController extends Controller
     {
         $data = $request->validate([
             'tanggal'       => 'required|date',
-            'produk_id'     => 'required|exists:produk,id',
+            'produk_id'     => 'required|exists:produks,id',
             'jumlah'        => 'required|integer|min:1',
             'harga_satuan'  => 'required|numeric|min:0',
             'pembeli'       => 'nullable|string|max:255',
@@ -108,4 +108,65 @@ class PenjualanController extends Controller
             ->route('penjualan.index')
             ->with('success', 'Data penjualan berhasil dihapus');
     }
+
+    public function export(Request $request)
+    {
+        $filter = $request->get('filter', 'semua');
+
+        // Ambil data dengan relasi produk saja, karena kolom 'pembeli' sudah di DB sebagai string
+        $query = Penjualan::with('produk');
+
+        switch ($filter) {
+            case 'hari_ini':
+                $query->whereDate('tanggal', today());
+                break;
+            case 'minggu_ini':
+                $query->whereBetween('tanggal', [
+                    now()->startOfWeek(),
+                    now()->endOfWeek()
+                ]);
+                break;
+            case 'bulan_ini':
+                $query->whereMonth('tanggal', now()->month)
+                    ->whereYear('tanggal', now()->year);
+                break;
+            case 'tahun_ini':
+                $query->whereYear('tanggal', now()->year);
+                break;
+        }
+
+        $penjualan = $query->latest('tanggal')->get();
+
+        $filename = 'penjualan_' . now()->format('Ymd_His') . '.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+        ];
+
+        $callback = function () use ($penjualan) {
+            $file = fopen('php://output', 'w');
+
+            // Header CSV
+            fputcsv($file, ['Kode', 'Tanggal', 'Produk', 'Customer', 'Jumlah', 'Harga', 'Total']);
+
+            // Isi data
+            foreach ($penjualan as $item) {
+                fputcsv($file, [
+                    $item->kode_penjualan,
+                    $item->tanggal->format('d/m/Y'),
+                    $item->produk->nama ?? '-',
+                    $item->pembeli ?? '-', // pakai kolom pembeli dari DB
+                    $item->jumlah,
+                    $item->harga_satuan,
+                    $item->total,
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+
 }

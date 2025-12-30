@@ -171,7 +171,7 @@
                 <h3 class="text-xl font-semibold text-gray-800 mb-2">Belum Ada Data Penjualan</h3>
                 <p class="text-gray-600 mb-6">Belum ada transaksi penjualan yang tercatat</p>
                 <button onclick="openModal()" class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors">
-                    Tambah Pembelian
+                    Tambah Penjualan
                 </button>
             </div>
             @endif
@@ -198,12 +198,12 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal</label>
-                    <input type="date" name="tanggal" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input type="date" name="tanggal" value="{{ date('Y-m-d') }}" required class="w-full border px-4 py-2 rounded-lg">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Produk</label>
-                    <select name="produk_id" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <select id="produkSelect" name="produk_id" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="">Pilih Produk</option>
                         @foreach($produkList as $produk)
                         <option value="{{ $produk->id }}">{{ $produk->nama }}</option>
@@ -213,12 +213,17 @@
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Jumlah</label>
-                    <input type="number" name="jumlah" required min="1" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input type="number" id="jumlahInput" name="jumlah" min="1" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Harga Satuan</label>
-                    <input type="number" name="harga_satuan" required min="0" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input type="number" id="hargaInput" name="harga_satuan" min="0" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Total</label>
+                    <input type="number" id="totalInput" name="total" readonly class="w-full px-4 py-2 border border-gray-200 bg-gray-100 rounded-lg">
                 </div>
 
                 <div>
@@ -251,6 +256,7 @@ function openModal() {
     document.getElementById('modalForm').action = '{{ route("penjualan.store") }}';
     document.getElementById('method').value = 'POST';
     document.getElementById('modalForm').reset();
+    document.getElementById('totalInput').value = '';
 }
 
 function closeModal() {
@@ -258,8 +264,19 @@ function closeModal() {
 }
 
 function editItem(id) {
-    // Implementasi edit - sesuaikan dengan kebutuhan
     alert('Edit feature - ID: ' + id);
 }
+
+// Hitung total otomatis
+document.getElementById('jumlahInput').addEventListener('input', updateTotal);
+document.getElementById('hargaInput').addEventListener('input', updateTotal);
+
+function updateTotal() {
+    let jumlah = parseInt(document.getElementById('jumlahInput').value || 0);
+    let harga = parseFloat(document.getElementById('hargaInput').value || 0);
+    document.getElementById('totalInput').value = jumlah * harga;
+}
 </script>
+
+
 @endsection

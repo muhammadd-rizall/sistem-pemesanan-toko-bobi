@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\Penjualan;
 
 class OrderController extends Controller
 {
@@ -60,9 +61,42 @@ class OrderController extends Controller
             'status' => 'required|in:pending,proses,dikirim,selesai,cancelled',
         ]);
 
+        // Update status
         $order->status = $request->status;
         $order->save();
 
+        // 🔗 PENGAIT KE LAPORAN PENJUALAN (relasi logis)
+        if (strtolower(trim($request->status)) === 'selesai') {
+
+            // Cegah double insert
+            if (!$order->penjualan) {
+
+                // Ambil customer name
+                $customerName = $order->customer ? $order->customer->name : 'Unknown';
+
+                // Ambil produk pertama dari orderItems
+                $firstItem = $order->orderItems()->with('product')->first();
+                if ($firstItem) {
+                    $produk_id = $firstItem->product->id;
+                    $harga_satuan = $firstItem->harga_satuan ?? $firstItem->product->harga_jual;
+                    $jumlah = $firstItem->jumlah ?? 1;
+
+                    Penjualan::create([
+                        'kode_penjualan' => $order->invoice_number, // pengait logis
+                        'tanggal' => now(),
+                        'produk_id' => $produk_id,
+                        'jumlah' => $jumlah,
+                        'harga_satuan' => $harga_satuan,
+                        'total' => $harga_satuan * $jumlah,
+                        'pembeli' => $customerName,
+                        'keterangan' => 'Otomatis dari order #' . $order->id,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->back()->with('success', 'Status pengiriman berhasil diperbarui.');
     }
+
+
 }
