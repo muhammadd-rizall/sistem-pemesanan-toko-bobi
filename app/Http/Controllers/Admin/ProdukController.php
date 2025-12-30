@@ -10,6 +10,7 @@ use App\Models\Supplier;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -100,8 +101,8 @@ class ProdukController extends Controller
 
         // Get active and upcoming discounts
         $activeDiskons = Diskon::where('tanggal_berakhir', '>=', now())
-                               ->orWhereNull('tanggal_berakhir') // Include discounts without an end date
-                               ->get();
+            ->orWhereNull('tanggal_berakhir') // Include discounts without an end date
+            ->get();
 
         // Combine active discounts with the assigned discount (if not already in active list)
         $diskons = collect();
@@ -137,12 +138,15 @@ class ProdukController extends Controller
 
         $item = Produk::findOrFail($id);
 
-        // Handle file upload
         if ($request->hasFile('gambar_produk')) {
-            $file = $request->file('gambar_produk');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('produks', $filename, 'public');
-            $item->gambar_produk = $filename;
+
+            // hapus gambar lama (opsional tapi disarankan)
+            if ($item->gambar_produk && Storage::disk('public')->exists($item->gambar_produk)) {
+                Storage::disk('public')->delete($item->gambar_produk);
+            }
+
+            $path = $request->file('gambar_produk')->store('produks', 'public');
+            $item->gambar_produk = $path; // ✅ SIMPAN DENGAN FOLDER
         }
 
         $item->nama_produk = $request->nama_produk;

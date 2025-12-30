@@ -12,15 +12,16 @@ use App\Http\Controllers\Auth\CustomerController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PembelianController;
+use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\Frontend\OrdersController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Frontend\ReviewsController;
 use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
-use App\Http\Controllers\Admin\PenjualanController;
-use App\Http\Controllers\Admin\PembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -170,5 +171,13 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     Route::put('/pembelian/{pembelian}', [PembelianController::class, 'update'])->name('pembelian.update');
     Route::delete('/pembelian/{pembelian}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
     Route::get('/pembelian/export', [PembelianController::class, 'export'])->name('pembelian.export');
+
+    // Routes Categories
+     Route::get('/category', [CategoriesController::class, 'categoryView'])->name('categoryView');
+     Route::get('/category/create', [CategoriesController::class, 'createCategory'])->name('category.create');
+     Route::post('/category/store', [CategoriesController::class, 'storeCategory'])->name('category.store');
+     Route::get('/category/edit/{id}', [CategoriesController::class, 'editCategory'])->name('editCategory');
+     Route::post('/category/update/{id}', [CategoriesController::class, 'updateCategory'])->name('updateCategory');
+     Route::delete('/category/delete/{id}', [CategoriesController::class, 'deleteCategory'])->name('deleteCategory');
 
 });

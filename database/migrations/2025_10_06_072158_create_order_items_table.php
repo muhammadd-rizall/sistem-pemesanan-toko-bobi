@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->foreignId('produk_id')->constrained('produks')->onDelete('cascade');
             $table->integer('quantity');
-            $table->decimal('harga_satuan', 10, 2);
-            $table->decimal('harga_total', 10, 2);
+            $table->decimal('harga_satuan', 15, 2);
+            $table->decimal('harga_total', 15, 2);
             $table->timestamps();
         });
     }

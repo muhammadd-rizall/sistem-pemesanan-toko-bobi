@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('invoice_number')->unique();
-            $table->decimal('total_harga_awal', 10, 2);
-            $table->decimal('total_diskon', 10, 2)->default(0);
-            $table->decimal('total_harga_akhir', 10, 2);
+            $table->decimal('total_harga_awal', 15, 2);
+            $table->decimal('total_diskon', 15, 2)->default(0);
+            $table->decimal('total_harga_akhir', 15, 2);
             $table->string('no_hp');
             $table->text('alamat_pengiriman');
             $table->text('catatan')->nullable();

@@ -37,13 +37,15 @@
                         <label for="deskripsi" class="block text-sm font-medium text-gray-800">
                             Deskripsi <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="deskripsi" id="deskripsi"
-                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('deskripsi') ? 'border-red-500' : '' }}"
-                            required>
+
+                        <textarea name="deskripsi" id="deskripsi" rows="4" required
+                            class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('deskripsi') ? 'border-red-500' : '' }}">{{ old('deskripsi') }}</textarea>
+
                         @error('deskripsi')
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+
 
                     {{-- kategories --}}
                     <div class="mb-4">

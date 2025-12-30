@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('diskons', function (Blueprint $table) {
             $table->id();
             $table->string('kode_diskon')->unique();
-            $table->decimal('nilai_diskon', 10, 2);
+            $table->decimal('nilai_diskon', 15, 2);
             $table->date('tanggal_mulai');
             $table->date('tanggal_berakhir');
             $table->enum('status', ['active', 'inactive'])->default('active');

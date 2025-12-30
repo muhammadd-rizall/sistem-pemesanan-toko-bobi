@@ -67,7 +67,7 @@
                 </label>
                 <input type="text" name="provinsi" id="provinsi"
                     class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('provinsi') ? 'border-red-500' : '' }}"
-                    value="{{ old('provinsi') }}" required>
+                    value="{{ old('provinsi') }}">
                 @error('provinsi')
                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                 @enderror
@@ -80,7 +80,7 @@
                 </label>
                 <input type="text" name="kota" id="kota"
                     class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('kota') ? 'border-red-500' : '' }}"
-                    value="{{ old('kota') }}" required>
+                    value="{{ old('kota') }}">
                 @error('kota')
                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                 @enderror
@@ -93,7 +93,7 @@
                 </label>
                 <input type="text" name="kecamatan" id="kecamatan"
                     class="mt-2 block w-full border border-gray-500 text-black focus:border-blue-300 focus:ring-blue-200 focus:ring focus:outline-none rounded-md py-2 px-2 {{ $errors->has('kecamatan') ? 'border-red-500' : '' }}"
-                    value="{{ old('kecamatan') }}" required>
+                    value="{{ old('kecamatan') }}">
                 @error('kecamatan')
                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                 @enderror

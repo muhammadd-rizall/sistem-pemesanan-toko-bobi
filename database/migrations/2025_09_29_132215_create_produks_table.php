@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('merek')->nullable();
             $table->text('deskripsi')->nullable();
             // $table->decimal('harga_beli',10,2);
-            $table->decimal('harga_jual',10,2);
+            $table->decimal('harga_jual',15,2);
             $table->integer('stok');
             $table->enum('status', ['tersedia', 'tidak tersedia'])->default('tersedia');
             $table->string('gambar_produk')->nullable();

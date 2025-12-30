@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->enum('jenis_pembayaran', ['full', 'dp'])->default('full');
-            $table->decimal('total_order', 10, 2);
-            $table->decimal('jumlah_terbayar', 10, 2)->default(0);
-            $table->decimal('sisa_pembayaran', 10, 2)->default(0);
+            $table->decimal('total_order', 15, 2);
+            $table->decimal('jumlah_terbayar', 15, 2)->default(0);
+            $table->decimal('sisa_pembayaran', 15, 2)->default(0);
             $table->enum('metode_pembayaran',['cod','midtrans'])->default('midtrans');
             $table->string('snap_token')->nullable();
              $table->string('snap_redirect_url')->nullable();
