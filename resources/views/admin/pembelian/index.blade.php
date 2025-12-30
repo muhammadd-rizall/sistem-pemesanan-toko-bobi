@@ -96,6 +96,7 @@
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">KODE</th>
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">TANGGAL</th>
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">PRODUK</th>
+                            <th class="px-6 py-3 text-xs font-semibold text-gray-500">SUPPLIER</th>
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">JUMLAH</th>
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">HARGA</th>
                             <th class="px-6 py-3 text-xs font-semibold text-gray-500">TOTAL</th>
@@ -107,7 +108,8 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 text-sm">{{ $item->kode_pembelian }}</td>
                             <td class="px-6 py-4 text-sm">{{ $item->tanggal->format('d/m/Y') }}</td>
-                            <td class="px-6 py-4 text-sm">{{ $item->produk->nama ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm">{{ $item->produk->nama_produk ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm">{{ $item->supplier->nama_perusahaan ?? '-' }}</td>
                             <td class="px-6 py-4 text-sm">{{ $item->jumlah }} pcs</td>
                             <td class="px-6 py-4 text-sm">
                                 Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}
@@ -142,9 +144,25 @@
             @csrf
 
             <div class="space-y-3">
-                <input type="date" name="tanggal" required class="w-full border px-4 py-2 rounded-lg">
+                <input type="date" name="tanggal" value="{{ date('Y-m-d') }}" required class="w-full border px-4 py-2 rounded-lg">
+
+                <select name="produk_id" required class="w-full border px-4 py-2 rounded-lg">
+                    <option value="">-- Pilih Produk --</option>
+                    @foreach($produkList as $produk)
+                        <option value="{{ $produk->id }}">{{ $produk->nama_produk }}</option>
+                    @endforeach
+                </select>
+
+                <select name="supplier_id" required class="w-full border px-4 py-2 rounded-lg">
+                    <option value="">-- Pilih Supplier --</option>
+                    @foreach($supplierList as $supplier)
+                        <option value="{{ $supplier->id }}">{{ $supplier->nama_perusahaan }}</option>
+                    @endforeach
+                </select>
+
                 <input type="number" name="jumlah" placeholder="Jumlah" required class="w-full border px-4 py-2 rounded-lg">
                 <input type="number" name="harga_satuan" placeholder="Harga Satuan" required class="w-full border px-4 py-2 rounded-lg">
+                <input type="text" name="keterangan" placeholder="Keterangan (opsional)" class="w-full border px-4 py-2 rounded-lg">
             </div>
 
             <div class="flex gap-3 mt-6">

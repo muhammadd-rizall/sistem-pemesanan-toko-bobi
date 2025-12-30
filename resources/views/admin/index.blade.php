@@ -187,7 +187,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="py-8 text-center text-gray-500">Belum ada pesanan</td>
+                            <td colspan="5" class="py-8 text-center text-gray-500">Belum ada penjualan</td>
                         </tr>
                     @endforelse
                 </tbody>
