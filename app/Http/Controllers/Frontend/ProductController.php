@@ -95,9 +95,82 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Produk::with('category')->findOrFail($id);
 
-        return view('frontend.show', compact('product'));
+
+        // 1. Ambil detail produk utama
+        $product = Produk::with(['category', 'supplier', 'reviews.customer'])->findOrFail($id);
+
+        // 2. Hitung rating
+        $averageRating = $product->reviews->avg('rating') ?? 0;
+        $totalReviews = $product->reviews->count();
+
+        // 3. Ambil Rekomendasi (ACAK DARI SEMUA KATEGORI)
+        // Syarat: Bukan produk yang sedang dilihat & status tersedia
+        $relatedProducts = Produk::where('id', '!=', $id)
+            ->where('status', 'tersedia')
+            ->inRandomOrder() // Acak urutan
+            ->take(7)         // Ambil maksimal 7
+            ->get();
+
+        return view('frontend.show', compact('product', 'relatedProducts', 'averageRating', 'totalReviews'));
+
+
+
+
+        // $product = Produk::with('category')->findOrFail($id);
+
+        // return view('frontend.show', compact('product'));
+    }
+
+
+    // Method baru untuk halaman semua review
+    public function productReviews(Request $request, $id)
+    {
+
+        // 1. Ambil Produk
+        $product = Produk::findOrFail($id);
+
+        // 2. Query Dasar Review
+        $query = $product->reviews()->with('customer')->latest();
+
+        // 3. Logika Filter (Agar tombol filter berfungsi)
+        if ($request->has('rating')) {
+            $query->where('rating', $request->rating);
+        }
+
+        if ($request->has('verified')) {
+            // Asumsi: Customer terverifikasi jika email_verified_at tidak null
+            $query->whereHas('customer', function($q) {
+                $q->whereNotNull('email_verified_at');
+            });
+        }
+
+        // 4. Ambil Data (Pagination)
+        $reviews = $query->paginate(8); // Tampilkan 8 review per halaman
+
+        // 5. Statistik Review
+        $totalReviews = $product->reviews()->count();
+        $averageRating = $product->reviews()->avg('rating') ?? 0;
+
+        // Kirim semua data ke view
+        return view('frontend.reviews.index', compact(
+            'product',
+            'reviews',
+            'totalReviews',
+            'averageRating'
+        ));
+
+
+
+        // $product = Produk::with(['reviews.customer'])->findOrFail($id);
+
+        // // Ambil review dengan pagination (misal 10 per halaman)
+        // $reviews = $product->reviews()->with('customer')->latest()->paginate(10);
+
+        // $averageRating = $product->reviews->avg('rating') ?? 0;
+        // $totalReviews = $product->reviews->count();
+
+        // return view('frontend.reviews.index', compact('product', 'reviews', 'averageRating', 'totalReviews'));
     }
 
     /**

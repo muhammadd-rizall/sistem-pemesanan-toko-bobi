@@ -24,18 +24,42 @@
 
                     <div class="px-6 pb-8 text-center relative">
                         <div class="relative -mt-16 mb-4 inline-block group">
-                            <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white relative z-10 transition-transform duration-300 group-hover:scale-105">
-                                <img src="{{ (!empty(Auth::guard('customer')->user()->avatar))
-                                    ? (str_starts_with(Auth::guard('customer')->user()->avatar, 'http')
-                                        ? Auth::guard('customer')->user()->avatar
-                                        : url('upload/user_images/'.Auth::guard('customer')->user()->avatar))
-                                    : 'https://ui-avatars.com/api/?name='.urlencode(Auth::guard('customer')->user()->nama_lengkap).'&background=e8f0e8&color=2f4f39&size=256&bold=true' }}"
-                                    alt="Profile"
-                                    class="w-full h-full object-cover">
-                                {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap) }}&background=e8f0e8&color=2f4f39&size=256&bold=true"
-                                     alt="Profile"
-                                     class="w-full h-full object-cover"> --}}
+
+                            @php
+                                use Illuminate\Support\Facades\File;
+
+                                $user = Auth::guard('customer')->user();
+                                $nama = $user->name ?? '';
+
+                                $inisial = mb_strtoupper(
+                                    collect(explode(' ', trim($nama)))
+                                        ->filter()
+                                        ->take(2)
+                                        ->map(fn($n) => mb_substr($n, 0, 1))
+                                        ->implode(''),
+                                    'UTF-8'
+                                );
+
+                                $avatarPath = public_path('upload/user_images/' . $user->avatar);
+                                $avatarExists = !empty($user->avatar) && File::exists($avatarPath);
+                            @endphp
+
+                            <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white relative z-10 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+
+                                @if($avatarExists)
+                                    <img src="{{ asset('upload/user_images/' . $user->avatar) }}"
+                                        alt="Profile"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full bg-sage-300 text-sage-800 flex items-center justify-center text-4xl font-bold select-none">
+                                        {{ $inisial ?: 'U' }}
+                                    </div>
+                                @endif
+
                             </div>
+
+
+
                             {{-- Badge Status --}}
                             <div class="absolute bottom-2 right-2 z-20 bg-green-500 border-2 border-white w-5 h-5 rounded-full" title="Active"></div>
                         </div>
