@@ -128,8 +128,8 @@
                         <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
                         <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Produk</a>
                         <a href="{{ route('tentang') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Tentang Kami</a>
-                        <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Testimoni</a>
-                        <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Galeri</a>
+                        {{-- <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Testimoni</a> --}}
+                        {{-- <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Galeri</a> --}}
                         <a href="{{ route('kontak') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Contact</a>
                     @else
                         <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
@@ -235,8 +235,8 @@
                         <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
                         <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Produk</a>
                         <a href="{{ route('tentang') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Tentang Kami</a>
-                        <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Testimoni</a>
-                        <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Galeri</a>
+                        {{-- <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Testimoni</a>
+                        <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Galeri</a> --}}
                         <a href="{{ route('kontak') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Contact</a>
                     </div>
                     <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
