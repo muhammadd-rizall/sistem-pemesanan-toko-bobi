@@ -22,7 +22,6 @@ use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
-use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +29,7 @@ use Illuminate\Support\Facades\Artisan;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/storage-link', function () {
-    Artisan::call('storage:link');
-    return 'Storage link created';
-});
+
 
 
 // Rute untuk Halaman Utama / Home (yang sudah ada)
