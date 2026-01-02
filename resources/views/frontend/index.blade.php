@@ -6,7 +6,7 @@
     {{-- ============================================ --}}
     <section
         class="relative w-full h-[80vh] sm:h-screen flex items-center justify-center text-center text-white overflow-hidden">
-        <img src="{{ asset('storage/images/background-hero.jpg') }}" alt="Background Keramik"
+        <img src="{{ asset('images/background-hero.jpg') }}" alt="Background Keramik"
             class="absolute inset-0 w-full h-full object-cover object-center">
 
         <div class="absolute inset-0 bg-black opacity-50"></div>

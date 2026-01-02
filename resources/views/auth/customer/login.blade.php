@@ -11,7 +11,7 @@
             <!-- Panel Kiri -->
             <div
                 class="relative hidden md:flex flex-col items-center justify-center p-8 text-center text-white bg-sage-800">
-                <img src="{{ asset('storage/images/login.jpg') }}" alt="Keramik"
+                <img src="{{ asset('images/login.jpg') }}" alt="Keramik"
                     class="absolute inset-0 w-full h-full object-cover opacity-30">
                 <div class="relative z-10">
                     <h2 class="text-4xl font-bold drop-shadow-lg">Selamat Datang Kembali!</h2>
