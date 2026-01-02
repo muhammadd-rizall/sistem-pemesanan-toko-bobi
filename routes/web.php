@@ -22,12 +22,19 @@ use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
 | RUTE UNTUK PENGUNJUNG (FRONTEND)
 |--------------------------------------------------------------------------
 */
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created';
+});
+
 
 // Rute untuk Halaman Utama / Home (yang sudah ada)
 Route::get('/', [FrontendController::class, 'index'])->name('home');
@@ -183,3 +190,5 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
      Route::delete('/category/delete/{id}', [CategoriesController::class, 'deleteCategory'])->name('deleteCategory');
 
 });
+
+
