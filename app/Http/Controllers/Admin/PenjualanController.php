@@ -80,6 +80,12 @@ class PenjualanController extends Controller
             ->with('success', 'Data penjualan berhasil ditambahkan');
     }
 
+    public function edit(Penjualan $penjualan)
+    {
+        $produkList = Produk::all();
+        return view('admin.penjualan.edit', compact('penjualan', 'produkList'));
+    }
+
     public function update(Request $request, Penjualan $penjualan)
     {
         $data = $request->validate([

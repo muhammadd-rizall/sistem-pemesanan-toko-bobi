@@ -142,7 +142,7 @@
                 </a>
 
                 {{-- Link Galeri --}}
-                <a href="#"
+                {{-- <a href="#"
                     class="flex items-center px-4 py-2.5 text-sage-100 hover:bg-sage-700 hover:text-white rounded-lg transition-colors">
                     <svg class="w-6 h-6 min-w-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -150,7 +150,7 @@
                         </path>
                     </svg>
                     <span class="nav-text ml-4 whitespace-nowrap">Galeri</span>
-                </a>
+                </a> --}}
 
                 {{-- Link Review --}}
                 <a href="{{ route('review') }}"
