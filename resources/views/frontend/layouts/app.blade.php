@@ -11,7 +11,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -35,7 +37,12 @@
             font-family: 'Inter', sans-serif;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Playfair Display', serif;
         }
 
@@ -104,20 +111,25 @@
 
                 <!-- Logo -->
                 @php
-                    $logoRoute = Auth::guard('web')->guest() && Auth::guard('customer')->guest()
-                        ? route('admin.login.form')
-                        : route('home');
+                    $logoRoute =
+                        Auth::guard('web')->guest() && Auth::guard('customer')->guest()
+                            ? route('admin.login.form')
+                            : route('home');
                 @endphp
 
                 <a href="{{ url('/admin/login') }}" class="group flex items-center gap-3">
                     <div class="relative">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        <div
+                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
                         </div>
                     </div>
-                    <span class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
+                    <span
+                        class="text-2xl sm:text-3xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors duration-300">
                         Bobi Ceramic's
                     </span>
                 </a>
@@ -125,16 +137,24 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center gap-4 lg:gap-8 text-base font-medium">
                     @guest('customer')
-                        <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
-                        <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Produk</a>
-                        <a href="{{ route('tentang') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Tentang Kami</a>
+                        <a href="{{ route('home') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
+                        <a href="{{ route('produk') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Produk</a>
+                        <a href="{{ route('tentang') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Tentang
+                            Kami</a>
                         {{-- <a href="{{ route('testimoni') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Testimoni</a> --}}
                         {{-- <a href="{{ route('galeri') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Galeri</a> --}}
-                        <a href="{{ route('kontak') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Contact</a>
+                        <a href="{{ route('kontak') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Contact</a>
                     @else
-                        <a href="{{ route('home') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
-                        <a href="{{ route('produk') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Belanja</a>
-                        <a href="{{ route('customer.dashboard') }}" class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Pesanan</a>
+                        <a href="{{ route('home') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Home</a>
+                        <a href="{{ route('produk') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Belanja</a>
+                        <a href="{{ route('customer.dashboard') }}"
+                            class="relative text-sage-900 hover:text-sage-600 transition-colors duration-300 py-2 group">Pesanan</a>
                     @endguest
                 </div>
 
@@ -143,7 +163,8 @@
                     @guest('customer')
                         <!-- Guest Login Button -->
                         <div class="hidden md:flex items-center gap-4 mr-4 lg:mr-14">
-                            <button onclick="openModal('loginModal')" class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
+                            <button onclick="openModal('loginModal')"
+                                class="px-5 py-2 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-full transition-colors duration-300 shadow-sm">
                                 Masuk
                             </button>
                         </div>
@@ -151,21 +172,27 @@
                         <!-- Authenticated User Profile Dropdown -->
                         <div class="hidden lg:flex items-center gap-4" x-data="{ open: false }">
                             <div class="relative">
-                                <button @click="open = !open" @keydown.escape.window="open = false" class="flex items-center gap-2 focus:outline-none group transition-all duration-300">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-sage-200 group-hover:border-sage-500 transition-all duration-300 shadow-sm ring-2 ring-transparent group-focus:ring-sage-200">
-                                        <img src="{{ (!empty(Auth::guard('customer')->user()->avatar))
-                                        ? (str_starts_with(Auth::guard('customer')->user()->avatar, 'http')
-                                            ? Auth::guard('customer')->user()->avatar
-                                            : url('upload/user_images/'.Auth::guard('customer')->user()->avatar))
-                                        : 'https://ui-avatars.com/api/?name='.urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User').'&background=a8c9a8&color=2f4f39' }}"
-                                        alt="Profile"
-                                        class="w-full h-full object-cover">
-                                    {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') }}&background=a8c9a8&color=2f4f39"
+                                <button @click="open = !open" @keydown.escape.window="open = false"
+                                    class="flex items-center gap-2 focus:outline-none group transition-all duration-300">
+                                    <div
+                                        class="w-10 h-10 rounded-full overflow-hidden border-2 border-sage-200 group-hover:border-sage-500 transition-all duration-300 shadow-sm ring-2 ring-transparent group-focus:ring-sage-200">
+                                        <img src="{{ !empty(Auth::guard('customer')->user()->avatar)
+                                            ? (str_starts_with(Auth::guard('customer')->user()->avatar, 'http')
+                                                ? Auth::guard('customer')->user()->avatar
+                                                : url('upload/user_images/' . Auth::guard('customer')->user()->avatar))
+                                            : 'https://ui-avatars.com/api/?name=' .
+                                                urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') .
+                                                '&background=a8c9a8&color=2f4f39' }}"
+                                            alt="Profile" class="w-full h-full object-cover">
+                                        {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('customer')->user()->nama_lengkap ?? 'User') }}&background=a8c9a8&color=2f4f39"
                                         alt="Profile"
                                         class="w-full h-full object-cover"> --}}
                                     </div>
-                                    <svg class="w-4 h-4 text-sage-600 group-hover:text-sage-800 transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    <svg class="w-4 h-4 text-sage-600 group-hover:text-sage-800 transition-transform duration-300"
+                                        :class="{ 'rotate-180': open }" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
 
@@ -189,25 +216,34 @@
 
                                     <!-- Profile Link -->
                                     <div class="py-1">
-                                        <a href="{{ route('customer.profile') }}" class="group flex items-center gap-3 px-5 py-2.5 text-sm text-sage-700 hover:bg-sage-50 hover:text-sage-900 transition-colors">
-                                            <div class="w-8 h-8 rounded-lg bg-sage-100 text-sage-600 flex items-center justify-center group-hover:bg-sage-200 transition-colors shadow-sm">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0c0 .884-.56 1.6-1.385 1.904M10 6a1.992 1.992 0 01-1.385-1.904m0 0c0-.575.15-1.114.416-1.582M10 6a1.992 1.992 0 00-1.385 1.904m2.77-3.808A1.992 1.992 0 0110 2.096"></path>
+                                        <a href="{{ route('customer.profile') }}"
+                                            class="group flex items-center gap-3 px-5 py-2.5 text-sm text-sage-700 hover:bg-sage-50 hover:text-sage-900 transition-colors">
+                                            <div
+                                                class="w-8 h-8 rounded-lg bg-sage-100 text-sage-600 flex items-center justify-center group-hover:bg-sage-200 transition-colors shadow-sm">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0c0 .884-.56 1.6-1.385 1.904M10 6a1.992 1.992 0 01-1.385-1.904m0 0c0-.575.15-1.114.416-1.582M10 6a1.992 1.992 0 00-1.385 1.904m2.77-3.808A1.992 1.992 0 0110 2.096">
+                                                    </path>
                                                 </svg>
                                             </div>
                                             <div>
                                                 <span class="block font-medium">Profil Saya</span>
-                                                <span class="text-xs text-sage-500 group-hover:text-sage-600">Kelola informasi akun anda</span>
+                                                <span class="text-xs text-sage-500 group-hover:text-sage-600">Kelola
+                                                    informasi akun anda</span>
                                             </div>
                                         </a>
                                     </div>
 
                                     <!-- Logout -->
                                     <div class="py-1 border-t border-sage-50">
-                                        <form method="POST" action="{{ route('customer.logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
+                                        <form method="POST" action="{{ route('customer.logout') }}"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
                                             @csrf
-                                            <button type="submit" class="w-full group flex items-center gap-3 px-5 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
-                                                <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                                            <button type="submit"
+                                                class="w-full group flex items-center gap-3 px-5 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                                                <div
+                                                    class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-100 transition-colors">
                                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                                 </div>
                                                 <span class="font-medium">Logout</span>
@@ -222,7 +258,8 @@
                     <!-- Mobile Menu Toggle -->
                     <button class="md:hidden p-2 text-sage-700" onclick="toggleMobileMenu()">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
@@ -232,31 +269,45 @@
             <div class="mobile-menu md:hidden border-t border-sage-100" id="mobileMenu">
                 @guest('customer')
                     <div class="py-4 space-y-1">
-                        <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
-                        <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Produk</a>
-                        <a href="{{ route('tentang') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Tentang Kami</a>
+                        <a href="{{ route('home') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
+                        <a href="{{ route('produk') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Produk</a>
+                        <a href="{{ route('tentang') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Tentang
+                            Kami</a>
                         {{-- <a href="{{ route('testimoni') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Testimoni</a>
                         <a href="{{ route('galeri') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Galeri</a> --}}
-                        <a href="{{ route('kontak') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Contact</a>
+                        <a href="{{ route('kontak') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Contact</a>
                     </div>
                     <div class="border-t border-sage-200 mt-4 pt-4 space-y-2">
-                        <button onclick="openModal('loginModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">Masuk</button>
-                        <button onclick="openModal('registerModal')" class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">Daftar</button>
+                        <button onclick="openModal('loginModal')"
+                            class="block w-full text-center px-4 py-3 text-base font-medium text-sage-800 bg-sage-100 hover:bg-sage-200 rounded-lg">Masuk</button>
+                        <button onclick="openModal('registerModal')"
+                            class="block w-full text-center px-4 py-3 text-base font-medium text-white bg-sage-600 hover:bg-sage-700 rounded-lg">Daftar</button>
                     </div>
                 @else
                     <div class="py-4 space-y-1">
-                        <a href="{{ route('home') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
-                        <a href="{{ route('produk') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Belanja</a>
-                        <a href="{{ route('customer.dashboard') }}" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Akun Saya</a>
-                        <a href="#" class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Pesanan</a>
+                        <a href="{{ route('home') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Home</a>
+                        <a href="{{ route('produk') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Belanja</a>
+                        <a href="{{ route('customer.dashboard') }}"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Akun
+                            Saya</a>
+                        <a href="#"
+                            class="block px-4 py-3 text-base font-medium text-sage-900 hover:bg-sage-50 rounded-lg">Pesanan</a>
                     </div>
                     <div class="border-t border-sage-200 mt-4 pt-4">
                         <div class="px-4 py-2 text-base font-medium text-sage-900">
                             Hi, {{ Auth::guard('customer')->user()->nama_lengkap }}
                         </div>
-                        <form method="POST" action="{{ route('customer.logout') }}" class="mt-2" onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
+                        <form method="POST" action="{{ route('customer.logout') }}" class="mt-2"
+                            onsubmit="return confirm('Apakah Anda yakin ingin keluar?');">
                             @csrf
-                            <button type="submit" class="block w-full text-center px-4 py-3 text-base font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-lg">
+                            <button type="submit"
+                                class="block w-full text-center px-4 py-3 text-base font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-lg">
                                 Logout
                             </button>
                         </form>
@@ -280,7 +331,9 @@
         <!-- Toast Notifications -->
         <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2">
             @if (session()->has('success'))
-                <div id="toast-success" class="bg-green-100 border-y border-green-400 text-green-700 shadow-lg transition-all transform translate-x-20 opacity-0" role="alert">
+                <div id="toast-success"
+                    class="bg-green-100 border-y border-green-400 text-green-700 shadow-lg transition-all transform translate-x-20 opacity-0"
+                    role="alert">
                     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
                         <strong class="font-semibold">Sukses!</strong>
                         <span class="block sm:inline">{{ session('success') }}</span>
@@ -289,7 +342,9 @@
             @endif
 
             @if (session()->has('error'))
-                <div id="toast-error" class="bg-red-100 border-y border-red-400 text-red-700 shadow-lg transition-all transform translate-x-20 opacity-0" role="alert">
+                <div id="toast-error"
+                    class="bg-red-100 border-y border-red-400 text-red-700 shadow-lg transition-all transform translate-x-20 opacity-0"
+                    role="alert">
                     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
                         <strong class="font-semibold">Error!</strong>
                         <span class="block sm:inline">{{ session('error') }}</span>
@@ -312,9 +367,12 @@
                 <!-- Brand Section -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-sage-400 to-sage-600 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
                         </div>
                         <span class="text-2xl font-bold">Bobi Ceramic's</span>
@@ -323,19 +381,25 @@
                         Mengatur ruang-ruang indah dengan karya-karya abadi yang menceritakan kisah Anda.
                     </p>
                     <div class="flex gap-3 pt-2">
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                        <a href="#"
+                            class="w-10 h-10 bg-sage-800 hover:bg-sage-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                <path
+                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                             </svg>
                         </a>
                     </div>
@@ -345,10 +409,16 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Toko</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Semua Produk</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Produk Baru</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Terlaris</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Diskon</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Semua Produk</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Produk Baru</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Terlaris</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Diskon</a></li>
                     </ul>
                 </div>
 
@@ -356,10 +426,17 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Bantuan</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Hubungi Kami</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Pengiriman</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">FAQ</a></li>
-                        <li><a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">Lacak Pesanan</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Hubungi Kami</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Pengiriman</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">FAQ</a></li>
+                        <li><a href="#"
+                                class="text-sage-300 hover:text-white transition-colors duration-300">Lacak Pesanan</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -368,8 +445,10 @@
                     <h4 class="text-lg font-bold mb-4">Newsletter</h4>
                     <p class="text-sage-300 text-sm mb-4">Berlangganan penawaran dan pembaruan eksklusif.</p>
                     <form class="space-y-3">
-                        <input type="email" placeholder="Email Anda" class="w-full px-4 py-2.5 rounded-lg bg-sage-800 border border-sage-700 text-white placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300">
-                        <button type="submit" class="w-full px-4 py-2.5 bg-sage-600 hover:bg-sage-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <input type="email" placeholder="Email Anda"
+                            class="w-full px-4 py-2.5 rounded-lg bg-sage-800 border border-sage-700 text-white placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500 transition-all duration-300">
+                        <button type="submit"
+                            class="w-full px-4 py-2.5 bg-sage-600 hover:bg-sage-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
                             Subscribe
                         </button>
                     </form>
@@ -394,93 +473,100 @@
          JAVASCRIPT
     ========================================= -->
     <script>
-        // ===== Mobile Menu Toggle =====
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
 
-        // ===== Modal Functions =====
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('invisible', 'opacity-0');
-            setTimeout(() => {
-                modal.querySelector('.modal-content').classList.remove('opacity-0', '-translate-y-10');
-            }, 50);
-            document.body.style.overflow = 'hidden';
-        }
+            // ===== Mobile Menu Toggle =====
+            window.toggleMobileMenu = function() {
+                const menu = document.getElementById('mobileMenu');
+                if (!menu) return;
+                menu.classList.toggle('active');
+            };
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            const modalContent = modal.querySelector('.modal-content');
+            // ===== Modal Functions =====
+            window.openModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
 
-            modalContent.classList.add('opacity-0', '-translate-y-10');
-            modal.classList.add('opacity-0');
+                const content = modal.querySelector('.modal-content');
+                if (!content) return;
 
-            setTimeout(() => {
-                modal.classList.add('invisible');
-                document.body.style.overflow = '';
-            }, 300);
-        }
+                modal.classList.remove('invisible', 'opacity-0');
+                setTimeout(() => {
+                    content.classList.remove('opacity-0', '-translate-y-10');
+                }, 50);
 
-        function switchModal(fromModalId, toModalId) {
-            closeModal(fromModalId);
-            setTimeout(() => openModal(toModalId), 150);
-        }
+                document.body.style.overflow = 'hidden';
+            };
 
-        // ===== Modal Event Listeners =====
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(event) {
-                if (event.target === this) {
-                    closeModal(this.id);
-                }
+            window.closeModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+
+                const content = modal.querySelector('.modal-content');
+                if (!content) return;
+
+                content.classList.add('opacity-0', '-translate-y-10');
+                modal.classList.add('opacity-0');
+
+                setTimeout(() => {
+                    modal.classList.add('invisible');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+
+            window.switchModal = function(fromId, toId) {
+                closeModal(fromId);
+                setTimeout(() => openModal(toId), 150);
+            };
+
+            // ===== Modal Click Outside =====
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) closeModal(modal.id);
+                });
             });
-        });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
+            // ===== ESC Close Modal =====
+            document.addEventListener('keydown', function(e) {
+                if (e.key !== 'Escape') return;
                 document.querySelectorAll('.modal:not(.invisible)').forEach(modal => {
                     closeModal(modal.id);
                 });
-            }
-        });
+            });
 
-        // ===== Navbar Scroll Effect =====
-        window.addEventListener('scroll', function() {
+            // ===== Navbar Scroll =====
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+                });
             }
-        });
 
-        // ===== Close Mobile Menu on Outside Click =====
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobileMenu');
-            const menuButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
+            // ===== Close Mobile Menu on Outside Click =====
+            document.addEventListener('click', function(e) {
+                const menu = document.getElementById('mobileMenu');
+                if (!menu) return;
 
-            if (!menuButton && !menu.contains(event.target) && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-            }
-        });
-
-        // ===== Smooth Scroll for Anchor Links =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const button = e.target.closest('[onclick="toggleMobileMenu()"]');
+                if (!button && !menu.contains(e.target)) {
+                    menu.classList.remove('active');
                 }
             });
-        });
 
-        // ===== Toast Notifications =====
-        document.addEventListener('DOMContentLoaded', function() {
+            // ===== Smooth Scroll (HANYA JIKA TARGET ADA) =====
+            document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (!target) return;
+
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // ===== Toast =====
             const toastSuccess = document.getElementById('toast-success');
             const toastError = document.getElementById('toast-error');
 
@@ -491,17 +577,19 @@
                 toast.classList.add('translate-x-0', 'opacity-100');
 
                 setTimeout(() => {
-                    toast.classList.remove('translate-x-0', 'opacity-100');
                     toast.classList.add('translate-x-20', 'opacity-0');
                 }, 4000);
             }
 
             showToast(toastSuccess);
             showToast(toastError);
+
         });
     </script>
+
 
     @stack('scripts')
 
 </body>
+
 </html>
