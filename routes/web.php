@@ -22,6 +22,7 @@ use App\Http\Controllers\checkout\PaymentsController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\ProductController as FrontendController;
 use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,18 @@ use App\Http\Controllers\checkout\OrderController as CheckoutOrderController;
 |--------------------------------------------------------------------------
 */
 
-
+Route::get('/force-seed', function () {
+    try {
+        // Kita pakai migrate:fresh agar database BERSIH TOTAL sebelum diisi seeder
+        Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true,
+        ]);
+        return "Database Berhasil Di-Reset & Di-Seed! <pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
+    } catch (\Exception $e) {
+        return "Gagal Reset Database. Error: " . $e->getMessage();
+    }
+});
 
 
 // Rute untuk Halaman Utama / Home (yang sudah ada)
@@ -186,5 +198,7 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
      Route::delete('/category/delete/{id}', [CategoriesController::class, 'deleteCategory'])->name('deleteCategory');
 
 });
+
+
 
 
