@@ -79,6 +79,13 @@ class PembelianController extends Controller
             ->with('success', 'Pembelian offline berhasil dicatat');
     }
 
+    public function edit(Pembelian $pembelian)
+    {
+        $produkList = Produk::all();
+        $supplierList = Supplier::all();
+        return view('admin.pembelian.edit', compact('pembelian', 'produkList', 'supplierList'));
+    }
+
     public function update(Request $request, Pembelian $pembelian)
     {
         $validated = $request->validate([

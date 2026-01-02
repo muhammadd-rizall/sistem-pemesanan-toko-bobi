@@ -161,6 +161,7 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     // Routes Laporan Penjualan
     Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
     Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'edit'])->name('penjualan.edit');
     Route::put('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.update');
     Route::delete('/penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
     Route::get('/penjualan/export', [PenjualanController::class, 'export'])->name('penjualan.export');
@@ -168,6 +169,7 @@ Route::middleware(['admin.role'])->prefix('admin')->group(function () {
     // Routes Laporan Pembelian
     Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
     Route::post('/pembelian', [PembelianController::class, 'store'])->name('pembelian.store');
+    Route::get('/pembelian/{pembelian}/edit', [PembelianController::class, 'edit'])->name('pembelian.edit');
     Route::put('/pembelian/{pembelian}', [PembelianController::class, 'update'])->name('pembelian.update');
     Route::delete('/pembelian/{pembelian}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
     Route::get('/pembelian/export', [PembelianController::class, 'export'])->name('pembelian.export');
