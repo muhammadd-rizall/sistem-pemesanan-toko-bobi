@@ -23,15 +23,17 @@ class DatabaseSeeder extends Seeder
 
         // 1. Seed categories
         $this->call([
-            CategoriesSeeder::class,
-            SupplierSeeder::class,
-            DiskonSeeder::class,
-            ProductSeeder::class,
-            CustomerSeeder::class,
-            OrderSeeder::class,
-            OrderItemSeeder::class,
-            PembelianSeeder::class,
-            PenjualanSeeder::class,
+            // CategoriesSeeder::class,
+            // SupplierSeeder::class,
+            // DiskonSeeder::class,
+            // ProductSeeder::class,
+            // CustomerSeeder::class,
+            // OrderSeeder::class,
+            // OrderItemSeeder::class,
+            // PembelianSeeder::class,
+            // PenjualanSeeder::class,
+
+            UserSeeder::class
 
         ]);
     }
