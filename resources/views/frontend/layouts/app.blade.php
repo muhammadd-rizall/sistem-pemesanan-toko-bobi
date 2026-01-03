@@ -329,25 +329,70 @@
     ========================================= -->
     <main>
         <!-- Toast Notifications -->
-        <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2">
+        <div id="toast-container"
+    class="fixed top-5 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-5 z-[100] w-11/12 max-w-sm space-y-3">
             @if (session()->has('success'))
                 <div id="toast-success"
-                    class="bg-green-100 border-y border-green-400 text-green-700 shadow-lg transition-all transform translate-x-20 opacity-0"
+                    class="relative w-full bg-white border border-green-200 rounded-2xl shadow-lg transition-all transform translate-x-full opacity-0"
                     role="alert">
-                    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
-                        <strong class="font-semibold">Sukses!</strong>
-                        <span class="block sm:inline">{{ session('success') }}</span>
+                    <div class="flex items-start p-4">
+                        <div class="flex-shrink-0">
+                            <div
+                                class="w-10 h-10 bg-green-100 border border-green-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-3 flex-1 pt-0.5">
+                            <p class="text-sm font-semibold text-gray-900">Sukses!</p>
+                            <p class="mt-1 text-sm text-gray-600">{{ session('success') }}</p>
+                        </div>
+                        <div class="ml-4 flex-shrink-0 flex">
+                            <button type="button" onclick="closeToast('toast-success')"
+                                class="inline-flex text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Close</span>
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             @endif
 
             @if (session()->has('error'))
                 <div id="toast-error"
-                    class="bg-red-100 border-y border-red-400 text-red-700 shadow-lg transition-all transform translate-x-20 opacity-0"
+                    class="relative w-full bg-white border border-red-200 rounded-2xl shadow-lg transition-all transform translate-x-full opacity-0"
                     role="alert">
-                    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
-                        <strong class="font-semibold">Error!</strong>
-                        <span class="block sm:inline">{{ session('error') }}</span>
+                    <div class="flex items-start p-4">
+                        <div class="flex-shrink-0">
+                            <div
+                                class="w-10 h-10 bg-red-100 border border-red-200 rounded-xl flex items-center justify-center">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-3 flex-1 pt-0.5">
+                            <p class="text-sm font-semibold text-gray-900">Error!</p>
+                            <p class="mt-1 text-sm text-gray-600">{{ session('error') }}</p>
+                        </div>
+                        <div class="ml-4 flex-shrink-0 flex">
+                            <button type="button" onclick="closeToast('toast-error')"
+                                class="inline-flex text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Close</span>
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             @endif
@@ -567,22 +612,39 @@
             });
 
             // ===== Toast =====
-            const toastSuccess = document.getElementById('toast-success');
-            const toastError = document.getElementById('toast-error');
-
-            function showToast(toast) {
+            window.showToast = function(toastId) {
+                const toast = document.getElementById(toastId);
                 if (!toast) return;
 
-                toast.classList.remove('translate-x-20', 'opacity-0');
+                toast.classList.remove('translate-x-full', 'opacity-0');
                 toast.classList.add('translate-x-0', 'opacity-100');
 
-                setTimeout(() => {
-                    toast.classList.add('translate-x-20', 'opacity-0');
-                }, 4000);
-            }
+                const autoClose = setTimeout(() => closeToast(toastId), 5000);
 
-            showToast(toastSuccess);
-            showToast(toastError);
+                toast.dataset.autoClose = autoClose;
+            };
+
+            window.closeToast = function(toastId) {
+                const toast = document.getElementById(toastId);
+                if (!toast) return;
+
+                // Clear the auto-close timeout if it exists
+                if (toast.dataset.autoClose) {
+                    clearTimeout(toast.dataset.autoClose);
+                }
+
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-full', 'opacity-0');
+
+                // Optional: remove the element from DOM after transition
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            };
+
+            // Automatically show toasts if they exist on page load
+            showToast('toast-success');
+            showToast('toast-error');
 
         });
     </script>

@@ -32,7 +32,7 @@
             </div>
 
             <!-- Statistik -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white rounded-xl p-6 border border-gray-100">
                     <div class="flex justify-between items-center">
                         <div>
@@ -83,9 +83,11 @@
             </div>
 
             <!-- Filter & Action -->
-            <div class="bg-white rounded-xl p-5 mb-6 border border-gray-100 flex justify-between items-center">
-                <form method="GET" action="{{ route('pembelian.index') }}">
-                    <select name="filter" onchange="this.form.submit()" class="px-4 py-2 border rounded-lg bg-gray-50">
+            <div
+                class="bg-white rounded-xl p-5 mb-6 border border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <form method="GET" action="{{ route('pembelian.index') }}" class="w-full sm:w-auto">
+                    <select name="filter" onchange="this.form.submit()"
+                        class="w-full px-4 py-2 border rounded-lg bg-gray-50">
                         <option value="semua">Semua</option>
                         <option value="hari_ini">Hari Ini</option>
                         <option value="minggu_ini">Minggu Ini</option>
@@ -94,14 +96,14 @@
                     </select>
                 </form>
 
-                <div class="flex gap-3">
+                <div class="flex gap-3 w-full sm:w-auto">
                     <button onclick="openModal()"
-                        class="px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium">
+                        class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium">
                         + Tambah Pembelian
                     </button>
 
                     <a href="{{ route('pembelian.export', ['filter' => $filter]) }}"
-                        class="px-5 py-2.5 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg font-medium">
+                        class="w-full sm:w-auto text-center px-5 py-2.5 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg font-medium">
                         Ekspor CSV
                     </a>
                 </div>
@@ -118,11 +120,11 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-xs font-semibold text-gray-500">KODE</th>
-                                <th class="px-6 py-3 text-xs font-semibold text-gray-500">TANGGAL</th>
+                                <th class="hidden md:table-cell px-6 py-3 text-xs font-semibold text-gray-500">TANGGAL</th>
                                 <th class="px-6 py-3 text-xs font-semibold text-gray-500">PRODUK</th>
-                                <th class="px-6 py-3 text-xs font-semibold text-gray-500">SUPPLIER</th>
-                                <th class="px-6 py-3 text-xs font-semibold text-gray-500">JUMLAH</th>
-                                <th class="px-6 py-3 text-xs font-semibold text-gray-500">HARGA</th>
+                                <th class="hidden md:table-cell px-6 py-3 text-xs font-semibold text-gray-500">SUPPLIER</th>
+                                <th class="hidden sm:table-cell px-6 py-3 text-xs font-semibold text-gray-500">JUMLAH</th>
+                                <th class="hidden sm:table-cell px-6 py-3 text-xs font-semibold text-gray-500">HARGA</th>
                                 <th class="px-6 py-3 text-xs font-semibold text-gray-500">TOTAL</th>
                                 <th class="px-6 py-3 text-xs font-semibold text-gray-500 text-center">AKSI</th>
                             </tr>
@@ -131,11 +133,11 @@
                             @foreach ($pembelian as $item)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 text-sm">{{ $item->kode_pembelian }}</td>
-                                    <td class="px-6 py-4 text-sm">{{ $item->tanggal->format('d/m/Y') }}</td>
+                                    <td class="hidden md:table-cell px-6 py-4 text-sm">{{ $item->tanggal->format('d/m/Y') }}</td>
                                     <td class="px-6 py-4 text-sm">{{ $item->produk->nama_produk ?? '-' }}</td>
-                                    <td class="px-6 py-4 text-sm">{{ $item->supplier->nama_perusahaan ?? '-' }}</td>
-                                    <td class="px-6 py-4 text-sm">{{ $item->jumlah }} pcs</td>
-                                    <td class="px-6 py-4 text-sm">
+                                    <td class="hidden md:table-cell px-6 py-4 text-sm">{{ $item->supplier->nama_perusahaan ?? '-' }}</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 text-sm">{{ $item->jumlah }} pcs</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 text-sm">
                                         Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}
                                     </td>
                                     <td class="px-6 py-4 text-sm font-semibold text-green-600">
@@ -181,7 +183,7 @@
 
     <!-- MODAL -->
     <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-        <div class="bg-white rounded-xl w-full max-w-md p-6">
+        <div class="bg-white rounded-xl w-11/12 max-w-md p-6 mx-auto">
             <h3 class="text-xl font-semibold mb-4">Tambah Pembelian</h3>
 
             <form method="POST" action="{{ route('pembelian.store') }}">
